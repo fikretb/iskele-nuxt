@@ -1,0 +1,32 @@
+İSKELE PRO — LOGO PAKETİ
+========================
+
+Renkler
+  Navy   #0B2051
+  Amber  #E89414
+
+svg/
+  iskele-pro-logo.svg                 tam logo, şeffaf (vektör)
+  iskele-pro-logo-siyah-zemin.svg     tam logo, siyah zemin
+  iskele-pro-logo-navy-zemin.svg      tam logo, navy zemin
+  iskele-pro-icon.svg                 sadece ızgara ikon, şeffaf
+  iskele-pro-icon-siyah-zemin.svg
+  iskele-pro-icon-navy-zemin.svg
+
+png/
+  iskele-pro-logo-seffaf.png          yüksek çözünürlük, şeffaf
+  iskele-pro-logo-siyah-zemin.png
+  iskele-pro-logo-navy-zemin.png
+  iskele-pro-icon-seffaf.png
+  iskele-pro-icon-siyah-zemin.png
+  iskele-pro-icon-navy-zemin.png
+
+logo-boyutlar/     400–3200 px genişlik yatay logo
+icon-boyutlar/     16–1024 px kare ikon (favicon + uygulama)
+sosyal-medya/      Instagram, Facebook, LinkedIn, X, WhatsApp, YouTube, Google
+
+Kullanım
+  Site / fatura / teklif     logo şeffaf PNG veya SVG
+  Koyu uygulama ekranı       logo siyah veya navy zemin
+  Favicon / app ikon         icon-*.png
+  Baskı / Illustrator        svg klasörü
