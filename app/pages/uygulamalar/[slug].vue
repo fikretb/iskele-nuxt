@@ -82,7 +82,7 @@ useSeoMeta({
         <h2 class="text-2xl font-semibold tracking-tight">Tek bir ihtiyaç, tek bir uygulama.</h2>
         <p class="mt-1 text-sm text-muted-foreground">Büyüdükçe ilerleyin. {{ category?.blurb }}</p>
         <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <AppTile v-for="item in related" :key="item.slug" :app="item" />
+          <SiteAppTile v-for="item in related" :key="item.slug" :app="item" />
         </div>
         <Button variant="link" class="mt-4 px-0" as-child>
           <NuxtLink to="/uygulamalar">Tüm uygulamaları görün →</NuxtLink>

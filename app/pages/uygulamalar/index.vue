@@ -43,7 +43,7 @@ useSeoMeta({
         <h2 class="text-2xl font-semibold tracking-tight">{{ category.name }}</h2>
         <p class="mt-1 text-sm text-muted-foreground">{{ category.blurb }}</p>
         <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <AppTile v-for="app in appsByCategory(category.id)" :key="app.slug" :app="app" />
+          <SiteAppTile v-for="app in appsByCategory(category.id)" :key="app.slug" :app="app" />
         </div>
       </div>
     </section>

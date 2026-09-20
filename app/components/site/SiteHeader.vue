@@ -28,9 +28,9 @@ watch(() => useRoute().fullPath, () => {
 
 <template>
   <header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur">
-    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
+    <div class="mx-auto flex h-18 max-w-6xl items-center justify-between gap-4 px-6 md:h-20">
       <NuxtLink to="/" class="shrink-0" aria-label="İskele Pro ana sayfa">
-        <BrandLogo />
+        <BrandLogo size="lg" />
       </NuxtLink>
 
       <nav class="hidden items-center gap-0.5 lg:flex">
@@ -64,8 +64,8 @@ watch(() => useRoute().fullPath, () => {
         <Button variant="ghost" as-child>
           <a :href="config.public.appUrl">Portal</a>
         </Button>
-        <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
-          <NuxtLink to="/iletisim">Ücretsiz deneyin</NuxtLink>
+        <Button class="h-10 rounded-md bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
+          <NuxtLink to="/#demo">Ücretsiz demo</NuxtLink>
         </Button>
       </div>
 
@@ -106,8 +106,8 @@ watch(() => useRoute().fullPath, () => {
             <Button variant="outline" as-child>
               <a :href="config.public.appUrl">Portal</a>
             </Button>
-            <Button as-child>
-              <NuxtLink to="/iletisim">Ücretsiz deneyin</NuxtLink>
+            <Button class="h-10 rounded-md bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
+              <NuxtLink to="/#demo">Ücretsiz demo</NuxtLink>
             </Button>
           </SheetFooter>
         </SheetContent>

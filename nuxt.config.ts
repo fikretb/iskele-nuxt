@@ -25,6 +25,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appUrl: 'https://app.iskelepro.com',
+      whatsappUrl: 'https://wa.me/905000000000',
+      whatsappMessage: 'Merhaba, İskele Pro demo hakkında bilgi almak istiyorum.',
     },
   },
   css: ['~/assets/css/tailwind.css'],

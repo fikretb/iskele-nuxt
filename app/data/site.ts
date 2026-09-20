@@ -193,6 +193,41 @@ export const pillars = [
   },
 ] as const
 
+export const landingTrust = [
+  { title: 'Kredi kartı yok', body: 'Demo hesabı anında; kart istemiyoruz.' },
+  { title: 'Tek tenant', body: 'Firmanızın verisi başka kiracıya görünmez.' },
+  { title: 'İskele’ye özel', body: 'Cephe, kiralama süresi, sevkiyat fişi omurgadır.' },
+  { title: 'Sahaya iner', body: 'QR, imza ve token’lı link ile teslim.' },
+] as const
+
+export const landingWorkflow = [
+  {
+    step: '01',
+    title: 'Talep ve teklif',
+    body: 'Cephe ölçüsünden malzeme, PDF ve 3D aynı kayıttan.',
+  },
+  {
+    step: '02',
+    title: 'Şantiye ve kiralama',
+    body: 'Onaylanan iş şantiye kartında; süre ve saha stoku birlikte.',
+  },
+  {
+    step: '03',
+    title: 'Depo sevkiyat',
+    body: 'Çıkan / dönen fiş, QR ve imza ile stok güncellenir.',
+  },
+  {
+    step: '04',
+    title: 'Saha teslim',
+    body: 'Montaj ekibi fişi telefonda görür; ofisle aynı kayıt.',
+  },
+  {
+    step: '05',
+    title: 'Tahsilat ve puantaj',
+    body: 'Fatura, çek ve yevmiye şantiye bakiyesine akar.',
+  },
+] as const
+
 export const industryJourney = [
   {
     id: 'teklif',

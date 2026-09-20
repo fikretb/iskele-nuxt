@@ -1,25 +1,8 @@
 <script setup lang="ts">
-import { companySizes } from '~/data/site'
-
 useSeoMeta({
   title: 'İletişim · İskele Pro',
   description: 'İskele Pro demosu ve fiyatlandırma için iletişime geçin. Kredi kartı yok.',
 })
-
-const form = reactive({
-  company: '',
-  name: '',
-  email: '',
-  phone: '',
-  size: 'small',
-  message: '',
-})
-const sent = ref(false)
-
-function submit() {
-  if (!form.company || !form.name || !form.email) return
-  sent.value = true
-}
 </script>
 
 <template>
@@ -51,52 +34,7 @@ function submit() {
         </div>
       </div>
 
-      <Card class="bg-white">
-        <CardHeader>
-          <CardTitle>Demo talep formu</CardTitle>
-          <CardDescription>Zorunlu alanlar: firma, ad, e-posta.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form v-if="!sent" class="space-y-4" @submit.prevent="submit">
-            <div class="space-y-2">
-              <Label for="company">Firma</Label>
-              <Input id="company" v-model="form.company" required placeholder="İskele kiralama firmanız" />
-            </div>
-            <div class="space-y-2">
-              <Label for="name">Ad soyad</Label>
-              <Input id="name" v-model="form.name" required placeholder="Yetkili adı" />
-            </div>
-            <div class="space-y-2">
-              <Label for="email">E-posta</Label>
-              <Input id="email" v-model="form.email" type="email" required placeholder="ornek@firma.com" />
-            </div>
-            <div class="space-y-2">
-              <Label for="phone">Telefon</Label>
-              <Input id="phone" v-model="form.phone" placeholder="05xx xxx xx xx" />
-            </div>
-            <div class="space-y-2">
-              <Label for="size">Firma ölçeği</Label>
-              <select
-                id="size"
-                v-model="form.size"
-                class="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
-              >
-                <option v-for="size in companySizes" :key="size.id" :value="size.id">
-                  {{ size.label }}
-                </option>
-              </select>
-            </div>
-            <div class="space-y-2">
-              <Label for="message">Not</Label>
-              <Textarea id="message" v-model="form.message" placeholder="Şantiye sayısı, kullandığınız programlar..." />
-            </div>
-            <Button type="submit" class="w-full">Gönder</Button>
-          </form>
-          <p v-else class="text-sm text-muted-foreground">
-            Talebiniz alındı. En kısa sürede {{ form.email }} adresinden dönüş yapılır.
-          </p>
-        </CardContent>
-      </Card>
+      <SiteLandingDemoForm compact :embed-id="false" title="Demo talep formu" />
     </section>
   </div>
 </template>
