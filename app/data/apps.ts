@@ -1,3 +1,5 @@
+import { appSlugs, canonicalSlug } from '~/constants/slugs'
+
 export type AppCategoryId = 'ticari' | 'operasyon' | 'tedarik' | 'finans' | 'ik' | 'yonetim'
 
 export type ProductApp = {
@@ -306,5 +308,6 @@ export function appsByCategory(id: AppCategoryId) {
 }
 
 export function findApp(slug: string) {
-  return productApps.find(app => app.slug === slug)
+  const id = canonicalSlug(appSlugs, slug) ?? slug
+  return productApps.find(app => app.slug === id)
 }

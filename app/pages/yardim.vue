@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { helpTopics } from '~/data/site'
 
+const localePath = useI18nPath()
+
 useSeoMeta({
   title: 'Yardım · İskele Pro',
   description: 'Demo, yetki, tenant ve fiyatlandırma hakkında kısa yanıtlar.',
@@ -23,10 +25,10 @@ useSeoMeta({
       </Accordion>
       <div class="mt-10 flex flex-wrap gap-3">
         <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
-          <NuxtLink to="/iletisim">Demo randevusu alın</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.bookDemo') }}</NuxtLink>
         </Button>
         <Button variant="outline" as-child>
-          <NuxtLink to="/uygulamalar">Uygulama listesi</NuxtLink>
+          <NuxtLink :to="localePath('/uygulamalar')">{{ $t('common.appList') }}</NuxtLink>
         </Button>
       </div>
     </section>

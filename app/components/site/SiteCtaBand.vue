@@ -3,6 +3,8 @@ defineProps<{
   title?: string
   note?: string
 }>()
+
+const localePath = useI18nPath()
 </script>
 
 <template>
@@ -16,10 +18,10 @@ defineProps<{
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <Button size="lg" class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
-          <NuxtLink to="/iletisim">Hemen başlayın — ücretsiz deneyin</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startFree') }}</NuxtLink>
         </Button>
         <Button size="lg" variant="outline" as-child>
-          <NuxtLink to="/iletisim">Bir danışmanla görüşün</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.talkAdvisor') }}</NuxtLink>
         </Button>
       </div>
       <p class="mt-4 text-xs text-muted-foreground">Kredi kartı bilgisi istemiyoruz · Anında erişim</p>

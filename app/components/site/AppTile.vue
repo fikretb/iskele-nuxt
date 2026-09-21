@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import type { ProductApp } from '~/data/apps'
+import { appPath } from '~/constants/slugs'
 
 defineProps<{
   app: ProductApp
   compact?: boolean
 }>()
+
+const localePath = useI18nPath()
 </script>
 
 <template>
   <NuxtLink
-    :to="`/uygulamalar/${app.slug}`"
+    :to="localePath(appPath(app.slug))"
     class="group flex gap-3 rounded-md border border-navy/15 bg-white px-3.5 py-3 shadow-[0_1px_0_rgb(11_32_81/0.04)] transition-colors hover:border-navy/30 hover:bg-navy/[0.02]"
     :class="compact ? 'items-center' : 'items-start'"
   >

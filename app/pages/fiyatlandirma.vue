@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { pricingNotes, pricingPlans } from '~/data/site'
 
+const localePath = useI18nPath()
+
 useSeoMeta({
   title: 'Fiyatlandırma · İskele Pro',
   description: 'İskele firmaları için Başlangıç, Operasyon ve Kurumsal paketler. Kullanıma göre gizli kalem yok; kesin fiyat demo görüşmesinde.',
@@ -38,7 +40,7 @@ useSeoMeta({
           </CardContent>
           <CardFooter>
             <Button class="w-full" :variant="plan.featured ? 'default' : 'outline'" as-child>
-              <NuxtLink to="/iletisim">{{ plan.cta }}</NuxtLink>
+              <NuxtLink :to="localePath('/iletisim')">{{ plan.cta }}</NuxtLink>
             </Button>
           </CardFooter>
         </Card>

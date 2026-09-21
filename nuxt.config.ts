@@ -7,9 +7,6 @@ export default defineNuxtConfig({
     head: {
       title: 'İskele Pro',
       titleTemplate: '%s',
-      htmlAttrs: {
-        lang: 'tr',
-      },
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
@@ -35,7 +32,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['shadcn-nuxt', '@nuxtjs/color-mode'],
+  modules: ['shadcn-nuxt', '@nuxtjs/color-mode', '@nuxtjs/i18n'],
   shadcn: {
     prefix: '',
     componentDir: '@/components/ui',
@@ -44,5 +41,69 @@ export default defineNuxtConfig({
     classSuffix: '',
     preference: 'light',
     fallback: 'light',
+  },
+  i18n: {
+    defaultLocale: 'tr',
+    strategy: 'prefix_except_default',
+    langDir: 'locales',
+    baseUrl: 'https://iskelepro.com',
+    detectBrowserLanguage: false,
+    customRoutes: 'config',
+    pages: {
+      uygulamalar: {
+        tr: '/uygulamalar',
+        en: '/apps',
+      },
+      'uygulamalar-slug': {
+        tr: '/uygulamalar/[slug]',
+        en: '/apps/[slug]',
+      },
+      sektor: {
+        tr: '/sektor',
+        en: '/industries',
+      },
+      fiyatlandirma: {
+        tr: '/fiyatlandirma',
+        en: '/pricing',
+      },
+      iletisim: {
+        tr: '/iletisim',
+        en: '/contact',
+      },
+      yardim: {
+        tr: '/yardim',
+        en: '/help',
+      },
+      urunler: {
+        tr: '/urunler',
+        en: '/products',
+      },
+      cozumler: {
+        tr: '/cozumler',
+        en: '/solutions',
+      },
+    },
+    locales: [
+      {
+        code: 'tr',
+        language: 'tr-TR',
+        name: 'Türkçe',
+        file: 'tr/ui.json',
+      },
+      {
+        code: 'en',
+        language: 'en-US',
+        name: 'English',
+        file: 'en/ui.json',
+      },
+    ],
+  },
+  routeRules: {
+    '/en/uygulamalar': { redirect: { to: '/en/apps', statusCode: 301 } },
+    '/en/uygulamalar/**': { redirect: { to: '/en/apps/**', statusCode: 301 } },
+    '/en/sektor': { redirect: { to: '/en/industries', statusCode: 301 } },
+    '/en/fiyatlandirma': { redirect: { to: '/en/pricing', statusCode: 301 } },
+    '/en/iletisim': { redirect: { to: '/en/contact', statusCode: 301 } },
+    '/en/yardim': { redirect: { to: '/en/help', statusCode: 301 } },
   },
 })

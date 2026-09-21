@@ -1,0 +1,50 @@
+{
+  "language": {
+    "label": "Language",
+    "tr": "TR",
+    "en": "EN",
+    "switchTo": "Switch language"
+  },
+  "brand": {
+    "name": "Iskele Pro",
+    "description": "Quote, field, warehouse, accounting and HR platform for scaffolding companies.",
+    "homeAria": "Iskele Pro home",
+    "tagline": "App suite for scaffolding companies"
+  },
+  "nav": {
+    "apps": "Apps",
+    "industries": "Industries",
+    "resources": "Resources",
+    "pricing": "Pricing",
+    "help": "Help",
+    "contact": "Contact",
+    "portal": "Portal",
+    "freeDemo": "Free demo",
+    "allApps": "All apps",
+    "allAppsCta": "Browse all apps →",
+    "industryCta": "Scaffolding rental industry →",
+    "menu": "Menu"
+  },
+  "common": {
+    "startFree": "Get started — try free",
+    "startNow": "Get started",
+    "talkAdvisor": "Talk to an advisor",
+    "bookDemo": "Book a demo",
+    "tryFree": "Try free",
+    "seePricing": "See pricing",
+    "seeAllApps": "See all apps →",
+    "appList": "App list",
+    "appLink": "{name} app →"
+  },
+  "footer": {
+    "apps": "Apps",
+    "resources": "Resources",
+    "services": "Services",
+    "blurb": "Scaffolding rental, quotes, field, warehouse, accounting and HR. Simple to use, records stay linked.",
+    "industry": "Industry",
+    "legalNote": "Integrated app suite for scaffolding rental operations. Your data stays in your tenant."
+  },
+  "error": {
+    "appNotFound": "App not found"
+  }
+}

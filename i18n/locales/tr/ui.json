@@ -1,0 +1,50 @@
+{
+  "language": {
+    "label": "Dil",
+    "tr": "TR",
+    "en": "EN",
+    "switchTo": "Dili değiştir"
+  },
+  "brand": {
+    "name": "İskele Pro",
+    "description": "İskele firmaları için teklif, saha, depo, muhasebe ve insan kaynakları platformu.",
+    "homeAria": "İskele Pro ana sayfa",
+    "tagline": "İskele firmaları için uygulama seti"
+  },
+  "nav": {
+    "apps": "Uygulamalar",
+    "industries": "Sektörler",
+    "resources": "Kaynaklar",
+    "pricing": "Fiyatlandırma",
+    "help": "Yardım",
+    "contact": "İletişim",
+    "portal": "Portal",
+    "freeDemo": "Ücretsiz demo",
+    "allApps": "Tüm uygulamalar",
+    "allAppsCta": "Tüm uygulamalara göz atın →",
+    "industryCta": "İskele kiralama sektörü →",
+    "menu": "Menü"
+  },
+  "common": {
+    "startFree": "Hemen başlayın — ücretsiz deneyin",
+    "startNow": "Hemen başlayın",
+    "talkAdvisor": "Bir danışmanla görüşün",
+    "bookDemo": "Demo randevusu alın",
+    "tryFree": "Ücretsiz deneyin",
+    "seePricing": "Fiyatlandırmaya göz atın",
+    "seeAllApps": "Tüm uygulamaları görün →",
+    "appList": "Uygulama listesi",
+    "appLink": "{name} uygulaması →"
+  },
+  "footer": {
+    "apps": "Uygulamalar",
+    "resources": "Kaynaklar",
+    "services": "Hizmetler",
+    "blurb": "İskele kiralama, teklif, saha, depo, muhasebe ve insan kaynakları. Kullanımı sade, kayıtlar birbirine bağlı.",
+    "industry": "Sektör",
+    "legalNote": "İskele kiralama operasyonu için entegre uygulama seti. Veriniz sizin tenant’ınızda kalır."
+  },
+  "error": {
+    "appNotFound": "Uygulama bulunamadı"
+  }
+}

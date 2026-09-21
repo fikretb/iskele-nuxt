@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { appPath } from '~/constants/slugs'
 import { extraFeatures, industryApps, industryJourney } from '~/data/site'
+
+const localePath = useI18nPath()
 
 useSeoMeta({
   title: 'İskele kiralama sektörü · İskele Pro',
@@ -16,10 +19,10 @@ useSeoMeta({
     >
       <div class="mt-8 flex flex-wrap gap-3">
         <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
-          <NuxtLink to="/iletisim">Hemen başlayın</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startNow') }}</NuxtLink>
         </Button>
         <Button variant="outline" class="border-white/30 bg-transparent text-white hover:bg-white/10" as-child>
-          <NuxtLink to="/iletisim">Bir danışmanla görüşün</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.talkAdvisor') }}</NuxtLink>
         </Button>
       </div>
     </SitePageHero>
@@ -38,7 +41,7 @@ useSeoMeta({
         <div>
           <p class="text-muted-foreground">{{ step.body }}</p>
           <Button variant="link" class="mt-3 px-0" as-child>
-            <NuxtLink :to="`/uygulamalar/${step.slug}`">{{ step.app }} uygulaması →</NuxtLink>
+            <NuxtLink :to="localePath(appPath(step.slug))">{{ $t('common.appLink', { name: step.app }) }}</NuxtLink>
           </Button>
         </div>
       </article>
@@ -62,7 +65,7 @@ useSeoMeta({
           <SiteAppTile v-for="app in industryApps" :key="app.slug" :app="app" />
         </div>
         <Button variant="link" class="mt-4 px-0" as-child>
-          <NuxtLink to="/uygulamalar">Tüm uygulamaları görün →</NuxtLink>
+          <NuxtLink :to="localePath('/uygulamalar')">{{ $t('common.seeAllApps') }}</NuxtLink>
         </Button>
       </div>
     </section>

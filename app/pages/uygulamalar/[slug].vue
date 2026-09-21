@@ -1,16 +1,23 @@
 <script setup lang="ts">
 import { appCategories, appsByCategory, findApp } from '~/data/apps'
 import { connectedApps, getAppStory } from '~/data/appStories'
+import { appSlugs, i18nSlugParams } from '~/constants/slugs'
 
 const route = useRoute()
+const { t } = useI18n()
+const localePath = useI18nPath()
 const slug = computed(() => String(route.params.slug || ''))
 const app = computed(() => findApp(slug.value))
 
 watch(app, (value) => {
   if (!value) {
-    showError({ statusCode: 404, statusMessage: 'Uygulama bulunamadı' })
+    showError({ statusCode: 404, statusMessage: t('error.appNotFound') })
   }
 }, { immediate: true })
+
+if (app.value) {
+  await useSyncedI18nParams(i18nSlugParams(appSlugs, app.value.slug))
+}
 
 const category = computed(() => appCategories.find(item => item.id === app.value?.category))
 const story = computed(() => app.value ? getAppStory(app.value) : null)
@@ -36,10 +43,10 @@ useSeoMeta({
     >
       <div class="mt-8 flex flex-wrap gap-3">
         <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
-          <NuxtLink to="/iletisim">Hemen başlayın — ücretsiz deneyin</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startFree') }}</NuxtLink>
         </Button>
         <Button variant="outline" class="border-white/30 bg-transparent text-white hover:bg-white/10" as-child>
-          <NuxtLink to="/iletisim">Bir danışmanla görüşün</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.talkAdvisor') }}</NuxtLink>
         </Button>
       </div>
     </SitePageHero>
@@ -85,7 +92,7 @@ useSeoMeta({
           <SiteAppTile v-for="item in related" :key="item.slug" :app="item" />
         </div>
         <Button variant="link" class="mt-4 px-0" as-child>
-          <NuxtLink to="/uygulamalar">Tüm uygulamaları görün →</NuxtLink>
+          <NuxtLink :to="localePath('/uygulamalar')">{{ $t('common.seeAllApps') }}</NuxtLink>
         </Button>
       </div>
     </section>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const localePath = useI18nPath()
+
 useSeoMeta({
   title: 'İletişim · İskele Pro',
   description: 'İskele Pro demosu ve fiyatlandırma için iletişime geçin. Kredi kartı yok.',
@@ -26,10 +28,10 @@ useSeoMeta({
         </ul>
         <div class="flex flex-wrap gap-2 pt-2">
           <Button variant="outline" as-child>
-            <NuxtLink to="/fiyatlandirma">Fiyatlandırmaya göz atın</NuxtLink>
+            <NuxtLink :to="localePath('/fiyatlandirma')">{{ $t('common.seePricing') }}</NuxtLink>
           </Button>
           <Button variant="outline" as-child>
-            <NuxtLink to="/uygulamalar">Tüm uygulamalar</NuxtLink>
+            <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allApps') }}</NuxtLink>
           </Button>
         </div>
       </div>

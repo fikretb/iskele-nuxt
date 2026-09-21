@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { appCategories, appsByCategory, productApps } from '~/data/apps'
+import { categorySlugs, localizeSlug } from '~/constants/slugs'
+
+const { locale } = useI18n()
+const localePath = useI18nPath()
+
+function categoryHash(id: string) {
+  return localizeSlug(categorySlugs, id, locale.value)
+}
 
 useSeoMeta({
   title: 'Tüm uygulamalar · İskele Pro',
@@ -17,10 +25,10 @@ useSeoMeta({
       <p class="mt-4 text-sm text-white/70">{{ productApps.length }} uygulama · tek tenant</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
-          <NuxtLink to="/iletisim">Hemen başlayın — ücretsiz deneyin</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startFree') }}</NuxtLink>
         </Button>
         <Button variant="outline" class="border-white/30 bg-transparent text-white hover:bg-white/10" as-child>
-          <NuxtLink to="/iletisim">Bir danışmanla görüşün</NuxtLink>
+          <NuxtLink :to="localePath('/iletisim')">{{ $t('common.talkAdvisor') }}</NuxtLink>
         </Button>
       </div>
     </SitePageHero>
@@ -30,7 +38,7 @@ useSeoMeta({
         <a
           v-for="category in appCategories"
           :key="category.id"
-          :href="`#${category.id}`"
+          :href="`#${categoryHash(category.id)}`"
           class="rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground hover:border-gold hover:text-navy"
         >
           {{ category.name }}
@@ -39,7 +47,7 @@ useSeoMeta({
     </section>
 
     <section class="mx-auto max-w-6xl space-y-14 px-6 py-16">
-      <div v-for="category in appCategories" :id="category.id" :key="category.id">
+      <div v-for="category in appCategories" :id="categoryHash(category.id)" :key="category.id">
         <h2 class="text-2xl font-semibold tracking-tight">{{ category.name }}</h2>
         <p class="mt-1 text-sm text-muted-foreground">{{ category.blurb }}</p>
         <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

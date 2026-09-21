@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { appCategories, productApps, type AppCategoryId } from '~/data/apps'
 
+const localePath = useI18nPath()
 const active = ref<AppCategoryId>(appCategories[0]!.id)
 const visible = computed(() =>
   productApps.filter(app => app.category === active.value),
@@ -21,7 +22,7 @@ const visible = computed(() =>
           </p>
         </div>
         <Button variant="link" class="h-auto px-0 text-sm text-navy" as-child>
-          <NuxtLink to="/uygulamalar">Tüm uygulamalar →</NuxtLink>
+          <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allApps') }} →</NuxtLink>
         </Button>
       </div>
 
