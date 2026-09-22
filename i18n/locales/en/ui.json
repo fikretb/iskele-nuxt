@@ -13,7 +13,6 @@
   },
   "nav": {
     "apps": "Apps",
-    "industries": "Industries",
     "resources": "Resources",
     "pricing": "Pricing",
     "help": "Help",
@@ -22,8 +21,18 @@
     "freeDemo": "Free demo",
     "allApps": "All apps",
     "allAppsCta": "Browse all apps →",
-    "industryCta": "Scaffolding rental industry →",
     "menu": "Menu"
+  },
+  "search": {
+    "open": "Search",
+    "action": "Search",
+    "placeholder": "Search apps or pages...",
+    "empty": "No results found"
+  },
+  "whatsapp": {
+    "eyebrow": "Ask an expert",
+    "cta": "Get a quote",
+    "aria": "Get a quote on WhatsApp"
   },
   "common": {
     "startFree": "Get started — try free",
@@ -41,7 +50,6 @@
     "resources": "Resources",
     "services": "Services",
     "blurb": "Scaffolding rental, quotes, field, warehouse, accounting and HR. Simple to use, records stay linked.",
-    "industry": "Industry",
     "legalNote": "Integrated app suite for scaffolding rental operations. Your data stays in your tenant."
   },
   "error": {

@@ -13,7 +13,6 @@
   },
   "nav": {
     "apps": "Uygulamalar",
-    "industries": "Sektörler",
     "resources": "Kaynaklar",
     "pricing": "Fiyatlandırma",
     "help": "Yardım",
@@ -22,8 +21,18 @@
     "freeDemo": "Ücretsiz demo",
     "allApps": "Tüm uygulamalar",
     "allAppsCta": "Tüm uygulamalara göz atın →",
-    "industryCta": "İskele kiralama sektörü →",
     "menu": "Menü"
+  },
+  "search": {
+    "open": "Ara",
+    "action": "Ara",
+    "placeholder": "Uygulama veya sayfa ara...",
+    "empty": "Sonuç bulunamadı"
+  },
+  "whatsapp": {
+    "eyebrow": "Uzmana sor",
+    "cta": "Teklif Al",
+    "aria": "WhatsApp ile teklif alın"
   },
   "common": {
     "startFree": "Hemen başlayın — ücretsiz deneyin",
@@ -41,7 +50,6 @@
     "resources": "Kaynaklar",
     "services": "Hizmetler",
     "blurb": "İskele kiralama, teklif, saha, depo, muhasebe ve insan kaynakları. Kullanımı sade, kayıtlar birbirine bağlı.",
-    "industry": "Sektör",
     "legalNote": "İskele kiralama operasyonu için entegre uygulama seti. Veriniz sizin tenant’ınızda kalır."
   },
   "error": {

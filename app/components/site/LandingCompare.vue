@@ -6,15 +6,15 @@ import { quote, withoutUs, withUs } from '~/data/site'
 <template>
   <section class="bg-white py-14 md:py-16">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="max-w-xl">
+      <SiteReveal variant="up" class="max-w-xl">
         <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Karşılaştırma</p>
         <h2 class="mt-2 text-2xl font-semibold tracking-tight text-navy md:text-3xl">
           Dağınık ofis mi, tek kayıt mı?
         </h2>
-      </div>
+      </SiteReveal>
 
-      <div class="mt-8 grid overflow-hidden rounded-md border border-navy/15 md:grid-cols-2">
-        <div class="border-b border-navy/10 bg-navy/[0.03] p-5 md:border-r md:border-b-0 md:p-6">
+      <div class="mt-8 grid overflow-hidden rounded-2xl ring-1 ring-navy/10 md:grid-cols-2">
+        <SiteReveal variant="left" class="border-b border-navy/10 bg-navy/[0.03] p-6 md:border-r md:border-b-0 md:p-8">
           <h3 class="text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
             Dağınık ofis
           </h3>
@@ -27,8 +27,8 @@ import { quote, withoutUs, withUs } from '~/data/site'
               {{ item }}
             </li>
           </ul>
-        </div>
-        <div class="border-l-2 border-l-gold bg-white p-5 md:p-6">
+        </SiteReveal>
+        <SiteReveal variant="right" :delay="120" class="border-l-2 border-l-gold bg-white p-6 md:p-8">
           <h3 class="text-xs font-semibold tracking-[0.12em] text-gold uppercase">
             İskele Pro
           </h3>
@@ -41,18 +41,23 @@ import { quote, withoutUs, withUs } from '~/data/site'
               {{ item }}
             </li>
           </ul>
-        </div>
+        </SiteReveal>
       </div>
 
-      <SiteFigure
-        :image="SITE_IMAGES.mockupDemo"
-        class="mt-8 border border-navy/10"
-      />
-
-      <blockquote class="mt-8 border-l-2 border-navy/20 pl-4 text-sm leading-relaxed text-navy md:text-base">
-        “{{ quote.text }}”
-        <footer class="mt-2 text-xs text-muted-foreground not-italic">{{ quote.role }}</footer>
-      </blockquote>
+      <div class="mt-8 grid items-center gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
+        <SiteReveal variant="up" :delay="80" class="min-w-0">
+          <blockquote class="rounded-2xl bg-navy px-6 py-7 text-white md:px-8 md:py-8">
+            <p class="text-base leading-relaxed md:text-lg">“{{ quote.text }}”</p>
+            <footer class="mt-4 text-xs tracking-wide text-white/55 not-italic">{{ quote.role }}</footer>
+          </blockquote>
+        </SiteReveal>
+        <SiteReveal variant="up" :delay="140" class="min-w-0">
+          <SiteFigure
+            :image="SITE_IMAGES.mockupDemo"
+            class="rounded-2xl shadow-[0_18px_40px_-28px_rgb(11_32_81/0.55)] ring-1 ring-navy/10"
+          />
+        </SiteReveal>
+      </div>
     </div>
   </section>
 </template>

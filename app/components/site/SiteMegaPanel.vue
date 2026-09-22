@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type MegaKey = 'apps' | 'industries' | 'resources'
+type MegaKey = 'apps' | 'resources'
 
 const props = defineProps<{
   name: MegaKey

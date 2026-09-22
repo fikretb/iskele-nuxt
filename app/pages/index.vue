@@ -13,11 +13,21 @@ useSeoMeta({
 <template>
   <div>
     <SiteLandingHero />
-    <SiteLandingTrust />
+    <SiteScene motion="wipe">
+      <SiteLandingTrust />
+    </SiteScene>
     <SiteLandingWorkflow />
-    <SiteLandingModules />
-    <SiteLandingCompare />
-    <SiteLandingPricing />
-    <SiteLandingDemoForm />
+    <SiteScene motion="scale">
+      <SiteLandingModules />
+    </SiteScene>
+    <SiteScene motion="split">
+      <SiteLandingCompare />
+    </SiteScene>
+    <SiteScene motion="blur">
+      <SiteLandingPricing />
+    </SiteScene>
+    <SiteScene motion="slide">
+      <SiteLandingDemoForm />
+    </SiteScene>
   </div>
 </template>

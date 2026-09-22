@@ -11,7 +11,7 @@ const visible = computed(() =>
 <template>
   <section class="bg-navy/[0.03] py-14 md:py-16">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="flex flex-col gap-4 border-b border-navy/10 pb-6 md:flex-row md:items-end md:justify-between">
+      <SiteReveal variant="up" class="flex flex-col gap-4 border-b border-navy/10 pb-6 md:flex-row md:items-end md:justify-between">
         <div class="max-w-xl">
           <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Uygulama seti</p>
           <h2 class="mt-2 text-2xl font-semibold tracking-tight text-navy md:text-3xl">
@@ -24,7 +24,7 @@ const visible = computed(() =>
         <Button variant="link" class="h-auto px-0 text-sm text-navy" as-child>
           <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allApps') }} →</NuxtLink>
         </Button>
-      </div>
+      </SiteReveal>
 
       <div class="mt-6 flex gap-0 overflow-x-auto border-b border-navy/10">
         <button
@@ -41,9 +41,13 @@ const visible = computed(() =>
         </button>
       </div>
 
-      <div class="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+      <TransitionGroup
+        name="tile"
+        tag="div"
+        class="relative mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3"
+      >
         <SiteAppTile v-for="app in visible" :key="app.slug" :app="app" />
-      </div>
+      </TransitionGroup>
     </div>
   </section>
 </template>

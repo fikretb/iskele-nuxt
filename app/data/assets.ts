@@ -73,15 +73,6 @@ export const workflowGallery = [
   SITE_IMAGES.mockupSaha,
 ] as const
 
-export const journeyImages: Record<string, SiteImage> = {
-  teklif: SITE_IMAGES.mockupPdf,
-  kiralama: SITE_IMAGES.heroCephe,
-  depo: SITE_IMAGES.mockupDepo,
-  saha: SITE_IMAGES.sektorSaha,
-  tahsilat: SITE_IMAGES.mockupDemo,
-  ik: SITE_IMAGES.heroLaptop,
-}
-
 const appImageMap: Record<string, keyof typeof SITE_IMAGES> = {
   talepler: 'heroLaptop',
   musteriler: 'heroLaptop',
@@ -119,4 +110,29 @@ const appImageMap: Record<string, keyof typeof SITE_IMAGES> = {
 export function imageForApp(slug: string): SiteImage {
   const key = appImageMap[slug] ?? 'heroLaptop'
   return SITE_IMAGES[key]
+}
+
+export const APP_ICONS: Record<string, string> = {
+  talepler: '/iskelepro-assets/icons/apps/talepler.png',
+  musteriler: '/iskelepro-assets/icons/apps/musteriler.png',
+  teklifler: '/iskelepro-assets/icons/apps/teklifler.png',
+  'teklif-3d': '/iskelepro-assets/icons/apps/teklif-3d.png',
+  'teklif-pdf': '/iskelepro-assets/icons/apps/teklif-pdf.png',
+  santiyeler: '/iskelepro-assets/icons/apps/santiyeler.png',
+  kiralama: '/iskelepro-assets/icons/apps/kiralama.png',
+  depo: '/iskelepro-assets/icons/apps/depo.png',
+  saha: '/iskelepro-assets/icons/apps/saha.png',
+  faturalar: '/iskelepro-assets/icons/apps/faturalar.png',
+  cekler: '/iskelepro-assets/icons/apps/cekler.png',
+  kasa: '/iskelepro-assets/icons/apps/kasa.png',
+  'nakit-akisi': '/iskelepro-assets/icons/apps/nakit-akisi.png',
+  calisanlar: '/iskelepro-assets/icons/apps/calisanlar.png',
+  puantaj: '/iskelepro-assets/icons/apps/puantaj.png',
+  izinler: '/iskelepro-assets/icons/apps/izinler.png',
+  kullanicilar: '/iskelepro-assets/icons/apps/kullanicilar.png',
+  raporlar: '/iskelepro-assets/icons/apps/raporlar.png',
+}
+
+export function iconForApp(slug: string) {
+  return APP_ICONS[slug] ?? null
 }

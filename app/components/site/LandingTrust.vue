@@ -11,8 +11,8 @@ import { SITE_IMAGES } from '~/data/assets'
  */
 const items = [
   {
-    title: 'Sektöre özel çözüm',
-    body: 'İskele kiralama süreçlerine göre tasarlandı. Teklif, kiralama ve şantiye yönetimi işinize uyum sağlar.',
+    title: 'İskele kiralama için yazıldı',
+    body: 'Genel inşaat ERP’si değil. Teklif, kiralama ve şantiye yönetimi iskele firmasının işine göre kuruludur.',
     icon: HardHat,
   },
   {
@@ -36,38 +36,42 @@ const items = [
 <template>
   <section class="relative overflow-hidden border-y border-navy/10 bg-white py-14 md:py-16">
     <div class="mx-auto max-w-6xl px-6">
-      <div class="border-b border-navy/10 pb-6 text-center">
+      <SiteReveal variant="blur" class="border-b border-navy/10 pb-6 text-center">
+        <span class="hairline mx-auto mb-4 block" />
         <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">
           Neden İskele Pro
         </p>
         <h2 class="mx-auto mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-navy md:text-3xl">
           İskele kiralama operasyonunuzu tek platformda yönetin.
         </h2>
-      </div>
+      </SiteReveal>
 
-      <div class="mt-10 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-        <SiteFigure :image="SITE_IMAGES.featureTrio" class="bg-[#f3f3f3]" />
+      <div class="mt-10 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
+        <SiteReveal variant="up" class="min-w-0">
+          <SiteFigure
+            :image="SITE_IMAGES.featureTrio"
+            class="h-full rounded-2xl bg-[#eef1f6] p-6 shadow-[0_18px_40px_-28px_rgb(11_32_81/0.45)] ring-1 ring-navy/8 md:p-8"
+          />
+        </SiteReveal>
 
-        <div class="grid sm:grid-cols-2">
-          <div
+        <div class="grid content-center gap-3 sm:grid-cols-2">
+          <SiteReveal
             v-for="(item, index) in items"
             :key="item.title"
-            class="group border-navy/10 px-0 py-5 sm:px-5"
-            :class="[
-              index % 2 === 0 ? 'sm:border-r' : '',
-              index < 2 ? 'border-b' : '',
-            ]"
+            variant="up"
+            :delay="80 + index * 70"
+            class="rounded-2xl bg-white p-5 ring-1 ring-navy/8"
           >
-            <div class="flex size-8 items-center justify-center rounded-md bg-navy text-gold">
+            <div class="flex size-9 items-center justify-center rounded-xl bg-navy text-gold">
               <component :is="item.icon" class="size-4" stroke-width="1.75" />
             </div>
             <h3 class="mt-4 text-sm font-semibold text-navy">
               {{ item.title }}
             </h3>
-            <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground md:text-sm">
+            <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
               {{ item.body }}
             </p>
-          </div>
+          </SiteReveal>
         </div>
       </div>
     </div>

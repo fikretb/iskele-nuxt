@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { Check } from '@lucide/vue'
 import { SITE_IMAGES } from '~/data/assets'
 import { companySizes } from '~/data/site'
+
+const points = [
+  'Teklif, PDF ve 3D görünüm',
+  'Depo, sevkiyat ve saha takibi',
+  'Şantiye bazlı finansal görünürlük',
+]
 
 withDefaults(defineProps<{
   embedId?: boolean
@@ -35,27 +42,37 @@ function submit() {
     :is="compact ? 'div' : 'section'"
     :id="embedId ? 'demo' : undefined"
     :class="compact
-      ? 'rounded-md border border-navy/15 bg-white p-5 shadow-[0_1px_0_rgb(11_32_81/0.04)]'
-      : 'scroll-mt-20 border-t border-navy/10 bg-navy/[0.03] py-14 md:py-16'"
+      ? 'rounded-2xl bg-white p-5 ring-1 ring-navy/10'
+      : 'scroll-mt-20 bg-[#eef1f6] py-16 md:py-20'"
   >
-    <div :class="compact ? '' : 'mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[1fr_1.05fr] lg:items-start'">
-      <div v-if="!compact" class="pt-1">
+    <div :class="compact ? '' : 'mx-auto grid max-w-6xl items-stretch gap-8 px-6 lg:grid-cols-2 lg:gap-10'">
+      <SiteReveal v-if="!compact" variant="up" class="flex min-w-0 flex-col">
         <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">İletişim</p>
-        <h2 class="mt-2 text-2xl font-semibold tracking-tight text-navy md:text-3xl">
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight text-navy md:text-4xl">
           {{ title }}
         </h2>
-        <p class="mt-3 text-sm text-muted-foreground">
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
           Firmanızın teklif, depo ve saha süreçlerini birlikte değerlendirelim. Demo hesabı için kredi kartı gerekmez.
         </p>
-        <ul class="mt-6 space-y-2 border-l border-navy/15 pl-4 text-sm text-navy/80">
-          <li>Teklif, PDF ve 3D görünüm</li>
-          <li>Depo, sevkiyat ve saha takibi</li>
-          <li>Şantiye bazlı finansal görünürlük</li>
+        <ul class="mt-6 space-y-3">
+          <li v-for="point in points" :key="point" class="flex items-center gap-3 text-sm text-navy">
+            <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-navy text-gold">
+              <Check class="size-3.5" stroke-width="2.5" />
+            </span>
+            {{ point }}
+          </li>
         </ul>
-        <SiteFigure :image="SITE_IMAGES.mockupDemo" class="mt-8 hidden border border-navy/10 lg:block" />
-      </div>
+        <SiteFigure
+          :image="SITE_IMAGES.mockupDemo"
+          class="mt-8 hidden rounded-2xl shadow-[0_22px_50px_-28px_rgb(11_32_81/0.55)] ring-1 ring-navy/10 lg:block"
+        />
+      </SiteReveal>
 
-      <div :class="compact ? '' : 'rounded-md border border-navy/15 bg-white p-5 shadow-[0_1px_0_rgb(11_32_81/0.04)] md:p-6'">
+      <SiteReveal
+        :variant="compact ? 'up' : 'up'"
+        :delay="compact ? 0 : 100"
+        :class="compact ? '' : 'flex min-w-0 flex-col justify-center rounded-2xl bg-white p-6 shadow-[0_24px_60px_-32px_rgb(11_32_81/0.45)] ring-1 ring-navy/10 md:p-8'"
+      >
         <h3 v-if="compact" class="mb-4 text-sm font-semibold tracking-wide text-navy uppercase">{{ title }}</h3>
         <form v-if="!sent" class="space-y-3.5" @submit.prevent="submit">
           <div class="grid gap-3.5 sm:grid-cols-2">
@@ -80,7 +97,7 @@ function submit() {
               <select
                 id="landing-size"
                 v-model="form.size"
-                class="border-input bg-background h-9 w-full border px-3 text-sm"
+                class="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
               >
                 <option v-for="size in companySizes" :key="size.id" :value="size.id">
                   {{ size.label }}
@@ -92,7 +109,7 @@ function submit() {
               <Textarea id="landing-message" v-model="form.message" rows="3" placeholder="Şantiye sayısı, mevcut süreçleriniz..." class="min-h-20" />
             </div>
           </div>
-          <Button type="submit" class="h-11 w-full rounded-md bg-gold text-sm font-semibold text-navy-deep hover:bg-gold-hover">
+          <Button type="submit" class="h-11 w-full rounded-xl bg-gold text-sm font-semibold text-navy-deep hover:bg-gold-hover">
             Demo talebi gönder
           </Button>
           <p class="text-center text-xs text-muted-foreground">
@@ -105,7 +122,7 @@ function submit() {
         <p v-else class="text-sm text-muted-foreground">
           Talebiniz alındı. En kısa sürede {{ form.email }} adresinden dönüş yapılır.
         </p>
-      </div>
+      </SiteReveal>
     </div>
   </component>
 </template>

@@ -2,7 +2,6 @@ import { appCategories, productApps } from '~/data/apps'
 
 export const navLinks = [
   { label: 'Uygulamalar', to: '/uygulamalar', mega: 'apps' },
-  { label: 'Sektörler', to: '/sektor', mega: 'industries' },
   { label: 'Kaynaklar', to: '/yardim', mega: 'resources' },
   { label: 'Fiyatlandırma', to: '/fiyatlandirma' },
   { label: 'Yardım', to: '/yardim' },
@@ -21,44 +20,13 @@ export const megaColumns = appCategories.map(category => ({
   apps: productApps.filter(app => app.category === category.id),
 }))
 
-export const industryMega = [
-  {
-    name: 'Firma tipi',
-    blurb: 'İskele kiralama işinin halleri',
-    items: [
-      { label: 'İskele kiralama', to: '/sektor#kiralama', note: 'Malzeme sahada, stok depoda' },
-      { label: 'Kurulum ekipli firma', to: '/sektor#saha', note: 'Montaj, söküm, puantaj' },
-      { label: 'Çok depolu operasyon', to: '/sektor#depo', note: 'Fiş, QR, iade' },
-    ],
-  },
-  {
-    name: 'Süreç',
-    blurb: 'Ofisten sahaya tek kayıt',
-    items: [
-      { label: 'Teklif ofisi', to: '/sektor#teklif', note: 'Talep, ölçü, PDF, 3D' },
-      { label: 'Depo ve sevkiyat', to: '/sektor#depo', note: 'Çıkan ve dönen fişle' },
-      { label: 'Saha montaj', to: '/sektor#saha', note: 'İmza ve token’lı link' },
-      { label: 'Tahsilat', to: '/sektor#tahsilat', note: 'Fatura, çek, şantiye bakiyesi' },
-    ],
-  },
-  {
-    name: 'Ölçek',
-    blurb: 'Pakete göre ekran seti',
-    items: [
-      { label: 'Tek ofis', to: '/fiyatlandirma', note: 'Talep, teklif, stok' },
-      { label: 'Saha ve depo', to: '/fiyatlandirma', note: '3D, fiş, QR, kiralama' },
-      { label: 'İK ve muhasebe', to: '/fiyatlandirma', note: 'Puantaj, çek, nakit' },
-    ],
-  },
-] as const
-
 export const resourceMega = [
   {
     name: 'Öğrenim',
     items: [
       { label: 'Tüm uygulamalar', to: '/uygulamalar' },
-      { label: 'Sektör rehberi', to: '/sektor' },
       { label: 'Fiyatlandırma', to: '/fiyatlandirma' },
+      { label: 'Yardım', to: '/yardim' },
     ],
   },
   {
@@ -158,8 +126,8 @@ export const pillars = [
   {
     title: 'İskele işine göre yazılmış',
     body: 'Genel inşaat ERP’sinin %70’i değil; cephe, kiralama süresi, sevkiyat fişi ve şantiye bakiyesi omurgadır.',
-    to: '/sektor',
-    link: 'Sektör sayfası',
+    to: '/uygulamalar',
+    link: 'Uygulama seti',
   },
   {
     title: 'Bağlı uygulamalar',
@@ -228,96 +196,148 @@ export const landingWorkflow = [
   },
 ] as const
 
-export const industryJourney = [
-  {
-    id: 'teklif',
-    app: 'Teklifler',
-    slug: 'teklifler',
-    title: 'Talebi kaybeden defter yerine teklif',
-    body: 'Müşteri adayı ve şantiye notu merkezi kayıttadır. Cephe ölçüsünden malzeme listesi, PDF ve 3D aynı tekliften çıkar.',
-  },
-  {
-    id: 'kiralama',
-    app: 'Kiralama',
-    slug: 'kiralama',
-    title: 'Onaylanan iş şantiyede durur',
-    body: 'Teklif şantiyeye döner. Kiralama süresi, saha stoku ve iade aynı karttan izlenir.',
-  },
-  {
-    id: 'depo',
-    app: 'Sevkiyat',
-    slug: 'depo-fisleri',
-    title: 'Maliyet ve stoğu fişle koruyun',
-    body: 'Çıkan dikme ve platform sevkiyat fişindedir. İade QR ve imza ile kapanır; depo bakiyesi tahmin değildir.',
-  },
-  {
-    id: 'saha',
-    app: 'Saha',
-    slug: 'saha',
-    title: 'Sahadaki plan ofisteki fişle aynı',
-    body: 'Montaj ekibi fişi telefonda görür. Token’lı link ile üye olmayan çalışan da teslim ve izin işler.',
-  },
-  {
-    id: 'tahsilat',
-    app: 'Faturalar',
-    slug: 'faturalar',
-    title: 'Kâr, şantiye bakiyesinde',
-    body: 'Fatura, çek ve gider iş kartına yazılır. Saha bitmeden hangi işin tahsil edildiği görünür.',
-  },
-  {
-    id: 'ik',
-    app: 'Puantaj',
-    slug: 'puantaj',
-    title: 'Yevmiye kâğıttan maaşa akmasın',
-    body: 'Kim hangi şantiyede kaç gün çalıştı dönem kapanınca maaşa dökülür. Mesai ve izin aynı İK setindedir.',
-  },
+const starterAppSlugs = [
+  'talepler',
+  'musteriler',
+  'teklifler',
+  'teklif-pdf',
+  'malzemeler',
+  'depo',
+  'pano',
+  'kullanicilar',
 ] as const
 
-export const industryApps = [
-  'talepler',
-  'teklifler',
+const operationAppSlugs = [
+  ...starterAppSlugs,
+  'teklif-3d',
+  'santiyeler',
   'kiralama',
+  'planlama',
+  'takvim',
   'depo-fisleri',
   'saha',
-  'puantaj',
-].map(slug => productApps.find(app => app.slug === slug)).filter((app): app is NonNullable<typeof app> => Boolean(app))
-
-export const extraFeatures = [
-  { title: 'Hızlı teklif', body: 'Şablon ve ölçü motoruyla teklif süresi kısalır.' },
-  { title: 'Mobil ofis–saha', body: 'Fiş, imza ve izin sahadan ofise aynı anda düşer.' },
-  { title: 'Canlı bakiye', body: 'Tahmini kâr değil; fatura, tahsilat ve gider kesiti.' },
-  { title: 'Değişiklik kaydı', body: 'Ek malzeme ve süre uzatımı şantiye kartında belgelenir.' },
-  { title: 'Yetki kesiti', body: 'Depo, teklif ve maaş ekranları rol ile ayrılır.' },
-  { title: 'Kurulum adımları', body: 'Yeni firma müşteri, fiyatlı malzeme ve ilk teklifle başlar.' },
+  'araclar',
+  'tedarikciler',
+  'satinalma',
+  'faturalar',
+  'odemeler',
+  'santiye-bakiyesi',
 ] as const
 
+export const pricingScales = [
+  { id: 'micro', label: '1–5 kişi', planId: 'baslangic' },
+  { id: 'small', label: '6–50 kişi', planId: 'operasyon' },
+  { id: 'mid', label: '51+ kişi', planId: 'kurumsal' },
+] as const
+
+export type BillingCycle = 'yearly' | 'monthly'
+
+/** Odoo TR aylık (Standart 14,80 € / Özel 22,40 €) − %25, euro cent */
 export const pricingPlans = [
   {
+    id: 'baslangic',
     name: 'Başlangıç',
     audience: 'Tek ofis, küçük ekip · 1–5 kişi',
+    headcount: '1–5',
+    headcountNote: 'kişilik ofis',
+    blurb: 'Talep, teklif ve temel stok ile ofisi toparlayın.',
+    monthlyCents: 0,
     features: ['Talepler ve müşteriler', 'Teklif ve PDF', 'Malzeme kataloğu', 'Temel stok', 'Birkaç kullanıcı'],
+    apps: starterAppSlugs,
     cta: 'Ücretsiz deneyin',
   },
   {
+    id: 'operasyon',
     name: 'Operasyon',
     audience: 'Saha ve depo ile büyüyen firma · 6–50 kişi',
+    headcount: '6–50',
+    headcountNote: 'kişilik operasyon',
+    blurb: 'Şantiye, depo fişi, saha QR ve tahsilat aynı kayıtta.',
+    monthlyCents: 1110,
     featured: true,
     features: ['3D iskele görünümü', 'Şantiye, kiralama, planlama', 'Depo fişi, saha, QR', 'Faturalar ve tahsilat', 'Araçlar'],
+    apps: operationAppSlugs,
     cta: 'Bu paketi konuşalım',
   },
   {
+    id: 'kurumsal',
     name: 'Kurumsal',
     audience: 'Çok ekip, İK ve muhasebe · 51+ kişi',
+    headcount: '51+',
+    headcountNote: 'çok ekip',
+    blurb: 'İK, çek, kasa ve gelişmiş yetki ile tam operasyon.',
+    monthlyCents: 1680,
     features: ['İK, puantaj, izin, maaş', 'Çek, kasa, nakit akışı', 'Alış ve ödeme planı', 'Gelişmiş yetkiler', 'Öncelikli destek'],
+    apps: productApps.map(app => app.slug),
     cta: 'Kurumsal teklif alın',
   },
 ] as const
 
+export function formatEuro(cents: number) {
+  return (cents / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
+/** Yıllıkta 12 ay yerine 10 ay ücret — aylık eşdeğer. */
+export function billedMonthlyCents(monthlyCents: number, cycle: BillingCycle) {
+  if (monthlyCents === 0) return 0
+  return cycle === 'yearly' ? Math.round((monthlyCents * 10) / 12) : monthlyCents
+}
+
 export const pricingNotes = [
+  'Yıllıkta 2 ay hediye — 12 ay yerine 10 ay ödersiniz',
   'Kullanıma bağlı gizli kalem yok',
   'İhtiyacınız olmayan ekran satılmaz',
-  'Uzun vadeli sürpriz sözleşme yok',
-  'Net rakam demo görüşmesinde',
+  'Fiyat, kullanıcı başına / ay',
+] as const
+
+export const pricingPerks = [
+  {
+    title: 'Tek ürün',
+    body: 'Modül indirmek yok. Paket, hangi ekran setinin açık olacağını belirler.',
+  },
+  {
+    title: 'Gizli kalem yok',
+    body: 'Kullanıma göre sürpriz fatura yok. Liste fiyatı kullanıcı başına / aydır.',
+  },
+  {
+    title: 'Kredi kartı yok',
+    body: 'Demo hesabı anında açılır. Kart bilgisi istenmez.',
+  },
+  {
+    title: 'Veri tenant’ta',
+    body: 'Her iskele firması kendi kaydını görür. Başka kiracıya görünmez.',
+  },
+] as const
+
+export const pricingFaqs = [
+  {
+    title: 'Tek bir fiyata tüm uygulamalar açık mı?',
+    body: 'İskele Pro tek üründür; ayrı ayrı satılmaz. Paket, firmanızın ölçeğine göre hangi ekran setinin açık olacağını belirler. Kurumsal pakette tüm ekranlar açıktır.',
+  },
+  {
+    title: 'Paketler arasındaki fark nedir?',
+    body: 'Başlangıç ofis teklifi ve temel stok içindir. Operasyon şantiye, depo fişi, saha QR ve tahsilatı ekler. Kurumsal İK, çek, kasa ve gelişmiş yetkiyi açar.',
+  },
+  {
+    title: 'Yıllık ve aylık farkı nedir?',
+    body: 'Yıllık ödemede 12 ay yerine 10 ay ücret alınır; 2 ay hediyedir. Kartta görünen tutar yine ayda kullanıcı başınadır.',
+  },
+  {
+    title: 'Fiyatlar kullanıcı başına mı?',
+    body: 'Evet. Ofiste belge oluşturan kullanıcılar ücretlidir. Token’lı saha linki ile teslim yapan ekip kullanıcı sayısına girmez.',
+  },
+  {
+    title: 'Aboneliğe neler dahil?',
+    body: 'Açık ekran seti, barındırma, bakım ve destek pakete dahildir. İhtiyacınız olmayan ekran satılmaz. Özel geliştirme ve kurulum hizmeti ayrıca konuşulur.',
+  },
+  {
+    title: 'Saha ekibi kullanıcı sayısına girer mi?',
+    body: 'Teslim ve izin için token’lı link yeterlidir; portal kullanıcısı değildir. Ofiste belge oluşturan çalışanlar kullanıcıdır.',
+  },
+  {
+    title: 'Başlangıç’tan Operasyon’a nasıl geçilir?',
+    body: 'Ölçeğiniz büyüyünce ekran seti açılır. Veri taşınmaz; aynı tenant’ta şantiye, fiş ve saha ekranları devreye girer.',
+  },
 ] as const
 
 export const companySizes = [
