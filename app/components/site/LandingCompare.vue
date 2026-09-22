@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_IMAGES } from '~/data/assets'
 import { quote, withoutUs, withUs } from '~/data/site'
 </script>
 
@@ -42,6 +43,11 @@ import { quote, withoutUs, withUs } from '~/data/site'
           </ul>
         </div>
       </div>
+
+      <SiteFigure
+        :image="SITE_IMAGES.mockupDemo"
+        class="mt-8 border border-navy/10"
+      />
 
       <blockquote class="mt-8 border-l-2 border-navy/20 pl-4 text-sm leading-relaxed text-navy md:text-base">
         “{{ quote.text }}”

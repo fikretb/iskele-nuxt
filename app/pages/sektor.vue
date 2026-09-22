@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { appPath } from '~/constants/slugs'
+import { journeyImages, SITE_IMAGES } from '~/data/assets'
 import { extraFeatures, industryApps, industryJourney } from '~/data/site'
 
 const localePath = useI18nPath()
@@ -28,22 +29,31 @@ useSeoMeta({
     </SitePageHero>
 
     <section class="mx-auto max-w-6xl space-y-20 px-6 py-16">
+      <SiteFigure
+        :image="SITE_IMAGES.sektorKolaj"
+        cover
+        class="aspect-[3/1] border border-navy/10"
+      />
+
       <article
-        v-for="step in industryJourney"
+        v-for="(step, index) in industryJourney"
         :id="step.id"
         :key="step.id"
-        class="grid gap-8 border-b pb-16 last:border-0 md:grid-cols-[0.35fr_1fr] md:pb-20"
+        class="grid items-center gap-8 border-b pb-16 last:border-0 md:grid-cols-2 md:pb-20"
       >
-        <div>
+        <div :class="index % 2 === 1 ? 'md:order-2' : ''">
           <p class="text-xs font-semibold tracking-wider text-gold uppercase">{{ step.app }}</p>
           <h2 class="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">{{ step.title }}</h2>
-        </div>
-        <div>
-          <p class="text-muted-foreground">{{ step.body }}</p>
+          <p class="mt-4 text-muted-foreground">{{ step.body }}</p>
           <Button variant="link" class="mt-3 px-0" as-child>
             <NuxtLink :to="localePath(appPath(step.slug))">{{ $t('common.appLink', { name: step.app }) }}</NuxtLink>
           </Button>
         </div>
+        <SiteFigure
+          :image="journeyImages[step.id] ?? SITE_IMAGES.heroLaptop"
+          :class="index % 2 === 1 ? 'md:order-1' : ''"
+          class="border border-navy/10"
+        />
       </article>
 
       <div>

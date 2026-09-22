@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_IMAGES } from '~/data/assets'
 import { companySizes } from '~/data/site'
 
 withDefaults(defineProps<{
@@ -51,6 +52,7 @@ function submit() {
           <li>Depo, sevkiyat ve saha takibi</li>
           <li>Şantiye bazlı finansal görünürlük</li>
         </ul>
+        <SiteFigure :image="SITE_IMAGES.mockupDemo" class="mt-8 hidden border border-navy/10 lg:block" />
       </div>
 
       <div :class="compact ? '' : 'rounded-md border border-navy/15 bg-white p-5 shadow-[0_1px_0_rgb(11_32_81/0.04)] md:p-6'">

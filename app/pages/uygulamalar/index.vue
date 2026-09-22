@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_IMAGES, workflowGallery } from '~/data/assets'
 import { appCategories, appsByCategory, productApps } from '~/data/apps'
 import { categorySlugs, localizeSlug } from '~/constants/slugs'
 
@@ -21,6 +22,8 @@ useSeoMeta({
       eyebrow="Uygulamalar"
       title="Tek bir ihtiyaç, tek bir uygulama."
       description="Ne karmaşık ne de dağınık. İhtiyacınız olan süreç açılır; kayıtlar birbirine bağlı kalır. Büyüdükçe ilerleyin."
+      :image="SITE_IMAGES.heroCephe"
+      overlay="full"
     >
       <p class="mt-4 text-sm text-white/70">{{ productApps.length }} uygulama · tek tenant</p>
       <div class="mt-8 flex flex-wrap gap-3">
@@ -34,7 +37,16 @@ useSeoMeta({
     </SitePageHero>
 
     <section class="border-b bg-white">
-      <div class="mx-auto flex max-w-6xl flex-wrap gap-2 px-6 py-4">
+      <div class="mx-auto grid max-w-6xl gap-3 px-6 py-8 sm:grid-cols-3">
+        <SiteFigure
+          v-for="image in workflowGallery"
+          :key="image.src"
+          :image="image"
+          cover
+          class="aspect-[4/3]"
+        />
+      </div>
+      <div class="mx-auto flex max-w-6xl flex-wrap gap-2 px-6 pb-4">
         <a
           v-for="category in appCategories"
           :key="category.id"

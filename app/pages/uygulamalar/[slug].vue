@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { appCategories, appsByCategory, findApp } from '~/data/apps'
 import { connectedApps, getAppStory } from '~/data/appStories'
+import { imageForApp } from '~/data/assets'
 import { appSlugs, i18nSlugParams } from '~/constants/slugs'
 
 const route = useRoute()
@@ -27,6 +28,8 @@ const related = computed(() => {
   if (linked.length) return linked
   return appsByCategory(app.value.category).filter(item => item.slug !== app.value!.slug).slice(0, 5)
 })
+const featuredImage = computed(() => app.value ? imageForApp(app.value.slug) : null)
+const isPortrait = computed(() => Boolean(featuredImage.value && featuredImage.value.height > featuredImage.value.width))
 
 useSeoMeta({
   title: () => app.value ? `${app.value.name} · İskele Pro` : 'Uygulama',
@@ -52,10 +55,30 @@ useSeoMeta({
     </SitePageHero>
 
     <section class="mx-auto max-w-6xl space-y-16 px-6 py-16">
-      <article v-for="section in story.sections" :key="section.title" class="max-w-3xl">
-        <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{{ section.title }}</h2>
-        <p class="mt-3 text-lg text-muted-foreground">{{ section.body }}</p>
-      </article>
+      <div
+        v-if="featuredImage && isPortrait"
+        class="grid items-start gap-10 lg:grid-cols-[minmax(0,20rem)_1fr]"
+      >
+        <SiteFigure :image="featuredImage" class="mx-auto w-full max-w-xs border border-navy/10 lg:max-w-none" />
+        <div class="space-y-12">
+          <article v-for="section in story.sections" :key="section.title">
+            <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{{ section.title }}</h2>
+            <p class="mt-3 text-lg text-muted-foreground">{{ section.body }}</p>
+          </article>
+        </div>
+      </div>
+
+      <template v-else>
+        <SiteFigure
+          v-if="featuredImage"
+          :image="featuredImage"
+          class="border border-navy/10"
+        />
+        <article v-for="section in story.sections" :key="section.title" class="max-w-3xl">
+          <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">{{ section.title }}</h2>
+          <p class="mt-3 text-lg text-muted-foreground">{{ section.body }}</p>
+        </article>
+      </template>
 
       <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
         <div>

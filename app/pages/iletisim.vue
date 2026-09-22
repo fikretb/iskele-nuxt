@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SITE_IMAGES } from '~/data/assets'
+
 const localePath = useI18nPath()
 
 useSeoMeta({
@@ -26,6 +28,7 @@ useSeoMeta({
           <li>Depo fişi, saha QR, şantiye bakiyesi</li>
           <li>Kullanıcı yetkileri ve çoklu firma</li>
         </ul>
+        <SiteFigure :image="SITE_IMAGES.mockupDemo" class="border border-navy/10" />
         <div class="flex flex-wrap gap-2 pt-2">
           <Button variant="outline" as-child>
             <NuxtLink :to="localePath('/fiyatlandirma')">{{ $t('common.seePricing') }}</NuxtLink>

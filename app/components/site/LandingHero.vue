@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { SITE_IMAGES } from '~/data/assets'
+
 const { href: whatsappHref } = useWhatsAppLink()
+
+useHead({
+  link: [
+    { rel: 'preload', as: 'image', href: SITE_IMAGES.heroLaptop.src },
+  ],
+})
 </script>
 
 <template>
@@ -42,35 +50,11 @@ const { href: whatsappHref } = useWhatsAppLink()
         </p>
       </div>
 
-      <div class="overflow-hidden rounded-lg border border-white/15 bg-navy/70">
-        <div class="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
-          <span class="text-[11px] font-medium text-white/50">Teklif &amp; şantiye paneli</span>
-          <span class="rounded bg-gold/20 px-2 py-0.5 text-[10px] font-semibold text-gold">Onaylı</span>
-        </div>
-        <div class="space-y-px bg-white/10 p-px">
-          <div class="flex items-center justify-between bg-navy-deep px-4 py-3">
-            <div>
-              <p class="text-[11px] text-white/40">Teklif</p>
-              <p class="text-sm font-medium">#124 · Cephe iskelesi</p>
-            </div>
-            <span class="border border-gold/40 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-gold uppercase">Onaylandı</span>
-          </div>
-          <div class="grid grid-cols-2 gap-px">
-            <div class="bg-navy-deep px-4 py-3">
-              <p class="text-[11px] text-white/40">Şantiye bakiyesi</p>
-              <p class="mt-0.5 text-base font-semibold text-gold">₺186.400</p>
-            </div>
-            <div class="bg-navy-deep px-4 py-3">
-              <p class="text-[11px] text-white/40">Saha stok</p>
-              <p class="mt-0.5 text-base font-semibold">842 parça</p>
-            </div>
-          </div>
-          <div class="bg-navy-deep px-4 py-3">
-            <p class="text-[11px] text-white/40">Son sevkiyat</p>
-            <p class="mt-0.5 text-sm">SF-0891 · Teslim alındı · Stok güncellendi</p>
-          </div>
-        </div>
-      </div>
+      <SiteFigure
+        :image="SITE_IMAGES.heroLaptop"
+        priority
+        class="border border-white/15 shadow-[0_24px_60px_rgb(0_0_0/0.35)]"
+      />
     </div>
   </section>
 </template>

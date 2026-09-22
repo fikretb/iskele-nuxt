@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { HardHat, QrCode, Scale, Truck } from '@lucide/vue'
+import { SITE_IMAGES } from '~/data/assets'
 
 /**
  * Tanıtım metni kuralları (bu blok):
@@ -44,26 +45,29 @@ const items = [
         </h2>
       </div>
 
-      <div class="mt-0 grid sm:grid-cols-2 lg:grid-cols-4">
-        <div
-          v-for="(item, index) in items"
-          :key="item.title"
-          class="group border-navy/10 px-0 py-6 sm:px-5"
-          :class="[
-            index < items.length - 1 ? 'lg:border-r' : '',
-            index % 2 === 0 ? 'sm:border-r lg:border-r' : '',
-            index < 2 ? 'sm:border-b lg:border-b-0' : '',
-          ]"
-        >
-          <div class="flex size-8 items-center justify-center rounded-md bg-navy text-gold">
-            <component :is="item.icon" class="size-4" stroke-width="1.75" />
+      <div class="mt-10 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <SiteFigure :image="SITE_IMAGES.featureTrio" class="bg-[#f3f3f3]" />
+
+        <div class="grid sm:grid-cols-2">
+          <div
+            v-for="(item, index) in items"
+            :key="item.title"
+            class="group border-navy/10 px-0 py-5 sm:px-5"
+            :class="[
+              index % 2 === 0 ? 'sm:border-r' : '',
+              index < 2 ? 'border-b' : '',
+            ]"
+          >
+            <div class="flex size-8 items-center justify-center rounded-md bg-navy text-gold">
+              <component :is="item.icon" class="size-4" stroke-width="1.75" />
+            </div>
+            <h3 class="mt-4 text-sm font-semibold text-navy">
+              {{ item.title }}
+            </h3>
+            <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground md:text-sm">
+              {{ item.body }}
+            </p>
           </div>
-          <h3 class="mt-4 text-sm font-semibold text-navy">
-            {{ item.title }}
-          </h3>
-          <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground md:text-sm">
-            {{ item.body }}
-          </p>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { workflowGallery } from '~/data/assets'
 import { landingWorkflow } from '~/data/site'
 </script>
 
@@ -35,6 +36,16 @@ import { landingWorkflow } from '~/data/site'
           <p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">{{ item.body }}</p>
         </li>
       </ol>
+
+      <div class="mt-10 grid gap-3 sm:grid-cols-3">
+        <SiteFigure
+          v-for="image in workflowGallery"
+          :key="image.src"
+          :image="image"
+          cover
+          class="aspect-[4/3]"
+        />
+      </div>
     </div>
   </section>
 </template>
