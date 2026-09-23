@@ -30,7 +30,7 @@ const points = [
         <div>
           <h2 class="text-2xl font-semibold tracking-tight text-navy">Nasıl ulaşılır</h2>
           <p class="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
-            Formu bırakın ya da WhatsApp’tan yazın. Ekip, şantiye sayınız ve mevcut sürecinize göre dönüş yapar.
+            Formu doldurun ya da WhatsApp’tan yazın. En kısa sürede size döneriz.
           </p>
         </div>
 
