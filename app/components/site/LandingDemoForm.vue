@@ -36,8 +36,11 @@ const form = reactive({
   plan: '',
   cycle: '',
   message: '',
+  website: '',
 })
 const sent = ref(false)
+const sending = ref(false)
+const error = ref('')
 
 const selectedPlan = computed(() => pricingPlans.find(plan => plan.id === form.plan))
 
@@ -70,9 +73,33 @@ function readSelection() {
 
 watch(() => [route.query.paket, route.query.olcek, route.query.donem], readSelection, { immediate: true })
 
-function submit() {
-  if (!form.company || !form.name || !form.email) return
-  sent.value = true
+async function submit() {
+  if (!form.company || !form.name || !form.email || sending.value) return
+  sending.value = true
+  error.value = ''
+  try {
+    await $fetch('/api/demo', {
+      method: 'POST',
+      body: {
+        company: form.company,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        size: form.size,
+        plan: form.plan,
+        cycle: form.cycle,
+        message: form.message,
+        website: form.website,
+      },
+    })
+    sent.value = true
+  }
+  catch {
+    error.value = 'Talebiniz gönderilemedi. Telefon veya WhatsApp ile ulaşın.'
+  }
+  finally {
+    sending.value = false
+  }
 }
 </script>
 
@@ -173,9 +200,18 @@ function submit() {
               <Label for="landing-message" class="text-xs">Not</Label>
               <Textarea id="landing-message" v-model="form.message" rows="3" placeholder="Şantiye sayısı, mevcut süreçleriniz..." class="min-h-20" />
             </div>
+            <div class="hidden" aria-hidden="true">
+              <label for="landing-website">Website</label>
+              <input id="landing-website" v-model="form.website" type="text" tabindex="-1" autocomplete="off">
+            </div>
           </div>
-          <Button type="submit" class="h-11 w-full rounded-xl bg-gold text-sm font-semibold text-navy-deep hover:bg-gold-hover">
-            Demo talebi gönder
+          <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
+          <Button
+            type="submit"
+            :disabled="sending"
+            class="h-11 w-full rounded-xl bg-gold text-sm font-semibold text-navy-deep hover:bg-gold-hover disabled:opacity-60"
+          >
+            {{ sending ? 'Gönderiliyor...' : 'Demo talebi gönder' }}
           </Button>
           <p class="text-center text-xs text-muted-foreground">
             Kredi kartı gerekmez ·
@@ -184,9 +220,22 @@ function submit() {
             </a>
           </p>
         </form>
-        <p v-else class="text-sm text-muted-foreground">
-          Talebiniz alındı. En kısa sürede {{ form.email }} adresinden dönüş yapılır.
-        </p>
+        <div
+          v-else
+          class="flex flex-col items-center justify-center px-2 py-8 text-center md:py-12"
+        >
+          <span class="flex size-16 items-center justify-center rounded-full bg-[#22C55E] text-white shadow-[0_14px_32px_-14px_rgb(34_197_94/0.85)]">
+            <Check class="size-8" stroke-width="2.8" />
+          </span>
+          <p class="mt-5 font-semibold tracking-tight text-navy text-[1.65rem] leading-tight">
+            Teşekkürler
+          </p>
+          <p class="mt-3 max-w-[20rem] text-[15px] leading-7 text-navy/70">
+            Talebinizi aldık. En kısa sürede
+            <span class="whitespace-nowrap font-medium text-navy">sahiskele@gmail.com</span>
+            adresinden size dönüş yapacağız.
+          </p>
+        </div>
       </SiteReveal>
     </div>
   </component>

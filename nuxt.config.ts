@@ -30,6 +30,12 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    smtpHost: 'smtp.gmail.com',
+    smtpPort: 587,
+    smtpUser: '',
+    smtpPass: '',
+    smtpFrom: '',
+    smtpTo: '',
     public: {
       appUrl: 'https://app.iskelepro.com',
       phone: '+905323919755',
