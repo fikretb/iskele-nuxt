@@ -298,8 +298,8 @@ export const productApps: ProductApp[] = [
     category: 'yonetim',
     icon: 'Shield',
     tagline: 'Depocu teklifi, muhasebe sahayı görmesin',
-    description: 'Her iskele firması kendi tenant’ındadır. Kullanıcıya ekran ekran yetki verilir: teklif yazma, depo okuma, maaş görme ayrıdır.',
-    features: ['Kullanıcı daveti', 'Rol / yetki paneli', 'Tenant ayrımı', 'Aktivite kaydı'],
+    description: 'Her iskele firması kendi veri alanındadır. Kullanıcıya ekran ekran yetki verilir: teklif yazma, depo okuma, maaş görme ayrıdır.',
+    features: ['Kullanıcı daveti', 'Rol / yetki paneli', 'Firmaya özel alan', 'Aktivite kaydı'],
   },
 ]
 

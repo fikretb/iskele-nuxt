@@ -283,7 +283,7 @@ function planPrice(plan: (typeof pricingPlans)[number]) {
       <div class="mx-auto max-w-6xl px-6">
         <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Tüm paketlerde</p>
         <h2 class="mt-2 max-w-xl text-2xl font-semibold tracking-tight md:text-3xl">
-          Destek, barındırma ve tenant ayrımı dahildir
+          Destek, barındırma ve firmaya özel veri alanı dahildir
         </h2>
         <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <article

@@ -77,7 +77,7 @@ export const featuredApps = [
 export const valueProps = [
   {
     title: 'Hepsi aynı kayıt',
-    body: 'Teklif şantiyeye, fiş stoğa, fatura bakiyeye bağlanır. Kopuk Excel ve ayrı programlar yerine tek tenant.',
+    body: 'Teklif şantiyeye, fiş stoğa, fatura bakiyeye bağlanır. Kopuk Excel ve ayrı programlar yerine firmaya özel tek veri alanı.',
   },
   {
     title: 'Sahaya inen yazılım',
@@ -118,7 +118,7 @@ export const productivityPoints = [
   },
   {
     title: 'Yetki ekran ekran',
-    body: 'Depocu teklif yazmaz, muhasebe sahayı yetkisi kadar görür. Tenant başka firmayı göstermez.',
+    body: 'Depocu teklif yazmaz, muhasebe sahayı yetkisi kadar görür. Firmaya özel veri alanı başka firmayı göstermez.',
   },
 ] as const
 
@@ -136,7 +136,7 @@ export const pillars = [
     link: 'Tüm uygulamalar',
   },
   {
-    title: 'Veri sizde, tenant sizde',
+    title: 'Firmaya özel veri alanı',
     body: 'Sahipli “başka firmanın tablosu” yok. Her kiralama ve satış firması kendi kaydını görür.',
     to: '/yardim',
     link: 'Nasıl çalışır',
@@ -163,7 +163,7 @@ export const pillars = [
 
 export const landingTrust = [
   { title: 'Kredi kartı yok', body: 'Demo hesabı anında; kart istemiyoruz.' },
-  { title: 'Tek tenant', body: 'Firmanızın verisi başka kiracıya görünmez.' },
+  { title: 'Firmaya özel alan', body: 'Veriniz başka firmaya görünmez.' },
   { title: 'İskele’ye özel', body: 'Cephe, kiralama ve satış, sevkiyat fişi omurgadır.' },
   { title: 'Sahaya iner', body: 'QR, imza ve token’lı link ile teslim.' },
 ] as const
@@ -304,8 +304,8 @@ export const pricingPerks = [
     body: 'Demo hesabı anında açılır. Kart bilgisi istenmez.',
   },
   {
-    title: 'Veri tenant’ta',
-    body: 'Her iskele firması kendi kaydını görür. Başka kiracıya görünmez.',
+    title: 'Firmaya özel veri',
+    body: 'Her iskele firması kendi kaydını görür. Başka firmaya görünmez.',
   },
 ] as const
 
@@ -336,7 +336,7 @@ export const pricingFaqs = [
   },
   {
     title: 'Başlangıç’tan Operasyon’a nasıl geçilir?',
-    body: 'Ölçeğiniz büyüyünce ekran seti açılır. Veri taşınmaz; aynı tenant’ta şantiye, fiş ve saha ekranları devreye girer.',
+    body: 'Ölçeğiniz büyüyünce ekran seti açılır. Veri taşınmaz; aynı veri alanında şantiye, fiş ve saha ekranları devreye girer.',
   },
 ] as const
 
@@ -349,24 +349,52 @@ export const companySizes = [
 
 export const helpTopics = [
   {
+    title: 'Tek bir ücretle bütün ekranlar açılır mı?',
+    body: 'İskele Pro tek üründür; ekranlar ayrı ayrı satılmaz. Paket, firmanızın ölçeğine göre hangi ekran setinin açık olacağını belirler. Başlangıç ofis teklifi ve temel stok içindir. Operasyon şantiye, depo, saha ve tahsilatı açar. Kurumsal pakette İK, çek, kasa ve tüm ekran seti açıktır. Ücret kullanıcı başına aylıktır; tek kalemde sınırsız her ekran açılmaz.',
+  },
+  {
+    title: 'Abonelik ücretine neler dahil?',
+    body: 'Seçtiğiniz paketteki ekranlar, barındırma, bakım ve destek dahildir. Kullanıma göre sürpriz kalem yoktur. Yıllık ödemede 12 ay yerine 10 ay ücret alınır; 2 ay hediyedir. Firmanıza özel kurulum, veri aktarımı ve ek geliştirme liste fiyatının dışındadır, görüşmede netleşir.',
+  },
+  {
+    title: 'Kayıtlar nerede durur? Kendi sunucuma kurabilir miyim?',
+    body: 'İskele Pro bulutta çalışır; barındırma aboneliğe dahildir. Her iskele firmasının kaydı ayrıdır: teklif, stok ve maaş başka firmaya görünmez. Ayrı bir çevrim içi lisans ve kurumsal lisans ayrımı yoktur. Kendi sunucunuza kurulum standart paket değildir; böyle bir ihtiyaç varsa kurulum görüşmesinde konuşulur.',
+  },
+  {
+    title: 'Kurulumu kim yapar, ücreti nedir?',
+    body: 'Demo ve ilk bakış için iletişim formunu doldurmanız yeterlidir; kredi kartı istenmez. Paket fiyatı sitede kullanıcı başına yazılıdır. Firmanızın mevcut Excel, cari veya stok kayıtlarının taşınması ve kuruma özel kurulum ayrıca konuşulur. Şantiye sayınız ve ekran ihtiyacınız netleşince kurulum kapsamı belirlenir.',
+  },
+  {
+    title: 'Başlangıç paketinde neler açık?',
+    body: 'Başlangıç ücretsizdir. Talep, müşteri, teklif, PDF, malzeme kataloğu ve temel stok birkaç kullanıcıyla açılır. Bunlar ayrı uygulamalar değil, aynı kaydın ofis yüzüdür. Şantiye, depo fişi, saha QR, İK, çek ve gelişmiş yetki bu pakette yoktur. Birden fazla firmayı tek hesapta yönetmek veya ekranları kendiniz tasarlamak da dahil değildir.',
+  },
+  {
+    title: 'Başlangıç’tan Operasyon veya Kurumsal’a nasıl geçilir?',
+    body: 'Ölçeğiniz büyüyünce ekran seti aynı hesapta açılır. Teklif, cari ve stok taşınmaz; yerinde kalır. Operasyon’da şantiye, kiralama ve satış, depo fişi ve saha devreye girer. Kurumsal’da İK, puantaj, çek ve kasa eklenir. Yeniden kurulum gerekmez.',
+  },
+  {
+    title: 'Paketler arasındaki fark nedir?',
+    body: 'Başlangıç, 1–5 kişilik ofis içindir: talep, teklif ve temel stok. Operasyon, 6–50 kişilik saha ve depo işi içindir: şantiye, kiralama ve satış, fiş, QR ve tahsilat. Kurumsal, 51 ve üzeri ekip içindir: İK, çek, kasa, nakit akışı ve gelişmiş yetki. Üçü de aynı üründür; fark, açık ekran setidir.',
+  },
+  {
+    title: 'Ücretli kullanıcı kimdir?',
+    body: 'Ofiste teklif, fiş, fatura veya puantaj oluşturan çalışanlar kullanıcıdır ve ücretlendirilir. Sahada teslim veya izin için token’lı link kullanan ekip portal kullanıcısı sayılmaz; kullanıcı adedine girmez. Ofis kullanıcıları e-posta daveti ile eklenir.',
+  },
+  {
+    title: 'Paket değişince kayıtlar taşınır mı?',
+    body: 'Taşınmaz. Başlangıç, Operasyon ve Kurumsal aynı barındırmada durur. Paket bir lisans türü değil, açık ekran setidir. Geçişte teklif, stok ve cari yerinde kalır; yeni ekranlar aynı kayıtların üzerine açılır.',
+  },
+  {
+    title: 'Başka bir programla bağlantı kurulur mu?',
+    body: 'Standart pakette dış sistemlere açık, herkese satılan bir genel API yoktur. Mevcut programlarınızdaki cari, stok veya teklif kayıtlarının aktarılması ve özel bir bağlantı ihtiyacı kurulum görüşmesinde ele alınır.',
+  },
+  {
     title: 'Demo hesabı nasıl açılır?',
-    body: 'İletişim formundan firma ve e-posta bırakın. Kredi kartı istenmez; ekip tenant’ı açıp birlikte bakar.',
+    body: 'İletişim formuna firma, yetkili ve e-posta bırakın. Kredi kartı istenmez. Ekip firmanıza özel hesabı açar; teklif, depo ve saha akışına birlikte bakarsınız.',
   },
   {
-    title: 'Uygulamalar ayrı mı satılır?',
-    body: 'Hayır. İskele Pro tek üründür. Paket, hangi ekran setinin açık olacağını belirler; yetkisi olan kullanıcı o ekranı görür.',
-  },
-  {
-    title: 'Saha ekibi kullanıcı olmak zorunda mı?',
-    body: 'Teslim ve izin için token’lı link yeterlidir. Ofis kullanıcıları e-posta daveti ile eklenir.',
-  },
-  {
-    title: 'Verimiz başka iskele firmasına gider mi?',
-    body: 'Gitmez. Her firma kendi tenant’ındadır. Teklif, stok ve maaş başka kiracıya görünmez.',
-  },
-  {
-    title: 'Fiyat listede neden yok?',
-    body: 'Kullanıcı sayısı, şantiye hacmi ve ekran seti görüşmede netleşir. Kullanıma göre kalem uydurulmaz.',
+    title: 'Verimiz başka iskele firmasına görünür mü?',
+    body: 'Görünmez. Her firma kendi veri alanındadır. Teklif, depo, tahsilat ve maaş başka bir firmaya açılmaz. Yetki de ekran ekrandır: teklif yazmak, depoyu görmek ve maaşa bakmak ayrı ayrı verilir.',
   },
 ] as const
 

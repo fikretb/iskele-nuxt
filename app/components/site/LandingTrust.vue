@@ -6,7 +6,7 @@ import { SITE_IMAGES } from '~/data/assets'
  * Tanıtım metni kuralları (bu blok):
  * - Fayda odaklı başlık (ürün jargonu değil)
  * - Kurumsal B2B ton: emir kipi / sokak ağzı yok
- * - Teknik detay (QR, token, ERP, tenant) yok — alt sayfalarda anlatılır
+ * - Teknik detay (QR, token, ERP, veri alanı) yok — alt sayfalarda anlatılır
  * - Her madde: kim için + ne kazanır
  */
 const items = [

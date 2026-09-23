@@ -497,7 +497,7 @@ const stories: Record<string, AppStory> = {
   },
   kullanicilar: {
     headline: 'Depocu teklifi görmesin.',
-    lead: 'Her iskele firması kendi tenant’ındadır. Ekran ekran yetki verilir.',
+    lead: 'Her iskele firması kendi veri alanındadır. Ekran ekran yetki verilir.',
     sections: [
       {
         title: 'Rol paneli',
