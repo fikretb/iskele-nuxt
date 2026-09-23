@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SITE_IMAGES } from '~/data/assets'
 import { appCategories, productApps, type AppCategoryId } from '~/data/apps'
 
 const localePath = useI18nPath()
@@ -24,6 +25,13 @@ const visible = computed(() =>
         <Button variant="link" class="h-auto px-0 text-sm text-navy" as-child>
           <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allApps') }} →</NuxtLink>
         </Button>
+      </SiteReveal>
+
+      <SiteReveal variant="up" class="mt-6">
+        <SiteFigure
+          :image="SITE_IMAGES.connectedApps"
+          class="rounded-2xl bg-white shadow-[0_18px_40px_-28px_rgb(11_32_81/0.45)] ring-1 ring-navy/8"
+        />
       </SiteReveal>
 
       <div class="mt-6 flex gap-0 overflow-x-auto border-b border-navy/10">

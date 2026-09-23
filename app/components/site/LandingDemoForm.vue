@@ -63,7 +63,7 @@ function submit() {
           </li>
         </ul>
         <SiteFigure
-          :image="SITE_IMAGES.mockupDemo"
+          :image="SITE_IMAGES.demoDashboard"
           class="mt-8 hidden rounded-2xl shadow-[0_22px_50px_-28px_rgb(11_32_81/0.55)] ring-1 ring-navy/10 lg:block"
         />
       </SiteReveal>

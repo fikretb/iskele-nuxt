@@ -49,6 +49,18 @@ export const SITE_IMAGES = {
     alt: 'İskele Pro demo ofis ekranı: şantiye kârlılık ve kiralama özeti',
     ...LANDSCAPE,
   },
+  demoDashboard: {
+    src: '/iskelepro-assets/genel-resimler/isle.jpeg',
+    alt: 'İskele Pro paneli: iskele kiralama özeti ve 3D iskele modeli',
+    width: 1456,
+    height: 734,
+  },
+  connectedApps: {
+    src: '/iskelepro-assets/genel-resimler/uygulamalar2.jpeg',
+    alt: 'Bağlı uygulamalar: müşteri talepleri, müşteriler ve teklifler 3D iskele ile PDF stüdyosuna bağlanır',
+    width: 1844,
+    height: 560,
+  },
   sektorSaha: {
     src: '/iskelepro-assets/sectors/sektor-saha-montaj.jpg',
     alt: 'Kurulum ekibi cephe iskelesine platform yerleştiriyor',
