@@ -5,6 +5,7 @@ export const navLinks = [
   { label: 'Kaynaklar', to: '/yardim', mega: 'resources' },
   { label: 'Fiyatlandırma', to: '/fiyatlandirma' },
   { label: 'Yardım', to: '/yardim' },
+  { label: 'İletişim', to: '/iletisim' },
 ] as const
 
 export const megaNavLinks = navLinks.filter(

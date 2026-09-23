@@ -20,6 +20,7 @@ const megaLabelKey: Record<MegaKey, string> = {
 const plainLabelKey: Record<string, string> = {
   '/fiyatlandirma': 'nav.pricing',
   '/yardim': 'nav.help',
+  '/iletisim': 'nav.contact',
 }
 
 function enter(key: MegaKey) {

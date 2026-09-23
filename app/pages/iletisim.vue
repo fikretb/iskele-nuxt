@@ -1,35 +1,59 @@
 <script setup lang="ts">
+import { MessageCircle } from '@lucide/vue'
 import { SITE_IMAGES } from '~/data/assets'
 
 const localePath = useI18nPath()
+const { href: whatsappHref } = useWhatsAppLink()
 
 useSeoMeta({
   title: 'İletişim · İskele Pro',
-  description: 'İskele Pro demosu ve fiyatlandırma için iletişime geçin. Kredi kartı yok.',
+  description: 'İskele Pro demo, fiyat ve kurulum için iletişime geçin. Kredi kartı gerekmez.',
 })
+
+const points = [
+  'Teklif, PDF ve 3D görünüm',
+  'Depo, sevkiyat ve saha takibi',
+  'Şantiye bazlı finansal görünürlük',
+]
 </script>
 
 <template>
   <div>
     <SitePageHero
       eyebrow="İletişim"
-      title="Demo randevusu alın"
-      description="Firmanızın teklif, depo ve saha akışını konuşalım. Ölçeğinizi seçin; demo hesabı kredi kartı istemez."
+      title="Demo ve görüşme"
+      description="Firmanızın teklif, depo ve saha süreçlerini birlikte değerlendirelim. Demo hesabı için kredi kartı gerekmez."
     />
-    <section class="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-2">
-      <div class="space-y-4">
-        <h2 class="text-2xl font-semibold">Bir danışmanla görüşün</h2>
-        <p class="text-muted-foreground">
-          Kaç şantiyeniz olduğu, teklifi kimin kestiği ve deponun nasıl işlediği yeterli.
-          Form kaydı bu sitede tutulmaz; ekibimiz e-posta üzerinden döner.
-        </p>
-        <ul class="space-y-2 text-sm">
-          <li>Teklif motoru, PDF ve 3D görünüm</li>
-          <li>Depo fişi, saha QR, şantiye bakiyesi</li>
-          <li>Kullanıcı yetkileri ve çoklu firma</li>
+
+    <section class="mx-auto grid max-w-6xl items-start gap-8 px-6 py-14 lg:grid-cols-2 lg:gap-10 lg:py-16">
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-2xl font-semibold tracking-tight text-navy">Nasıl ulaşılır</h2>
+          <p class="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+            Formu bırakın ya da WhatsApp’tan yazın. Ekip, şantiye sayınız ve mevcut sürecinize göre dönüş yapar.
+          </p>
+        </div>
+
+        <a
+          :href="whatsappHref"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-4 rounded-2xl bg-white p-5 ring-1 ring-navy/10 transition-colors hover:bg-navy/[0.03]"
+        >
+          <span class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#3DDC84] text-white">
+            <MessageCircle class="size-5" />
+          </span>
+          <span>
+            <span class="block text-sm font-semibold text-navy">WhatsApp</span>
+            <span class="mt-0.5 block text-sm text-muted-foreground">Demo ve fiyat için doğrudan yazın</span>
+          </span>
+        </a>
+
+        <ul class="space-y-2.5 text-sm text-navy">
+          <li v-for="point in points" :key="point">{{ point }}</li>
         </ul>
-        <SiteFigure :image="SITE_IMAGES.mockupDemo" class="border border-navy/10" />
-        <div class="flex flex-wrap gap-2 pt-2">
+
+        <div class="flex flex-wrap gap-2">
           <Button variant="outline" as-child>
             <NuxtLink :to="localePath('/fiyatlandirma')">{{ $t('common.seePricing') }}</NuxtLink>
           </Button>
@@ -37,9 +61,11 @@ useSeoMeta({
             <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allApps') }}</NuxtLink>
           </Button>
         </div>
+
+        <SiteFigure :image="SITE_IMAGES.mockupDemo" class="border border-navy/10" />
       </div>
 
-      <SiteLandingDemoForm compact :embed-id="false" title="Demo talep formu" />
+      <SiteLandingDemoForm compact :embed-id="false" title="İletişim formu" />
     </section>
   </div>
 </template>
