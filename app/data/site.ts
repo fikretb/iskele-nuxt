@@ -399,6 +399,7 @@ export const helpTopics = [
 ] as const
 
 export const quote = {
-  text: 'Teklif Word’de, stok Excel’de kalınca ay sonunda hangi şantiyenin kârlı olduğu bilinmez. Aynı kayıttan fiş, fatura ve puantaj bakınca ofis asıl işe, yani müşteri ve sahaya döner.',
-  role: 'İskele kiralama ve satış operasyonu — ürünün tasarlandığı iş',
+  lead: 'Teklifler Word’de, stok Excel’de dağıldıkça ay sonunda hangi şantiyenin kârlı olduğu kestirilemez. Ekipler evrak doğrulamak ve kayıp stok peşinde koşmakla vakit kaybeder.',
+  text: 'Tek kayıttan fiş, fatura ve saha puantajı yönetilince manuel giriş ve hata azalır. Şantiye kârlılığı anlık izlenir; ofis ekibi müşteriye, satışa ve sahaya döner.',
+  role: 'İskele ve kalıp kiralama-satış operasyonu, zorlama yazılımlarla yürütülemez; bu işin dinamiklerine ve saha gerçeklerine göre tasarlanmış bir sistem gerektirir.',
 }

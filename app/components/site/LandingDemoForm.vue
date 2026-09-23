@@ -9,15 +9,20 @@ const points = [
   'Şantiye bazlı finansal görünürlük',
 ]
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   embedId?: boolean
   title?: string
   compact?: boolean
+  inset?: boolean
 }>(), {
   embedId: true,
   title: 'Demo talebi',
   compact: false,
+  inset: false,
 })
+
+const embedded = computed(() => props.compact || props.inset)
+const fieldClass = computed(() => props.inset ? 'h-11' : 'h-9')
 
 const { href: whatsappHref } = useWhatsAppLink()
 const route = useRoute()
@@ -73,14 +78,16 @@ function submit() {
 
 <template>
   <component
-    :is="compact ? 'div' : 'section'"
+    :is="embedded ? 'div' : 'section'"
     :id="embedId ? 'demo' : 'talep'"
-    :class="compact
-      ? 'rounded-2xl bg-white p-5 ring-1 ring-navy/10'
-      : 'scroll-mt-20 bg-[#eef1f6] py-16 md:py-20'"
+    :class="inset
+      ? ''
+      : compact
+        ? 'rounded-2xl bg-white p-5 ring-1 ring-navy/10'
+        : 'scroll-mt-20 bg-[#eef1f6] py-16 md:py-20'"
   >
-    <div :class="compact ? '' : 'mx-auto grid max-w-6xl items-stretch gap-8 px-6 lg:grid-cols-2 lg:gap-10'">
-      <SiteReveal v-if="!compact" variant="up" class="flex min-w-0 flex-col">
+    <div :class="embedded ? '' : 'mx-auto grid max-w-6xl items-stretch gap-8 px-6 lg:grid-cols-2 lg:gap-10'">
+      <SiteReveal v-if="!embedded" variant="up" class="flex min-w-0 flex-col">
         <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">İletişim</p>
         <h2 class="mt-3 text-3xl font-semibold tracking-tight text-navy md:text-4xl">
           {{ title }}
@@ -103,12 +110,12 @@ function submit() {
       </SiteReveal>
 
       <SiteReveal
-        :variant="compact ? 'up' : 'up'"
-        :delay="compact ? 0 : 100"
-        :class="compact ? '' : 'flex min-w-0 flex-col justify-center rounded-2xl bg-white p-6 shadow-[0_24px_60px_-32px_rgb(11_32_81/0.45)] ring-1 ring-navy/10 md:p-8'"
+        variant="up"
+        :delay="embedded ? 0 : 100"
+        :class="embedded ? '' : 'flex min-w-0 flex-col justify-center rounded-2xl bg-white p-6 shadow-[0_24px_60px_-32px_rgb(11_32_81/0.45)] ring-1 ring-navy/10 md:p-8'"
       >
-        <h3 v-if="compact" class="mb-4 text-sm font-semibold tracking-wide text-navy uppercase">{{ title }}</h3>
-        <form v-if="!sent" class="space-y-3.5" @submit.prevent="submit">
+        <h3 v-if="compact && !inset" class="mb-4 text-sm font-semibold tracking-wide text-navy uppercase">{{ title }}</h3>
+        <form v-if="!sent" class="space-y-4" @submit.prevent="submit">
           <p
             v-if="selectedPlan"
             class="rounded-lg border border-gold/40 bg-gold/10 px-3 py-2.5 text-xs leading-relaxed text-navy"
@@ -120,26 +127,27 @@ function submit() {
           <div class="grid gap-3.5 sm:grid-cols-2">
             <div class="space-y-1.5 sm:col-span-2">
               <Label for="landing-company" class="text-xs">Firma</Label>
-              <Input id="landing-company" v-model="form.company" required placeholder="İskele kiralama ve satış firmanız" class="h-9" />
+              <Input id="landing-company" v-model="form.company" required placeholder="İskele kiralama ve satış firmanız" :class="fieldClass" />
             </div>
             <div class="space-y-1.5">
               <Label for="landing-name" class="text-xs">Ad soyad</Label>
-              <Input id="landing-name" v-model="form.name" required placeholder="Yetkili adı" class="h-9" />
+              <Input id="landing-name" v-model="form.name" required placeholder="Yetkili adı" :class="fieldClass" />
             </div>
             <div class="space-y-1.5">
               <Label for="landing-phone" class="text-xs">Telefon</Label>
-              <Input id="landing-phone" v-model="form.phone" placeholder="05xx xxx xx xx" class="h-9" />
+              <Input id="landing-phone" v-model="form.phone" placeholder="05xx xxx xx xx" :class="fieldClass" />
             </div>
             <div class="space-y-1.5 sm:col-span-2">
               <Label for="landing-email" class="text-xs">E-posta</Label>
-              <Input id="landing-email" v-model="form.email" type="email" required placeholder="ornek@firma.com" class="h-9" />
+              <Input id="landing-email" v-model="form.email" type="email" required placeholder="ornek@firma.com" :class="fieldClass" />
             </div>
-            <div class="space-y-1.5 sm:col-span-2">
+            <div class="space-y-1.5">
               <Label for="landing-plan" class="text-xs">Tercih edilen paket</Label>
               <select
                 id="landing-plan"
                 v-model="form.plan"
-                class="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
+                class="border-input bg-background w-full rounded-md border px-3 text-sm"
+                :class="fieldClass"
                 @change="form.plan && applyPlan(form.plan)"
               >
                 <option value="">Paket seçin</option>
@@ -148,12 +156,13 @@ function submit() {
                 </option>
               </select>
             </div>
-            <div class="space-y-1.5 sm:col-span-2">
+            <div class="space-y-1.5">
               <Label for="landing-size" class="text-xs">Firma ölçeği</Label>
               <select
                 id="landing-size"
                 v-model="form.size"
-                class="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
+                class="border-input bg-background w-full rounded-md border px-3 text-sm"
+                :class="fieldClass"
               >
                 <option v-for="size in companySizes" :key="size.id" :value="size.id">
                   {{ size.label }}
