@@ -28,6 +28,7 @@ function planPrice(monthlyCents: number) {
       </SiteReveal>
 
       <div class="mt-8 flex flex-col items-center gap-2">
+        <div class="flex items-center gap-2.5">
         <div class="inline-flex rounded-full border border-navy/15 bg-white p-1 shadow-[0_1px_0_rgb(11_32_81/0.04)]">
           <button
             type="button"
@@ -45,6 +46,10 @@ function planPrice(monthlyCents: number) {
           >
             Aylık
           </button>
+        </div>
+        <span class="rounded-full bg-gold px-2.5 py-1 text-[11px] font-semibold leading-none tracking-wide text-navy-deep">
+          2 Ay Ücretsiz
+        </span>
         </div>
         <p class="text-xs text-white/55">
           {{ billing === 'yearly' ? '12 ay yerine 10 ay ücret · 2 ay hediye' : 'Aylık fatura · yıllıkta 2 ay kazanın' }}

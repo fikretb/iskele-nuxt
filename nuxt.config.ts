@@ -32,7 +32,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appUrl: 'https://app.iskelepro.com',
-      whatsappUrl: 'https://wa.me/905000000000',
+      phone: '+905323919755',
+      phoneDisplay: '+90 532 391 97 55',
+      whatsappUrl: 'https://wa.me/905323919755',
       whatsappMessage: 'Merhaba, İskele Pro demo hakkında bilgi almak istiyorum.',
     },
   },

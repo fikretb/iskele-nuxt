@@ -4,15 +4,16 @@ import { megaColumns } from '~/data/site'
 
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
+const { href: whatsappHref } = useWhatsAppLink()
 const year = new Date().getFullYear()
 </script>
 
 <template>
   <footer class="border-t bg-navy text-white">
-    <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="space-y-4">
+    <div class="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.7fr)_1fr_1fr_1fr]">
+      <div class="space-y-4 sm:col-span-2 lg:col-span-1">
         <BrandLogo on-dark />
-        <p class="text-sm text-white/70">
+        <p class="max-w-xl text-sm leading-relaxed text-white/70">
           {{ $t('footer.blurb') }}
         </p>
       </div>
@@ -55,6 +56,12 @@ const year = new Date().getFullYear()
           </li>
           <li>
             <NuxtLink :to="localePath('/iletisim')" class="hover:text-white">{{ $t('common.bookDemo') }}</NuxtLink>
+          </li>
+          <li>
+            <a :href="`tel:${config.public.phone}`" class="hover:text-white">{{ config.public.phoneDisplay }}</a>
+          </li>
+          <li>
+            <a :href="whatsappHref" target="_blank" rel="noopener noreferrer" class="hover:text-white">WhatsApp</a>
           </li>
         </ul>
       </div>

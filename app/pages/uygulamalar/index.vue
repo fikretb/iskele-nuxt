@@ -20,12 +20,12 @@ usePageSeo({
   <div>
     <SitePageHero
       eyebrow="Uygulamalar"
-      title="Tek bir ihtiyaç, tek bir uygulama."
-      description="Ne karmaşık ne de dağınık. İhtiyacınız olan süreç açılır; kayıtlar birbirine bağlı kalır. Büyüdükçe ilerleyin."
+      title="Her süreç için özel çözüm, tek birleşik altyapı."
+      description="Karmaşaya ve dağınık sistemlere son verin. İhtiyacınıza uygun uygulamaları seçin, tüm departmanlarınızı tek bir merkezden uyum içinde yönetin."
       :image="SITE_IMAGES.heroCephe"
       overlay="full"
     >
-      <p class="mt-4 text-sm text-white/70">{{ productApps.length }} uygulama · firmaya özel veri alanı</p>
+      <p class="mt-4 text-sm text-white/70">{{ productApps.length }} hazır uygulama · Şirketinize özel veri alanı.</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
           <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startFree') }}</NuxtLink>

@@ -17,6 +17,7 @@ useJsonLd('ld-org', {
       name: 'İskele Pro',
       url: 'https://iskelepro.com',
       logo: 'https://iskelepro.com/icon-512.png',
+      telephone: '+905323919755',
     },
     {
       '@type': 'WebSite',
