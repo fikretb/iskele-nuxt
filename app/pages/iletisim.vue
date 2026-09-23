@@ -20,6 +20,7 @@ const points = [
 <template>
   <div>
     <SitePageHero
+      band
       eyebrow="İletişim"
       title="Demo ve görüşme"
       description="Firmanızın teklif, depo ve saha süreçlerini birlikte değerlendirelim. Demo hesabı için kredi kartı gerekmez."

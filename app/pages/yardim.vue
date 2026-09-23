@@ -49,6 +49,7 @@ useJsonLd('ld-faq', {
 <template>
   <div>
     <SitePageHero
+      band
       eyebrow="Yardım"
       title="Başlangıçtan kuruluma, ihtiyacınız olan her yanıt burada."
       description="Sık sorulan sorulara hızlı yanıtlar. Kuruma özel kurulum ve detaylı tanıtım için ücretsiz demo görüşmesi."

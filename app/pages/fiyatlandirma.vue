@@ -88,12 +88,12 @@ function planPrice(plan: (typeof pricingPlans)[number]) {
 <template>
   <div>
     <SitePageHero
-      narrow
+      band
       eyebrow="Fiyatlandırma"
       title="İşinize özel modüller, tek platform."
       description="Teklif, stok, sevkiyat, puantaj ve tahsilat aynı yerde. Sadece ihtiyacınız olanı alın. Yıllıkta 10 ay ödeyin, 12 ay kullanın."
     >
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="mt-5 flex flex-wrap gap-3">
         <Button size="lg" class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
           <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startFree') }}</NuxtLink>
         </Button>

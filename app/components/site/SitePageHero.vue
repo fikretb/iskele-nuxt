@@ -9,9 +9,11 @@ const props = withDefaults(defineProps<{
   image?: SiteImage
   overlay?: 'left' | 'full'
   narrow?: boolean
+  band?: boolean
 }>(), {
   overlay: 'left',
   narrow: false,
+  band: false,
 })
 
 const heroImage = computed(() => props.image ?? SITE_IMAGES.heroInner)
@@ -38,21 +40,23 @@ const heroImage = computed(() => props.image ?? SITE_IMAGES.heroInner)
           : 'bg-gradient-to-r from-navy-deep from-[12%] via-navy-deep/88 to-navy-deep/25'"
     />
     <div
-      class="relative mx-auto max-w-6xl px-6"
-      :class="narrow ? 'py-10 md:py-12' : 'py-16 md:py-20'"
+      class="relative mx-auto flex w-full max-w-6xl items-center px-6"
+      :class="band
+        ? 'min-h-72 md:h-[19.5rem]'
+        : narrow ? 'py-10 md:py-12' : 'py-16 md:py-20'"
     >
-      <div :class="narrow ? 'max-w-md' : ''">
+      <div :class="narrow && !band ? 'max-w-md' : band ? 'max-w-2xl' : ''">
         <p v-if="eyebrow" class="mb-3 text-sm font-medium text-gold">{{ eyebrow }}</p>
         <h1
           class="font-semibold tracking-tight"
-          :class="narrow ? 'text-3xl md:text-4xl' : 'max-w-3xl text-3xl md:text-5xl'"
+          :class="band || narrow ? 'text-3xl md:text-4xl' : 'max-w-3xl text-3xl md:text-5xl'"
         >
           {{ title }}
         </h1>
         <p
           v-if="description"
           class="mt-4 text-white/75"
-          :class="narrow ? 'text-sm md:text-base' : 'max-w-2xl text-base md:text-lg'"
+          :class="band || narrow ? 'text-sm md:text-base' : 'max-w-2xl text-base md:text-lg'"
         >
           {{ description }}
         </p>
