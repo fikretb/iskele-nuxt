@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Headset, MessageCircle, Monitor, Wrench } from '@lucide/vue'
-import { companySizes, helpTopics, resourceMega } from '~/data/site'
+import { companySizes, helpTopics } from '~/data/site'
 
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
@@ -102,32 +102,6 @@ useJsonLd('ld-faq', {
           <h3 class="mt-4 text-sm font-semibold text-navy">{{ action.title }}</h3>
           <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">{{ action.body }}</p>
         </a>
-      </div>
-    </section>
-
-    <section class="border-b border-navy/10 bg-white">
-      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-3">
-        <div v-for="column in resourceMega" :key="column.name">
-          <p class="mb-3 text-xs font-semibold tracking-wider text-gold uppercase">{{ column.name }}</p>
-          <ul class="space-y-1">
-            <li v-for="item in column.items" :key="item.label">
-              <a
-                v-if="item.to === 'portal'"
-                :href="config.public.appUrl"
-                class="block rounded-md px-2 py-1.5 text-sm text-navy hover:bg-muted"
-              >
-                {{ item.label }}
-              </a>
-              <NuxtLink
-                v-else
-                :to="localePath(item.to)"
-                class="block rounded-md px-2 py-1.5 text-sm text-navy hover:bg-muted"
-              >
-                {{ item.label }}
-              </NuxtLink>
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
 
