@@ -1,18 +1,30 @@
 <script setup lang="ts">
-import { SITE_IMAGES } from '~/data/assets'
+const i18nHead = useLocaleHead({ seo: true })
 
-const { locale } = useI18n()
-
-useHead({
+useHead(() => ({
   htmlAttrs: {
-    lang: locale,
+    lang: i18nHead.value.htmlAttrs?.lang,
   },
-})
+  link: [...(i18nHead.value.link ?? [])],
+  meta: [...(i18nHead.value.meta ?? [])],
+}))
 
-useSeoMeta({
-  ogImage: SITE_IMAGES.og.src,
-  twitterCard: 'summary_large_image',
-  twitterImage: SITE_IMAGES.og.src,
+useJsonLd('ld-org', {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'İskele Pro',
+      url: 'https://iskelepro.com',
+      logo: 'https://iskelepro.com/icon-512.png',
+    },
+    {
+      '@type': 'WebSite',
+      name: 'İskele Pro',
+      url: 'https://iskelepro.com',
+      inLanguage: ['tr-TR', 'en-US'],
+    },
+  ],
 })
 </script>
 

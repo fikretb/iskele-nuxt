@@ -31,7 +31,7 @@ const related = computed(() => {
 const featuredImage = computed(() => app.value ? imageForApp(app.value.slug) : null)
 const isPortrait = computed(() => Boolean(featuredImage.value && featuredImage.value.height > featuredImage.value.width))
 
-useSeoMeta({
+usePageSeo({
   title: () => app.value ? `${app.value.name} · İskele Pro` : 'Uygulama',
   description: () => story.value?.lead ?? app.value?.description,
 })

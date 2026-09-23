@@ -35,7 +35,7 @@ const stories: Record<string, AppStory> = {
     connected: ['musteriler', 'teklifler', 'pano'],
   },
   musteriler: {
-    headline: 'Kiralayan firma, tek cari.',
+    headline: 'Kiralama ve satış firması, tek cari.',
     lead: 'Teklif, şantiye ve tahsilat aynı müşteri kaydının altında durur.',
     sections: [
       {
@@ -297,12 +297,12 @@ const stories: Record<string, AppStory> = {
     connected: ['teklifler', 'depo', 'satinalma'],
   },
   faturalar: {
-    headline: 'Kiralama geliri şantiyeye yazılı.',
+    headline: 'Kiralama ve satış geliri şantiyeye yazılı.',
     lead: 'Satış faturası müşteri ve şantiye ile bağlanır. PDF üretilir, tahsilat bakiyesi kartta görünür.',
     sections: [
       {
         title: 'İşten faturaya',
-        body: 'Onaylı kiralama / şantiye faturaya döner. “Bu iş kesildi mi” şantiye bakiyesinde durur.',
+        body: 'Onaylı kiralama veya satış, şantiye faturasına döner. “Bu iş kesildi mi” şantiye bakiyesinde durur.',
       },
     ],
     extras: [
@@ -345,7 +345,7 @@ const stories: Record<string, AppStory> = {
     sections: [
       {
         title: 'Günlük bakiye',
-        body: 'Kasa hareketi kiralama tahsilatı ve giderle aynı dilde durur.',
+        body: 'Kasa hareketi kiralama ve satış tahsilatı ile giderle aynı dilde durur.',
       },
     ],
     extras: [
@@ -355,7 +355,7 @@ const stories: Record<string, AppStory> = {
   },
   'nakit-akisi': {
     headline: 'Gelecek vadeler tek bakışta.',
-    lead: 'Çek vadesi, fatura tahsilatı ve alış ödemesi birleşir. Kiralama firmasının nakit sıkışıklığı sürprize kalmaz.',
+    lead: 'Çek vadesi, fatura tahsilatı ve alış ödemesi birleşir. Kiralama ve satış firmasının nakit sıkışıklığı sürprize kalmaz.',
     sections: [
       {
         title: 'Giriş ve çıkış',
@@ -383,7 +383,7 @@ const stories: Record<string, AppStory> = {
   },
   'santiye-bakiyesi': {
     headline: 'Bu iş kazandırdı mı.',
-    lead: 'Kiralama geliri, fatura, tahsilat ve gider şantiye kartında toplanır.',
+    lead: 'Kiralama ve satış geliri, fatura, tahsilat ve gider şantiye kartında toplanır.',
     sections: [
       {
         title: 'Açık bakiye',

@@ -5,9 +5,9 @@ import { SITE_IMAGES } from '~/data/assets'
 const localePath = useI18nPath()
 const { href: whatsappHref } = useWhatsAppLink()
 
-useSeoMeta({
+usePageSeo({
   title: 'İletişim · İskele Pro',
-  description: 'İskele Pro demo, fiyat ve kurulum için iletişime geçin. Kredi kartı gerekmez.',
+  description: 'İskele Pro demo, fiyat ve kurulum için iletişime geçin. Kiralama ve satış süreçleri için kredi kartı gerekmez.',
 })
 
 const points = [

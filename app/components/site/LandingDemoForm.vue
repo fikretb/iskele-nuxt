@@ -78,7 +78,7 @@ function submit() {
           <div class="grid gap-3.5 sm:grid-cols-2">
             <div class="space-y-1.5 sm:col-span-2">
               <Label for="landing-company" class="text-xs">Firma</Label>
-              <Input id="landing-company" v-model="form.company" required placeholder="İskele kiralama firmanız" class="h-9" />
+              <Input id="landing-company" v-model="form.company" required placeholder="İskele kiralama ve satış firmanız" class="h-9" />
             </div>
             <div class="space-y-1.5">
               <Label for="landing-name" class="text-xs">Ad soyad</Label>

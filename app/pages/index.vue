@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import { SITE_IMAGES } from '~/data/assets'
+const description = 'İskele kiralama ve satış: teklif, depo, saha, fatura ve puantaj aynı platformda. Ücretsiz demo.'
 
-useSeoMeta({
-  title: 'İskele Pro — Tekliften sahaya, tek kayıt ',
-  description: 'İskele kiralama: teklif, depo, saha, fatura ve puantaj aynı platformda. Ücretsiz demo.',
-  ogImage: SITE_IMAGES.og.src,
-  twitterCard: 'summary_large_image',
-  twitterImage: SITE_IMAGES.og.src,
+usePageSeo({
+  title: 'İskele Pro — Tekliften sahaya, tek kayıt',
+  description,
+})
+
+useJsonLd('ld-app', {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'İskele Pro',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: 'https://iskelepro.com',
+  description,
+  inLanguage: 'tr-TR',
 })
 </script>
 

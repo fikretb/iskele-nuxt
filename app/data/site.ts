@@ -85,7 +85,7 @@ export const valueProps = [
   },
   {
     title: 'İskele işine özel',
-    body: 'Cephe ölçüsü, 3D kurulumu, kiralama süresi ve şantiye bakiyesi genel ERP’den kopyalanmış ekranlar değil.',
+    body: 'Cephe ölçüsü, 3D kurulumu, kiralama ve satış süreci ile şantiye bakiyesi genel ERP’den kopyalanmış ekranlar değil.',
   },
   {
     title: 'Firma bazlı yetki',
@@ -125,7 +125,7 @@ export const productivityPoints = [
 export const pillars = [
   {
     title: 'İskele işine göre yazılmış',
-    body: 'Genel inşaat ERP’sinin %70’i değil; cephe, kiralama süresi, sevkiyat fişi ve şantiye bakiyesi omurgadır.',
+    body: 'Genel inşaat ERP’sinin %70’i değil; cephe, kiralama ve satış, sevkiyat fişi ve şantiye bakiyesi omurgadır.',
     to: '/uygulamalar',
     link: 'Uygulama seti',
   },
@@ -137,7 +137,7 @@ export const pillars = [
   },
   {
     title: 'Veri sizde, tenant sizde',
-    body: 'Sahipli “başka firmanın tablosu” yok. Her kiralama firması kendi kaydını görür.',
+    body: 'Sahipli “başka firmanın tablosu” yok. Her kiralama ve satış firması kendi kaydını görür.',
     to: '/yardim',
     link: 'Nasıl çalışır',
   },
@@ -164,7 +164,7 @@ export const pillars = [
 export const landingTrust = [
   { title: 'Kredi kartı yok', body: 'Demo hesabı anında; kart istemiyoruz.' },
   { title: 'Tek tenant', body: 'Firmanızın verisi başka kiracıya görünmez.' },
-  { title: 'İskele’ye özel', body: 'Cephe, kiralama süresi, sevkiyat fişi omurgadır.' },
+  { title: 'İskele’ye özel', body: 'Cephe, kiralama ve satış, sevkiyat fişi omurgadır.' },
   { title: 'Sahaya iner', body: 'QR, imza ve token’lı link ile teslim.' },
 ] as const
 
@@ -176,7 +176,7 @@ export const landingWorkflow = [
   },
   {
     step: '02',
-    title: 'Şantiye ve kiralama',
+    title: 'Şantiye, kiralama ve satış',
     body: 'Onaylanan iş şantiye kartında; süre ve saha stoku birlikte.',
   },
   {
@@ -255,7 +255,7 @@ export const pricingPlans = [
     blurb: 'Şantiye, depo fişi, saha QR ve tahsilat aynı kayıtta.',
     monthlyCents: 1110,
     featured: true,
-    features: ['3D iskele görünümü', 'Şantiye, kiralama, planlama', 'Depo fişi, saha, QR', 'Faturalar ve tahsilat', 'Araçlar'],
+    features: ['3D iskele görünümü', 'Şantiye, kiralama ve satış, planlama', 'Depo fişi, saha, QR', 'Faturalar ve tahsilat', 'Araçlar'],
     apps: operationAppSlugs,
     cta: 'Bu paketi konuşalım',
   },
@@ -372,5 +372,5 @@ export const helpTopics = [
 
 export const quote = {
   text: 'Teklif Word’de, stok Excel’de kalınca ay sonunda hangi şantiyenin kârlı olduğu bilinmez. Aynı kayıttan fiş, fatura ve puantaj bakınca ofis asıl işe, yani müşteri ve sahaya döner.',
-  role: 'İskele kiralama operasyonu — ürünün tasarlandığı iş',
+  role: 'İskele kiralama ve satış operasyonu — ürünün tasarlandığı iş',
 }

@@ -11,8 +11,8 @@ import { SITE_IMAGES } from '~/data/assets'
  */
 const items = [
   {
-    title: 'İskele kiralama için yazıldı',
-    body: 'Genel inşaat ERP’si değil. Teklif, kiralama ve şantiye yönetimi iskele firmasının işine göre kuruludur.',
+    title: 'İskele kiralama ve satış için yazıldı',
+    body: 'Genel inşaat ERP’si değil. Teklif, kiralama, satış ve şantiye yönetimi iskele firmasının işine göre kuruludur.',
     icon: HardHat,
   },
   {
@@ -42,7 +42,7 @@ const items = [
           Neden İskele Pro
         </p>
         <h2 class="mx-auto mt-2 max-w-2xl text-2xl font-semibold tracking-tight text-navy md:text-3xl">
-          İskele kiralama operasyonunuzu tek platformda yönetin.
+          İskele kiralama ve satış operasyonunuzu tek platformda yönetin.
         </h2>
       </SiteReveal>
 

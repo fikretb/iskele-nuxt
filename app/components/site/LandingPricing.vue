@@ -6,13 +6,13 @@ import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/da
   <section class="bg-navy py-14 text-white md:py-16">
     <div class="mx-auto max-w-6xl px-6">
       <SiteReveal variant="blur" class="flex flex-col gap-3 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
-        <div class="max-w-xl">
+        <div class="max-w-3xl">
           <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Fiyatlandırma</p>
           <h2 class="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
-            Pakete göre ekran seti
+            İşletmenize Uygun Paketi Seçin
           </h2>
-          <p class="mt-2 text-sm text-white/65">
-            Yıllıkta 2 ay hediye. Fiyat, ayda kullanıcı başınadır.
+          <p class="mt-2 max-w-2xl text-sm text-white/65">
+            İhtiyacınıza uygun paketi seçin, iskele ve kalıp operasyonlarınızı tek platformdan yönetin. Kullanıcı başına aylık fiyatlandırma ve yıllık abonelikte 2 ay bizden avantajıyla işinizi büyütün.
           </p>
         </div>
       </SiteReveal>

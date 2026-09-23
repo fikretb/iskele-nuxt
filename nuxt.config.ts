@@ -2,7 +2,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
   app: {
     head: {
       title: 'İskele Pro',
@@ -12,16 +11,21 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/icon-192.png' },
         { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/icon-512.png' },
+        { rel: 'preload', href: '/fonts/geist-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
+        { rel: 'preload', href: '/fonts/geist-latin-ext.woff2', as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
       ],
       meta: [
-        { name: 'description', content: 'İskele firmaları için teklif, saha, depo, muhasebe ve insan kaynakları platformu.' },
+        { name: 'description', content: 'İskele firmaları için kiralama ve satış: teklif, saha, depo, muhasebe ve insan kaynakları platformu.' },
+        { name: 'theme-color', content: '#0B2051' },
+        { property: 'og:site_name', content: 'İskele Pro' },
+        { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'İskele Pro' },
-        { property: 'og:description', content: 'Tekliften sahaya, depodan muhasebeye; kiralama operasyonunu tek yerden yönetin.' },
-        { property: 'og:image', content: '/og.jpg' },
+        { property: 'og:description', content: 'Tekliften sahaya, depodan muhasebeye; kiralama ve satış operasyonunu tek yerden yönetin.' },
+        { property: 'og:image', content: 'https://iskelepro.com/og.jpg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: '/og.jpg' },
+        { name: 'twitter:image', content: 'https://iskelepro.com/og.jpg' },
       ],
     },
   },
@@ -104,7 +108,15 @@ export default defineNuxtConfig({
       },
     ],
   },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/en', '/sitemap.xml'],
+    },
+  },
   routeRules: {
+    '/fonts/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/iskelepro-assets/**': { headers: { 'cache-control': 'public, max-age=2592000' } },
     '/sektor': { redirect: { to: '/', statusCode: 301 } },
     '/sektor/**': { redirect: { to: '/', statusCode: 301 } },
     '/en/industries': { redirect: { to: '/en', statusCode: 301 } },

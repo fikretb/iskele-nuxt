@@ -16,9 +16,22 @@ import {
 
 const localePath = useI18nPath()
 
-useSeoMeta({
+usePageSeo({
   title: 'Fiyatlandırma · İskele Pro',
-  description: 'İskele firmaları için Başlangıç, Operasyon ve Kurumsal. Yıllıkta 2 ay hediye; kullanıcı başı aylık fiyat.',
+  description: 'İskele kiralama ve satış için Başlangıç, Operasyon ve Kurumsal. Yıllıkta 2 ay hediye; kullanıcı başı aylık fiyat.',
+})
+
+useJsonLd('ld-faq', {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: pricingFaqs.map(topic => ({
+    '@type': 'Question',
+    name: topic.title,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: topic.body,
+    },
+  })),
 })
 
 type PlanId = (typeof pricingPlans)[number]['id']

@@ -76,11 +76,10 @@ watch(() => useRoute().fullPath, () => {
       <div class="flex items-center gap-2">
         <SiteSearch />
         <div class="hidden items-center gap-2 lg:flex">
-          <LanguageSwitcher />
-          <Button class="h-10 rounded-md border border-navy bg-navy px-5 text-sm font-semibold text-white hover:bg-navy-deep" as-child>
+          <Button variant="outline" class="h-10 rounded-none border-navy bg-navy px-5 text-sm font-semibold text-white shadow-none hover:border-navy-deep hover:bg-navy-deep hover:text-white" as-child>
             <a :href="config.public.appUrl">{{ $t('nav.portal') }}</a>
           </Button>
-          <Button class="h-10 rounded-md bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
+          <Button class="h-10 rounded-none bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
             <NuxtLink :to="localePath('/#demo')">{{ $t('nav.freeDemo') }}</NuxtLink>
           </Button>
         </div>
@@ -98,9 +97,6 @@ watch(() => useRoute().fullPath, () => {
             <SheetDescription>{{ $t('brand.tagline') }}</SheetDescription>
           </SheetHeader>
           <div class="space-y-4 px-4 pb-6">
-            <div class="flex justify-end">
-              <LanguageSwitcher />
-            </div>
             <div v-for="column in megaColumns" :key="column.id">
               <p class="mb-2 text-xs font-semibold tracking-wider text-gold uppercase">{{ column.name }}</p>
               <div class="flex flex-col gap-1">
@@ -121,10 +117,10 @@ watch(() => useRoute().fullPath, () => {
             <NuxtLink :to="localePath('/iletisim')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.contact') }}</NuxtLink>
           </div>
           <SheetFooter class="gap-2">
-            <Button class="h-10 rounded-md border border-navy bg-navy px-5 text-sm font-semibold text-white hover:bg-navy-deep" as-child>
+            <Button variant="outline" class="h-10 rounded-none border-navy bg-navy px-5 text-sm font-semibold text-white shadow-none hover:border-navy-deep hover:bg-navy-deep hover:text-white" as-child>
               <a :href="config.public.appUrl">{{ $t('nav.portal') }}</a>
             </Button>
-            <Button class="h-10 rounded-md bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
+            <Button class="h-10 rounded-none bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
               <NuxtLink :to="localePath('/#demo')">{{ $t('nav.freeDemo') }}</NuxtLink>
             </Button>
           </SheetFooter>

@@ -58,7 +58,7 @@ onMounted(() => {
           Tekliften sahaya,<br class="hidden sm:block"> tek kayıt.
         </h1>
         <p class="mt-5 max-w-md text-base text-white/70 md:text-lg">
-          İskele kiralama operasyonunuz için teklif, depo, saha ve finans aynı platformda.
+          İskele kiralama ve satış operasyonunuz için teklif, depo, saha ve finans aynı platformda.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <Button

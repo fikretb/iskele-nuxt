@@ -24,6 +24,8 @@ const heroImage = computed(() => props.image ?? SITE_IMAGES.heroInner)
       alt=""
       :width="heroImage.width"
       :height="heroImage.height"
+      decoding="async"
+      fetchpriority="low"
       class="pointer-events-none absolute inset-0 size-full object-cover"
       :class="overlay === 'left' ? 'object-right' : 'object-center'"
     >

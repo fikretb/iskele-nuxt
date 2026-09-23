@@ -4,9 +4,22 @@ import { helpTopics, resourceMega } from '~/data/site'
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
 
-useSeoMeta({
+usePageSeo({
   title: 'Yardım · İskele Pro',
-  description: 'Demo, yetki, tenant ve fiyatlandırma hakkında kısa yanıtlar.',
+  description: 'İskele Pro demo, yetki, veri güvenliği ve fiyatlandırma hakkında kısa yanıtlar.',
+})
+
+useJsonLd('ld-faq', {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: helpTopics.map(topic => ({
+    '@type': 'Question',
+    name: topic.title,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: topic.body,
+    },
+  })),
 })
 </script>
 

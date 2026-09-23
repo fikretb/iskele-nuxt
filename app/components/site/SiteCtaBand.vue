@@ -16,6 +16,8 @@ const localePath = useI18nPath()
       alt=""
       :width="SITE_IMAGES.heroInner.width"
       :height="SITE_IMAGES.heroInner.height"
+      loading="lazy"
+      decoding="async"
       class="pointer-events-none absolute inset-0 size-full object-cover object-right opacity-70"
     >
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/40" />

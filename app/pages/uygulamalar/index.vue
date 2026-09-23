@@ -10,9 +10,9 @@ function categoryHash(id: string) {
   return localizeSlug(categorySlugs, id, locale.value)
 }
 
-useSeoMeta({
+usePageSeo({
   title: 'Tüm uygulamalar · İskele Pro',
-  description: 'Tek bir ihtiyaç, tek bir uygulama. Teklif, saha, depo, finans ve insan kaynakları setinin tamamı.',
+  description: 'İskele kiralama ve satış için teklif, saha, depo, finans ve insan kaynakları uygulamaları.',
 })
 </script>
 

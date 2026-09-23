@@ -60,6 +60,8 @@ useIntersectionObserver(
               :alt="stepImages[active]!.alt"
               :width="stepImages[active]!.width"
               :height="stepImages[active]!.height"
+              decoding="async"
+              loading="lazy"
               class="absolute inset-3 m-auto max-h-[calc(100%-1.5rem)] max-w-[calc(100%-1.5rem)] rounded-xl object-contain shadow-[0_16px_40px_-24px_rgb(11_32_81/0.55)]"
             >
           </Transition>

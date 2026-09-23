@@ -49,7 +49,7 @@
     "apps": "Apps",
     "resources": "Resources",
     "services": "Services",
-    "blurb": "Scaffolding rental, quotes, field, warehouse, accounting and HR. Simple to use, records stay linked.",
+    "blurb": "Scaffolding rental and sales, quotes, field, warehouse, accounting and HR. Simple to use, records stay linked.",
     "legalNote": "Your company data stays in a private, secure space that belongs only to you."
   },
   "error": {
