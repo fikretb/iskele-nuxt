@@ -207,7 +207,7 @@ function planPrice(plan: (typeof pricingPlans)[number]) {
                   : 'bg-navy text-white hover:bg-navy-soft'"
                 as-child
               >
-                <NuxtLink :to="localePath('/iletisim')">{{ plan.cta }}</NuxtLink>
+                <NuxtLink :to="localePath(`/iletisim?paket=${plan.id}&donem=${billing}#talep`)">{{ plan.cta }}</NuxtLink>
               </Button>
               <p class="mt-3 text-center text-xs text-muted-foreground">
                 {{ plan.audience }}
@@ -333,7 +333,7 @@ function planPrice(plan: (typeof pricingPlans)[number]) {
             class="rounded-full border-navy/15 bg-white"
             as-child
           >
-            <NuxtLink :to="localePath('/iletisim')">{{ size.label }}</NuxtLink>
+            <NuxtLink :to="localePath(`/iletisim?olcek=${size.id}#talep`)">{{ size.label }}</NuxtLink>
           </Button>
         </div>
         <div class="mt-6">

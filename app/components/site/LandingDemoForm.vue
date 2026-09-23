@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Check } from '@lucide/vue'
 import { SITE_IMAGES } from '~/data/assets'
-import { companySizes } from '~/data/site'
+import { companySizes, pricingPlans, pricingScales } from '~/data/site'
 
 const points = [
   'Teklif, PDF ve 3D görünüm',
@@ -20,6 +20,7 @@ withDefaults(defineProps<{
 })
 
 const { href: whatsappHref } = useWhatsAppLink()
+const route = useRoute()
 
 const form = reactive({
   company: '',
@@ -27,9 +28,42 @@ const form = reactive({
   email: '',
   phone: '',
   size: 'small',
+  plan: '',
+  cycle: '',
   message: '',
 })
 const sent = ref(false)
+
+const selectedPlan = computed(() => pricingPlans.find(plan => plan.id === form.plan))
+
+const cycleLabel = computed(() => {
+  if (form.cycle === 'yearly') return 'yıllık'
+  if (form.cycle === 'monthly') return 'aylık'
+  return ''
+})
+
+function queryValue(value: unknown) {
+  return Array.isArray(value) ? value[0] : value
+}
+
+function applyPlan(planId: string) {
+  const plan = pricingPlans.find(item => item.id === planId)
+  if (!plan) return
+  form.plan = plan.id
+  const scale = pricingScales.find(item => item.planId === plan.id)
+  if (scale) form.size = scale.id
+}
+
+function readSelection() {
+  const planId = queryValue(route.query.paket)
+  const sizeId = queryValue(route.query.olcek)
+  const cycle = queryValue(route.query.donem)
+  if (typeof planId === 'string') applyPlan(planId)
+  else if (typeof sizeId === 'string' && companySizes.some(size => size.id === sizeId)) form.size = sizeId
+  form.cycle = cycle === 'yearly' || cycle === 'monthly' ? cycle : ''
+}
+
+watch(() => [route.query.paket, route.query.olcek, route.query.donem], readSelection, { immediate: true })
 
 function submit() {
   if (!form.company || !form.name || !form.email) return
@@ -40,7 +74,7 @@ function submit() {
 <template>
   <component
     :is="compact ? 'div' : 'section'"
-    :id="embedId ? 'demo' : undefined"
+    :id="embedId ? 'demo' : 'talep'"
     :class="compact
       ? 'rounded-2xl bg-white p-5 ring-1 ring-navy/10'
       : 'scroll-mt-20 bg-[#eef1f6] py-16 md:py-20'"
@@ -75,6 +109,14 @@ function submit() {
       >
         <h3 v-if="compact" class="mb-4 text-sm font-semibold tracking-wide text-navy uppercase">{{ title }}</h3>
         <form v-if="!sent" class="space-y-3.5" @submit.prevent="submit">
+          <p
+            v-if="selectedPlan"
+            class="rounded-lg border border-gold/40 bg-gold/10 px-3 py-2.5 text-xs leading-relaxed text-navy"
+          >
+            <span class="font-semibold">{{ selectedPlan.name }} paketi</span>
+            <span v-if="cycleLabel"> · {{ cycleLabel }}</span>
+            <span class="mt-0.5 block text-navy/75">{{ selectedPlan.audience }}</span>
+          </p>
           <div class="grid gap-3.5 sm:grid-cols-2">
             <div class="space-y-1.5 sm:col-span-2">
               <Label for="landing-company" class="text-xs">Firma</Label>
@@ -91,6 +133,20 @@ function submit() {
             <div class="space-y-1.5 sm:col-span-2">
               <Label for="landing-email" class="text-xs">E-posta</Label>
               <Input id="landing-email" v-model="form.email" type="email" required placeholder="ornek@firma.com" class="h-9" />
+            </div>
+            <div class="space-y-1.5 sm:col-span-2">
+              <Label for="landing-plan" class="text-xs">Tercih edilen paket</Label>
+              <select
+                id="landing-plan"
+                v-model="form.plan"
+                class="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
+                @change="form.plan && applyPlan(form.plan)"
+              >
+                <option value="">Paket seçin</option>
+                <option v-for="plan in pricingPlans" :key="plan.id" :value="plan.id">
+                  {{ plan.name }} · {{ plan.headcount }} kişi
+                </option>
+              </select>
             </div>
             <div class="space-y-1.5 sm:col-span-2">
               <Label for="landing-size" class="text-xs">Firma ölçeği</Label>

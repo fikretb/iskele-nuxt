@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/data/site'
+import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans, type BillingCycle } from '~/data/site'
+
+const localePath = useI18nPath()
+
+const billing = ref<BillingCycle>('yearly')
+
+function planPrice(monthlyCents: number) {
+  const amount = billedMonthlyCents(monthlyCents, billing.value)
+  const compareAt = billing.value === 'yearly' && monthlyCents > 0 ? monthlyCents : 0
+  return { amount, compareAt }
+}
 </script>
 
 <template>
@@ -16,6 +26,30 @@ import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/da
           </p>
         </div>
       </SiteReveal>
+
+      <div class="mt-8 flex flex-col items-center gap-2">
+        <div class="inline-flex rounded-full border border-navy/15 bg-white p-1 shadow-[0_1px_0_rgb(11_32_81/0.04)]">
+          <button
+            type="button"
+            class="rounded-full px-5 py-2 text-sm font-medium transition-colors"
+            :class="billing === 'yearly' ? 'bg-navy text-white' : 'text-muted-foreground hover:text-navy'"
+            @click="billing = 'yearly'"
+          >
+            Yıllık
+          </button>
+          <button
+            type="button"
+            class="rounded-full px-5 py-2 text-sm font-medium transition-colors"
+            :class="billing === 'monthly' ? 'bg-navy text-white' : 'text-muted-foreground hover:text-navy'"
+            @click="billing = 'monthly'"
+          >
+            Aylık
+          </button>
+        </div>
+        <p class="text-xs text-white/55">
+          {{ billing === 'yearly' ? '12 ay yerine 10 ay ücret · 2 ay hediye' : 'Aylık fatura · yıllıkta 2 ay kazanın' }}
+        </p>
+      </div>
 
       <div class="mt-10 grid gap-x-4 gap-y-7 lg:grid-cols-3">
         <SiteReveal
@@ -40,11 +74,19 @@ import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/da
           <h3 class="text-lg font-semibold" :class="'featured' in plan && plan.featured ? 'text-gold' : ''">
             {{ plan.name }}
           </h3>
-          <p class="mt-3 text-2xl font-semibold tracking-tight" :class="'featured' in plan && plan.featured ? 'text-gold' : 'text-white'">
-            €{{ plan.monthlyCents === 0 ? '0' : formatEuro(billedMonthlyCents(plan.monthlyCents, 'yearly')) }}
-          </p>
+          <div class="mt-3 flex items-end gap-2">
+            <p class="text-2xl font-semibold tracking-tight" :class="'featured' in plan && plan.featured ? 'text-gold' : 'text-white'">
+              €{{ plan.monthlyCents === 0 ? '0' : formatEuro(planPrice(plan.monthlyCents).amount) }}
+            </p>
+            <p
+              v-if="planPrice(plan.monthlyCents).compareAt > 0"
+              class="mb-0.5 text-sm text-white/40 line-through"
+            >
+              €{{ formatEuro(planPrice(plan.monthlyCents).compareAt) }}
+            </p>
+          </div>
           <p class="text-xs text-white/45">
-            {{ plan.monthlyCents === 0 ? 'ücretsiz' : 'ayda kullanıcı başına · yıllık' }}
+            {{ plan.monthlyCents === 0 ? 'ücretsiz' : 'ayda kullanıcı başına' }}
           </p>
           <p class="mt-1 text-xs text-white/55">{{ plan.audience }}</p>
           <ul class="mt-5 flex-1 space-y-2 border-t border-white/10 pt-4 text-sm text-white/75">
@@ -58,7 +100,7 @@ import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/da
             class="mt-6 h-10 w-full rounded-md bg-gold text-sm font-semibold text-navy-deep hover:bg-gold-hover"
             as-child
           >
-            <a href="#demo">Demo iste</a>
+            <a :href="localePath(`/?paket=${plan.id}&donem=${billing}#demo`)">Demo iste</a>
           </Button>
           </article>
         </SiteReveal>
