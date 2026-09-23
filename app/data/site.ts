@@ -2,7 +2,6 @@ import { appCategories, productApps } from '~/data/apps'
 
 export const navLinks = [
   { label: 'Uygulamalar', to: '/uygulamalar', mega: 'apps' },
-  { label: 'Kaynaklar', to: '/yardim', mega: 'resources' },
   { label: 'Fiyatlandırma', to: '/fiyatlandirma' },
   { label: 'Yardım', to: '/yardim' },
   { label: 'İletişim', to: '/iletisim' },

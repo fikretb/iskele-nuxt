@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ChevronDownIcon, MenuIcon } from '@lucide/vue'
 import { appPath } from '~/constants/slugs'
-import { megaColumns, megaNavLinks, plainNavLinks, resourceMega } from '~/data/site'
+import { megaColumns, megaNavLinks, plainNavLinks } from '~/data/site'
 
-type MegaKey = 'apps' | 'resources'
+type MegaKey = 'apps'
 
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
@@ -14,7 +14,6 @@ let closeTimer: ReturnType<typeof setTimeout> | null = null
 
 const megaLabelKey: Record<MegaKey, string> = {
   apps: 'nav.apps',
-  resources: 'nav.resources',
 }
 
 const plainLabelKey: Record<string, string> = {
@@ -156,32 +155,6 @@ watch(() => useRoute().fullPath, () => {
           <Button variant="link" class="px-0" as-child>
             <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allAppsCta') }}</NuxtLink>
           </Button>
-        </div>
-      </div>
-    </SiteMegaPanel>
-
-    <SiteMegaPanel name="resources" :open="openMenu" @enter="enter" @leave="leave">
-      <div class="mx-auto grid max-w-6xl gap-10 px-6 py-8 md:grid-cols-3">
-        <div v-for="column in resourceMega" :key="column.name">
-          <p class="mb-3 text-xs font-semibold tracking-wider text-gold uppercase">{{ column.name }}</p>
-          <ul class="space-y-1">
-            <li v-for="item in column.items" :key="item.label">
-              <a
-                v-if="item.to === 'portal'"
-                :href="config.public.appUrl"
-                class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted"
-              >
-                {{ item.label }}
-              </a>
-              <NuxtLink
-                v-else
-                :to="localePath(item.to)"
-                class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted"
-              >
-                {{ item.label }}
-              </NuxtLink>
-            </li>
-          </ul>
         </div>
       </div>
     </SiteMegaPanel>
