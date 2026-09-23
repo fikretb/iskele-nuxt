@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ChevronDownIcon, MenuIcon } from '@lucide/vue'
+import { ArrowRight, ChevronDownIcon, MenuIcon } from '@lucide/vue'
+import type { AppCategoryId } from '~/data/apps'
 import { appPath } from '~/constants/slugs'
 import { megaColumns, megaNavLinks, plainNavLinks } from '~/data/site'
 
@@ -10,6 +11,7 @@ const localePath = useI18nPath()
 const { t } = useI18n()
 const mobileOpen = ref(false)
 const openMenu = ref<MegaKey | null>(null)
+const activeCategory = ref<AppCategoryId>('ticari')
 let closeTimer: ReturnType<typeof setTimeout> | null = null
 
 const megaLabelKey: Record<MegaKey, string> = {
@@ -22,6 +24,18 @@ const plainLabelKey: Record<string, string> = {
   '/iletisim': 'nav.contact',
 }
 
+const categoryIcons: Record<AppCategoryId, string> = {
+  ticari: 'FileText',
+  operasyon: 'HardHat',
+  tedarik: 'ShoppingCart',
+  finans: 'Wallet',
+  ik: 'UserRound',
+  yonetim: 'LayoutDashboard',
+}
+
+const activeColumn = computed(() => megaColumns.find(column => column.id === activeCategory.value) ?? megaColumns[0])
+const appCount = megaColumns.reduce((total, column) => total + column.apps.length, 0)
+
 function enter(key: MegaKey) {
   if (closeTimer) clearTimeout(closeTimer)
   openMenu.value = key
@@ -32,6 +46,14 @@ function leave() {
     openMenu.value = null
   }, 160)
 }
+
+function showCategory(id: AppCategoryId) {
+  activeCategory.value = id
+}
+
+watch(openMenu, (key) => {
+  if (key === 'apps') activeCategory.value = 'ticari'
+})
 
 watch(() => useRoute().fullPath, () => {
   mobileOpen.value = false
@@ -97,19 +119,26 @@ watch(() => useRoute().fullPath, () => {
             <SheetDescription>{{ $t('brand.tagline') }}</SheetDescription>
           </SheetHeader>
           <div class="space-y-4 px-4 pb-6">
-            <div v-for="column in megaColumns" :key="column.id">
-              <p class="mb-2 text-xs font-semibold tracking-wider text-gold uppercase">{{ column.name }}</p>
-              <div class="flex flex-col gap-1">
-                <NuxtLink
-                  v-for="app in column.apps"
-                  :key="app.slug"
-                  :to="localePath(appPath(app.slug))"
-                  class="rounded-md px-2 py-1.5 text-sm hover:bg-muted"
-                >
-                  {{ app.name }}
-                </NuxtLink>
-              </div>
-            </div>
+            <Accordion type="single" collapsible default-value="ticari">
+              <AccordionItem v-for="column in megaColumns" :key="column.id" :value="column.id">
+                <AccordionTrigger class="py-2.5 text-sm font-semibold text-navy">
+                  {{ column.name }}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div class="flex flex-col gap-0.5 pb-2">
+                    <p class="px-2 pb-1 text-xs text-muted-foreground">{{ column.blurb }}</p>
+                    <NuxtLink
+                      v-for="app in column.apps"
+                      :key="app.slug"
+                      :to="localePath(appPath(app.slug))"
+                      class="rounded-md px-2 py-1.5 text-sm text-navy/80 hover:bg-muted hover:text-navy"
+                    >
+                      {{ app.name }}
+                    </NuxtLink>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
             <Separator />
             <NuxtLink :to="localePath('/uygulamalar')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.allApps') }}</NuxtLink>
             <NuxtLink :to="localePath('/fiyatlandirma')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.pricing') }}</NuxtLink>
@@ -130,27 +159,57 @@ watch(() => useRoute().fullPath, () => {
     </div>
 
     <SiteMegaPanel name="apps" :open="openMenu" @enter="enter" @leave="leave">
-      <div class="mx-auto grid max-w-6xl gap-8 px-6 py-8 md:grid-cols-3 xl:grid-cols-6">
-        <div v-for="column in megaColumns" :key="column.id">
-          <p class="mb-1 text-xs font-semibold tracking-wider text-gold uppercase">{{ column.name }}</p>
-          <p class="mb-3 text-xs text-muted-foreground">{{ column.blurb }}</p>
-          <ul class="space-y-1">
-            <li v-for="app in column.apps" :key="app.slug">
-              <NuxtLink
-                :to="localePath(appPath(app.slug))"
-                class="block rounded-md px-2 py-1 text-sm text-foreground/80 hover:bg-muted hover:text-navy"
+      <div class="mx-auto grid max-w-6xl lg:grid-cols-[17.5rem_minmax(0,1fr)]">
+        <div class="bg-[#F6F7FA] px-4 py-5">
+          <p class="px-3 text-[11px] font-semibold tracking-[0.14em] text-gold uppercase">Kategoriler</p>
+          <div class="mt-3 space-y-1">
+            <button
+              v-for="column in megaColumns"
+              :key="column.id"
+              type="button"
+              class="flex w-full items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-colors"
+              :class="activeCategory === column.id
+                ? 'bg-white text-navy shadow-sm ring-1 ring-navy/10'
+                : 'text-navy/70 hover:bg-white/80 hover:text-navy'"
+              @mouseenter="showCategory(column.id)"
+              @focus="showCategory(column.id)"
+            >
+              <span
+                class="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md"
+                :class="activeCategory === column.id ? 'bg-navy text-gold' : 'bg-navy/8 text-navy'"
               >
-                {{ app.name }}
-              </NuxtLink>
-            </li>
-          </ul>
+                <SiteAppGlyph :name="categoryIcons[column.id]" class="size-3.5" />
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-semibold">{{ column.name }}</span>
+                <span class="mt-0.5 block text-xs leading-snug text-muted-foreground">{{ column.blurb }}</span>
+              </span>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="border-t bg-muted/50">
-        <div class="mx-auto flex max-w-6xl justify-end px-6 py-3">
-          <Button variant="link" class="px-0" as-child>
-            <NuxtLink :to="localePath('/uygulamalar')">{{ $t('nav.allAppsCta') }}</NuxtLink>
-          </Button>
+
+        <div class="flex min-h-[22rem] flex-col px-6 py-5">
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.14em] text-gold uppercase">{{ activeColumn.name }}</p>
+            <p class="mt-1 text-sm text-muted-foreground">{{ activeColumn.blurb }}</p>
+          </div>
+          <div class="mt-4 grid gap-2 sm:grid-cols-2">
+            <SiteAppTile
+              v-for="app in activeColumn.apps"
+              :key="app.slug"
+              :app="app"
+            />
+          </div>
+          <div class="mt-auto flex items-center justify-between gap-3 border-t border-navy/8 pt-4">
+            <p class="text-xs text-muted-foreground">{{ appCount }} hazır uygulama</p>
+            <NuxtLink
+              :to="localePath('/uygulamalar')"
+              class="inline-flex items-center gap-1.5 text-sm font-semibold text-navy hover:text-gold"
+            >
+              {{ $t('nav.allAppsCta') }}
+              <ArrowRight class="size-3.5" />
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </SiteMegaPanel>

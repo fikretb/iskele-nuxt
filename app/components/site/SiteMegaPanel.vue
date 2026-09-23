@@ -15,7 +15,7 @@ const emit = defineEmits<{
 <template>
   <div
     v-show="open === name"
-    class="absolute inset-x-0 top-16 hidden border-b bg-white shadow-lg lg:block"
+    class="absolute inset-x-0 top-full hidden border-b bg-white shadow-[0_24px_50px_-28px_rgb(11_32_81/0.35)] lg:block"
     @mouseenter="emit('enter', name)"
     @mouseleave="emit('leave')"
   >
