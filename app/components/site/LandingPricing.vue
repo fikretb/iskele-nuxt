@@ -17,29 +17,29 @@ import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/da
         </div>
       </SiteReveal>
 
-      <div class="mt-8 rounded-md border border-white/15 lg:grid lg:grid-cols-3">
+      <div class="mt-10 grid gap-x-4 gap-y-7 lg:grid-cols-3">
         <SiteReveal
           v-for="(plan, index) in pricingPlans"
           :key="plan.name"
           variant="up"
           :delay="index * 110"
-          class="flex flex-col p-5"
-          :class="[
-            'featured' in plan && plan.featured ? 'bg-navy-soft border-l-2 border-l-gold' : 'bg-navy-deep/60',
-            index < pricingPlans.length - 1 ? 'border-b border-white/10 lg:border-b-0 lg:border-r' : '',
-          ]"
+          class="h-full ![clip-path:none]"
         >
-          <div class="flex items-baseline justify-between gap-2">
-            <h3 class="text-lg font-semibold" :class="'featured' in plan && plan.featured ? 'text-gold' : ''">
-              {{ plan.name }}
-            </h3>
-            <span
-              v-if="'featured' in plan && plan.featured"
-              class="text-[10px] font-semibold tracking-wider text-gold uppercase"
-            >
-              Önerilen
-            </span>
-          </div>
+          <article
+            class="relative flex h-full flex-col border-2 p-5"
+            :class="'featured' in plan && plan.featured
+              ? 'border-gold bg-navy-soft'
+              : 'border-white/15 bg-navy-deep'"
+          >
+          <span
+            v-if="'featured' in plan && plan.featured"
+            class="absolute top-0 left-5 z-10 -translate-y-1/2 bg-gold px-2.5 py-1 text-[11px] font-semibold leading-none tracking-wider text-navy-deep uppercase"
+          >
+            Önerilen
+          </span>
+          <h3 class="text-lg font-semibold" :class="'featured' in plan && plan.featured ? 'text-gold' : ''">
+            {{ plan.name }}
+          </h3>
           <p class="mt-3 text-2xl font-semibold tracking-tight" :class="'featured' in plan && plan.featured ? 'text-gold' : 'text-white'">
             €{{ plan.monthlyCents === 0 ? '0' : formatEuro(billedMonthlyCents(plan.monthlyCents, 'yearly')) }}
           </p>
@@ -60,6 +60,7 @@ import { billedMonthlyCents, formatEuro, pricingNotes, pricingPlans } from '~/da
           >
             <a href="#demo">Demo iste</a>
           </Button>
+          </article>
         </SiteReveal>
       </div>
 

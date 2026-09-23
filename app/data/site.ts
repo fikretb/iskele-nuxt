@@ -274,7 +274,7 @@ export const pricingPlans = [
 ] as const
 
 export function formatEuro(cents: number) {
-  return (cents / 100).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  return Math.floor(cents / 100).toLocaleString('tr-TR', { maximumFractionDigits: 0 })
 }
 
 /** Yıllıkta 12 ay yerine 10 ay ücret — aylık eşdeğer. */
