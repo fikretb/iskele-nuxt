@@ -68,6 +68,9 @@ usePageSeo({
       </div>
     </section>
 
-    <SiteCtaBand />
+    <SiteCtaBand
+      title="İşinizi büyütmeye bugün başlayın."
+      note="Kredi kartı tanımlamadan saniyeler içinde demoya erişin, tüm özellikleri anında deneyimleyin."
+    />
   </div>
 </template>
