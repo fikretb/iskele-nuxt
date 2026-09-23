@@ -6,24 +6,36 @@ import { searchCategoryName, searchSite } from '~/data/search'
 const localePath = useI18nPath()
 const open = ref(false)
 const query = ref('')
+const panelTop = ref(0)
 const root = ref<HTMLElement | null>(null)
+const panel = ref<HTMLElement | null>(null)
 const input = ref<HTMLInputElement | null>(null)
 
 const results = computed(() => searchSite(query.value))
 
 onClickOutside(root, () => {
   if (open.value) close()
-})
+}, { ignore: [panel] })
 
 watch(() => useRoute().fullPath, close)
+
+function placePanel() {
+  const header = document.querySelector('header')
+  panelTop.value = header?.getBoundingClientRect().height ?? 72
+}
 
 function toggle() {
   if (open.value) {
     close()
     return
   }
+  const scrollY = window.scrollY
+  placePanel()
   open.value = true
-  nextTick(() => input.value?.focus())
+  nextTick(() => {
+    input.value?.focus({ preventScroll: true })
+    window.scrollTo(0, scrollY)
+  })
 }
 
 function close() {
@@ -71,9 +83,12 @@ onUnmounted(() => window.removeEventListener('keydown', onWindowKey))
       <SearchIcon class="size-4" />
     </Button>
 
+    <Teleport to="body">
     <div
       v-if="open"
-      class="fixed inset-x-0 top-[4.75rem] z-50 px-4 md:top-[5.35rem]"
+      ref="panel"
+      class="fixed inset-x-0 z-50 px-4"
+      :style="{ top: `${panelTop}px` }"
     >
       <div class="mx-auto w-full max-w-xl">
       <form
@@ -90,7 +105,7 @@ onUnmounted(() => window.removeEventListener('keydown', onWindowKey))
             type="text"
             autocomplete="off"
             :placeholder="$t('search.placeholder')"
-            class="h-full min-w-0 flex-1 bg-transparent px-3 text-sm text-navy outline-none placeholder:text-muted-foreground"
+            class="h-full min-w-0 flex-1 bg-transparent px-3 text-base text-navy outline-none placeholder:text-muted-foreground md:text-sm"
           >
         </div>
         <Button
@@ -131,5 +146,6 @@ onUnmounted(() => window.removeEventListener('keydown', onWindowKey))
       </div>
       </div>
     </div>
+    </Teleport>
   </div>
 </template>

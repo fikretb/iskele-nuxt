@@ -42,7 +42,7 @@ export const resourceMega = [
     items: [
       { label: 'Yardım', to: '/yardim' },
       { label: 'İletişim', to: '/iletisim' },
-      { label: 'Portal', to: 'portal' },
+      { label: 'Yönetim Paneli', to: 'portal' },
     ],
   },
 ] as const

@@ -77,7 +77,7 @@ watch(() => useRoute().fullPath, () => {
         <SiteSearch />
         <div class="hidden items-center gap-2 lg:flex">
           <LanguageSwitcher />
-          <Button variant="ghost" as-child>
+          <Button class="h-10 rounded-md border border-navy bg-navy px-5 text-sm font-semibold text-white hover:bg-navy-deep" as-child>
             <a :href="config.public.appUrl">{{ $t('nav.portal') }}</a>
           </Button>
           <Button class="h-10 rounded-md bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
@@ -121,7 +121,7 @@ watch(() => useRoute().fullPath, () => {
             <NuxtLink :to="localePath('/iletisim')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.contact') }}</NuxtLink>
           </div>
           <SheetFooter class="gap-2">
-            <Button variant="outline" as-child>
+            <Button class="h-10 rounded-md border border-navy bg-navy px-5 text-sm font-semibold text-white hover:bg-navy-deep" as-child>
               <a :href="config.public.appUrl">{{ $t('nav.portal') }}</a>
             </Button>
             <Button class="h-10 rounded-md bg-gold px-5 text-sm font-semibold text-navy-deep hover:bg-gold-hover" as-child>
