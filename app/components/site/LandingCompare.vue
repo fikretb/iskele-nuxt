@@ -15,7 +15,7 @@ const rows = withoutUs.map((before, index) => ({
       <SiteReveal variant="up" class="max-w-xl">
         <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Karşılaştırma</p>
         <h2 class="mt-2 text-2xl font-semibold tracking-tight text-navy md:text-3xl">
-          Dağınık ofis mi, tek kayıt mı?
+          Dağınık ofis mi, tek sistem mi?
         </h2>
       </SiteReveal>
 

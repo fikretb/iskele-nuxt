@@ -55,10 +55,10 @@ onMounted(() => {
       >
         <div class="will-change-transform" :style="copyStyle">
         <h1 class="text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl lg:leading-[1.08]">
-          Tekliften sahaya,<br class="hidden sm:block"> tek kayıt.
+          İskele operasyonunuzun tüm kontrolü<br class="hidden sm:block"> tek ekranda.
         </h1>
-        <p class="mt-5 max-w-md text-base text-white/70 md:text-lg">
-          İskele kiralama ve satış operasyonunuz için teklif, depo, saha ve finans aynı platformda.
+        <p class="mt-5 max-w-lg text-base text-white/70 md:text-lg">
+          Teklif hazırlamadan stok takibine, şantiyeden finansa kadar tüm kiralama ve satış süreçlerinizi hatasız yürütün.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <Button

@@ -33,13 +33,13 @@ useIntersectionObserver(
   <section class="border-y border-navy/10 bg-white py-14 md:py-16">
     <div class="mx-auto max-w-6xl px-6">
       <SiteReveal variant="up" class="flex flex-col gap-4 border-b border-navy/10 pb-8 md:flex-row md:items-end md:justify-between">
-        <div class="max-w-xl">
+        <div class="max-w-2xl">
           <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Operasyon akışı</p>
           <h2 class="mt-2 text-2xl font-semibold tracking-tight text-navy md:text-3xl">
-            Ofisten sahaya tek kayıt
+            Tekliften tahsilata, tüm süreçler tek merkezde.
           </h2>
           <p class="mt-2 text-sm text-muted-foreground md:text-base">
-            Teklif onayından tahsilata kadar tüm adımlar aynı iş kaydında ilerler.
+            Ofisten sahaya uzanan tüm operasyonlar, tek bir dijital kayıt üzerinden ilerler. Teklif, sipariş, sevkiyat ve tahsilat süreçleri, birbirine bağlı ve kontrol altında.
           </p>
         </div>
         <Button

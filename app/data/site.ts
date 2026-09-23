@@ -94,17 +94,17 @@ export const valueProps = [
 ] as const
 
 export const withoutUs = [
-  'Teklif Word’de, stok Excel’de, tahsilat defterde',
-  'Sahaya ne çıktığı şoförün hafızasında',
-  'Puantaj ay sonunda kâğıttan maaşta',
-  '3D yok; müşteri “ne kurulacak” diye çizim bekliyor',
+  'Teklif Word’de, stok Excel’de, para defterde',
+  'Sahaya çıkan malzeme şoförün aklında',
+  'Puantaj kâğıttan, maaş ay sonunda',
+  '3D yok, müşteri çizim bekliyor',
 ]
 
 export const withUs = [
-  'Cepheden teklif, PDF ve 3D aynı kayıttan',
-  'Sevkiyat / iade fişi, QR ve imza',
-  'Puantaj dönem kapanınca maaşa akar',
-  'Şantiye bakiyesi: bu iş tahsil edildi mi',
+  'Teklif + PDF + 3D tek kayıttan',
+  'Sevkiyat ve iade QR + imza ile kayıtta',
+  'Puantaj kapanınca maaşa otomatik akar',
+  'Şantiye bakiyesi net: tahsil edildi mi?',
 ]
 
 export const productivityPoints = [

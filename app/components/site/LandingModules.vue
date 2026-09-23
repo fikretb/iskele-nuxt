@@ -13,13 +13,13 @@ const visible = computed(() =>
   <section class="bg-navy/[0.03] py-14 md:py-16">
     <div class="mx-auto max-w-6xl px-6">
       <SiteReveal variant="up" class="flex flex-col gap-4 border-b border-navy/10 pb-6 md:flex-row md:items-end md:justify-between">
-        <div class="max-w-xl">
-          <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Uygulama seti</p>
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold tracking-[0.14em] text-gold uppercase">Dijital platform</p>
           <h2 class="mt-2 text-2xl font-semibold tracking-tight text-navy md:text-3xl">
-            Bağlı uygulamalar
+            Tüm iş süreçleriniz, tek platformda.
           </h2>
           <p class="mt-2 text-sm text-muted-foreground">
-            Tek ürün, kategorilere ayrılmış ekranlar. Yetkisi olan kullanıcı ilgili ekranı açar.
+            Operasyonlarınıza özel ekranlar, tek bir sistemde. Her kullanıcı, yetkisi dahilindeki modüllere kolayca erişir.
           </p>
         </div>
         <Button variant="link" class="h-auto px-0 text-sm text-navy" as-child>
