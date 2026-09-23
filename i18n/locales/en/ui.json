@@ -50,7 +50,7 @@
     "resources": "Resources",
     "services": "Services",
     "blurb": "Scaffolding rental, quotes, field, warehouse, accounting and HR. Simple to use, records stay linked.",
-    "legalNote": "Integrated app suite for scaffolding rental operations. Your data stays in your tenant."
+    "legalNote": "Your company data stays in a private, secure space that belongs only to you."
   },
   "error": {
     "appNotFound": "App not found"

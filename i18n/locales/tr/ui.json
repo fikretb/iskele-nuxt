@@ -50,7 +50,7 @@
     "resources": "Kaynaklar",
     "services": "Hizmetler",
     "blurb": "İskele kiralama, teklif, saha, depo, muhasebe ve insan kaynakları. Kullanımı sade, kayıtlar birbirine bağlı.",
-    "legalNote": "İskele kiralama operasyonu için entegre uygulama seti. Veriniz sizin tenant’ınızda kalır."
+    "legalNote": "Şirket verileriniz tamamen size özel, güvenli bir alanda saklansın."
   },
   "error": {
     "appNotFound": "Uygulama bulunamadı"
