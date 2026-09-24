@@ -100,6 +100,18 @@ export default defineNuxtConfig({
         tr: '/cozumler',
         en: '/solutions',
       },
+      kvkk: {
+        tr: '/kvkk',
+        en: '/kvkk',
+      },
+      gizlilik: {
+        tr: '/gizlilik',
+        en: '/privacy',
+      },
+      'kullanim-kosullari': {
+        tr: '/kullanim-kosullari',
+        en: '/terms',
+      },
     },
     locales: [
       {
@@ -135,5 +147,7 @@ export default defineNuxtConfig({
     '/en/fiyatlandirma': { redirect: { to: '/en/pricing', statusCode: 301 } },
     '/en/iletisim': { redirect: { to: '/en/contact', statusCode: 301 } },
     '/en/yardim': { redirect: { to: '/en/help', statusCode: 301 } },
+    '/en/gizlilik': { redirect: { to: '/en/privacy', statusCode: 301 } },
+    '/en/kullanim-kosullari': { redirect: { to: '/en/terms', statusCode: 301 } },
   },
 })

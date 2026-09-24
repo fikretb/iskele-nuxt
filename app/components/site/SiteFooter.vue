@@ -68,8 +68,12 @@ const year = new Date().getFullYear()
     </div>
     <div class="border-t border-white/10">
       <div class="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-4 text-xs text-white/55 md:flex-row md:items-center md:justify-between">
-        <span>© {{ year }} {{ $t('brand.name') }}</span>
-        <span>{{ $t('footer.legalNote') }}</span>
+        <span>© {{ year }} {{ $t('brand.name') }} · Hitech Mühendislik Ltd. Şti.</span>
+        <nav class="flex flex-wrap gap-x-4 gap-y-1">
+          <NuxtLink :to="localePath('/kvkk')" class="hover:text-white">{{ $t('footer.kvkk') }}</NuxtLink>
+          <NuxtLink :to="localePath('/gizlilik')" class="hover:text-white">{{ $t('footer.privacy') }}</NuxtLink>
+          <NuxtLink :to="localePath('/kullanim-kosullari')" class="hover:text-white">{{ $t('footer.terms') }}</NuxtLink>
+        </nav>
       </div>
     </div>
   </footer>

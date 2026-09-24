@@ -50,7 +50,15 @@
     "resources": "Kaynaklar",
     "services": "Hizmetler",
     "blurb": "İskele Pro; tekliften depoya, şantiyeden muhasebe ve insan kaynaklarına kadar tüm iskele operasyonlarınızı tek platformda birleştirir. Birbiriyle konuşan kayıt yapısı ve kolay arayüzü sayesinde hataları önler, ekibinizin adaptasyonunu hızlandırır.",
-    "legalNote": "Şirket verileriniz tamamen size özel, güvenli bir alanda saklansın."
+    "legalNote": "Şirket verileriniz tamamen size özel, güvenli bir alanda saklansın.",
+    "kvkk": "KVKK",
+    "privacy": "Gizlilik",
+    "terms": "Kullanım koşulları"
+  },
+  "form": {
+    "consentBefore": "Kişisel verilerimin",
+    "consentLink": "KVKK Aydınlatma Metni",
+    "consentAfter": "kapsamında işlenmesini kabul ediyorum."
   },
   "error": {
     "appNotFound": "Uygulama bulunamadı"

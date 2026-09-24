@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
   const cycle = text(body?.cycle, 20)
   const message = text(body?.message, 2000)
 
-  if (!company || !name || !isEmail(email)) {
+  if (!company || !name || !isEmail(email) || body?.consent !== true) {
     throw createError({ statusCode: 400, statusMessage: 'Eksik veya geçersiz form bilgisi.' })
   }
 

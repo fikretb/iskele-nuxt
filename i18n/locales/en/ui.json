@@ -50,7 +50,15 @@
     "resources": "Resources",
     "services": "Services",
     "blurb": "Scaffolding rental and sales, quotes, field, warehouse, accounting and HR. Simple to use, records stay linked.",
-    "legalNote": "Your company data stays in a private, secure space that belongs only to you."
+    "legalNote": "Your company data stays in a private, secure space that belongs only to you.",
+    "kvkk": "KVKK",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "form": {
+    "consentBefore": "I agree to the processing of my personal data under the",
+    "consentLink": "KVKK Privacy Notice",
+    "consentAfter": "."
   },
   "error": {
     "appNotFound": "App not found"

@@ -9,6 +9,9 @@ const pages: Array<[string, string]> = [
   ['/fiyatlandirma', '/en/pricing'],
   ['/iletisim', '/en/contact'],
   ['/yardim', '/en/help'],
+  ['/kvkk', '/en/kvkk'],
+  ['/gizlilik', '/en/privacy'],
+  ['/kullanim-kosullari', '/en/terms'],
   ...productApps.map(app => [
     `/uygulamalar/${localizeSlug(appSlugs, app.slug, 'tr')}`,
     `/en/apps/${localizeSlug(appSlugs, app.slug, 'en')}`,

@@ -25,6 +25,7 @@ const embedded = computed(() => props.compact || props.inset)
 const fieldClass = computed(() => props.inset ? 'h-11' : 'h-9')
 
 const { href: whatsappHref } = useWhatsAppLink()
+const localePath = useI18nPath()
 const route = useRoute()
 
 const form = reactive({
@@ -37,6 +38,7 @@ const form = reactive({
   cycle: '',
   message: '',
   website: '',
+  consent: false,
 })
 const sent = ref(false)
 const sending = ref(false)
@@ -74,7 +76,7 @@ function readSelection() {
 watch(() => [route.query.paket, route.query.olcek, route.query.donem], readSelection, { immediate: true })
 
 async function submit() {
-  if (!form.company || !form.name || !form.email || sending.value) return
+  if (!form.company || !form.name || !form.email || !form.consent || sending.value) return
   sending.value = true
   error.value = ''
   try {
@@ -90,6 +92,7 @@ async function submit() {
         cycle: form.cycle,
         message: form.message,
         website: form.website,
+        consent: form.consent,
       },
     })
     sent.value = true
@@ -205,6 +208,22 @@ async function submit() {
               <input id="landing-website" v-model="form.website" type="text" tabindex="-1" autocomplete="off">
             </div>
           </div>
+          <label class="flex items-start gap-2.5 text-xs leading-5 text-navy/75">
+            <input
+              id="landing-consent"
+              v-model="form.consent"
+              type="checkbox"
+              required
+              class="mt-0.5 size-3.5 shrink-0 accent-navy"
+            >
+            <span>
+              {{ $t('form.consentBefore') }}
+              <NuxtLink :to="localePath('/kvkk')" class="font-medium text-navy underline-offset-2 hover:underline">
+                {{ $t('form.consentLink') }}
+              </NuxtLink>
+              {{ $t('form.consentAfter') }}
+            </span>
+          </label>
           <p v-if="error" class="text-sm text-red-600">{{ error }}</p>
           <Button
             type="submit"

@@ -14,6 +14,9 @@ export const searchPages: SearchItem[] = [
   { title: 'Fiyatlandırma', blurb: 'Başlangıç, Operasyon ve Kurumsal paketler', to: '/fiyatlandirma', kind: 'page' },
   { title: 'Yardım', blurb: 'Demo, yetki ve veri alanı soruları', to: '/yardim', kind: 'page' },
   { title: 'İletişim', blurb: 'Demo talebi ve danışman görüşmesi', to: '/iletisim', kind: 'page' },
+  { title: 'KVKK', blurb: 'Aydınlatma metni ve kişisel veriler', to: '/kvkk', kind: 'page' },
+  { title: 'Gizlilik', blurb: 'Gizlilik politikası', to: '/gizlilik', kind: 'page' },
+  { title: 'Kullanım koşulları', blurb: 'Site ve demo kullanım sözleşmesi', to: '/kullanim-kosullari', kind: 'page' },
 ]
 
 export const searchApps: SearchItem[] = productApps.map(app => ({
