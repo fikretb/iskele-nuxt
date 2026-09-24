@@ -85,6 +85,10 @@ export default defineNuxtConfig({
         tr: '/fiyatlandirma',
         en: '/pricing',
       },
+      'iskele-hesapla': {
+        tr: '/iskele-hesapla',
+        en: '/scaffold-calculator',
+      },
       iletisim: {
         tr: '/iletisim',
         en: '/contact',
@@ -146,6 +150,7 @@ export default defineNuxtConfig({
     '/en/uygulamalar': { redirect: { to: '/en/apps', statusCode: 301 } },
     '/en/uygulamalar/**': { redirect: { to: '/en/apps/**', statusCode: 301 } },
     '/en/fiyatlandirma': { redirect: { to: '/en/pricing', statusCode: 301 } },
+    '/en/iskele-hesapla': { redirect: { to: '/en/scaffold-calculator', statusCode: 301 } },
     '/en/iletisim': { redirect: { to: '/en/contact', statusCode: 301 } },
     '/en/yardim': { redirect: { to: '/en/help', statusCode: 301 } },
     '/en/gizlilik': { redirect: { to: '/en/privacy', statusCode: 301 } },

@@ -13,6 +13,7 @@
   },
   "nav": {
     "apps": "Apps",
+    "calculator": "Scaffold calculator",
     "resources": "Resources",
     "pricing": "Pricing",
     "help": "Help",

@@ -32,6 +32,9 @@ const year = new Date().getFullYear()
         <p class="mb-3 text-xs font-semibold tracking-wider text-gold uppercase">{{ $t('footer.resources') }}</p>
         <ul class="space-y-2 text-sm text-white/80">
           <li>
+            <NuxtLink :to="localePath('/iskele-hesapla')" class="hover:text-white">{{ $t('nav.calculator') }}</NuxtLink>
+          </li>
+          <li>
             <NuxtLink :to="localePath('/iletisim')" class="hover:text-white">{{ $t('nav.contact') }}</NuxtLink>
           </li>
           <li>

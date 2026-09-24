@@ -7,6 +7,7 @@ const pages: Array<[string, string]> = [
   ['/', '/en'],
   ['/uygulamalar', '/en/apps'],
   ['/fiyatlandirma', '/en/pricing'],
+  ['/iskele-hesapla', '/en/scaffold-calculator'],
   ['/iletisim', '/en/contact'],
   ['/yardim', '/en/help'],
   ['/kvkk', '/en/kvkk'],

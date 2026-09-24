@@ -11,6 +11,7 @@ export type SearchItem = {
 
 export const searchPages: SearchItem[] = [
   { title: 'Uygulamalar', blurb: 'Tüm uygulama seti', to: '/uygulamalar', kind: 'page' },
+  { title: 'İskele Hesapla', blurb: 'Cephe ölçüsünden ön hesap ve teklif', to: '/iskele-hesapla', kind: 'page' },
   { title: 'Fiyatlandırma', blurb: 'Başlangıç, Operasyon ve Kurumsal paketler', to: '/fiyatlandirma', kind: 'page' },
   { title: 'Yardım', blurb: 'Demo, yetki ve veri alanı soruları', to: '/yardim', kind: 'page' },
   { title: 'İletişim', blurb: 'Demo talebi ve danışman görüşmesi', to: '/iletisim', kind: 'page' },

@@ -36,6 +36,44 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
 
+function numberField(value: unknown, min: number, max: number) {
+  const parsed = typeof value === 'number' ? value : Number(value)
+  if (!Number.isFinite(parsed)) return null
+  if (parsed < min || parsed > max) return null
+  return parsed
+}
+
+function readScaffold(value: unknown) {
+  if (!value || typeof value !== 'object') return null
+  const data = value as Record<string, unknown>
+  const width = numberField(data.width, 0.5, 500)
+  const height = numberField(data.height, 0.5, 200)
+  const bayWidth = numberField(data.bayWidth, 1, 5)
+  const liftHeight = numberField(data.liftHeight, 1, 4)
+  const jobType = data.jobType === 'satis' ? 'Satış' : 'Kiralama'
+  if (!width || !height || !bayWidth || !liftHeight) return null
+
+  const pick = (key: string, max: number) => numberField(data[key], 0, max)
+
+  return {
+    width,
+    height,
+    bayWidth,
+    liftHeight,
+    jobType,
+    area: pick('area', 100000),
+    bays: pick('bays', 500),
+    lifts: pick('lifts', 200),
+    standards: pick('standards', 20000),
+    ledgers: pick('ledgers', 20000),
+    transoms: pick('transoms', 20000),
+    platforms: pick('platforms', 20000),
+    diagonals: pick('diagonals', 20000),
+    anchors: pick('anchors', 20000),
+    baseJacks: pick('baseJacks', 20000),
+  }
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody<Record<string, unknown>>(event).catch(() => ({}))
 
@@ -66,18 +104,39 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 503, statusMessage: 'E-posta henüz yapılandırılmadı.' })
   }
 
+  const source = text(body?.source, 40)
+  const isCalc = source === 'iskele-hesapla'
+  const scaffold = isCalc ? readScaffold(body?.scaffold) : null
   const planLabel = planLabels[plan] || (plan || 'Belirtilmedi')
   const sizeLabel = sizeLabels[size] || (size || 'Belirtilmedi')
   const cycleLabel = cycleLabels[cycle] || (cycle || 'Belirtilmedi')
+
+  const scaffoldLines = scaffold
+    ? [
+        '',
+        'Cephe ölçüleri',
+        `Ölçü: ${scaffold.width} m × ${scaffold.height} m${scaffold.area ? ` (${scaffold.area} m²)` : ''}`,
+        `Göz: ${scaffold.bayWidth} m · Kat: ${scaffold.liftHeight} m`,
+        `İş türü: ${scaffold.jobType}`,
+        scaffold.bays && scaffold.lifts ? `Ön hesap: ${scaffold.bays} göz, ${scaffold.lifts} kat` : '',
+        scaffold.standards != null ? `Dikme ${scaffold.standards} · Yatay ${scaffold.ledgers ?? '—'} · Enine ${scaffold.transoms ?? '—'}` : '',
+        scaffold.platforms != null ? `Platform ${scaffold.platforms} · Çapraz ${scaffold.diagonals ?? '—'} · Ankraj ${scaffold.anchors ?? '—'} · Taban ${scaffold.baseJacks ?? '—'}` : '',
+      ].filter(Boolean)
+    : []
 
   const lines = [
     `Firma: ${company}`,
     `Yetkili: ${name}`,
     `E-posta: ${email}`,
     `Telefon: ${phone || '—'}`,
-    `Paket: ${planLabel}`,
-    `Ölçek: ${sizeLabel}`,
-    `Dönem: ${cycleLabel}`,
+    ...(isCalc
+      ? []
+      : [
+          `Paket: ${planLabel}`,
+          `Ölçek: ${sizeLabel}`,
+          `Dönem: ${cycleLabel}`,
+        ]),
+    ...scaffoldLines,
     '',
     message || 'Not yazılmadı.',
   ]
@@ -94,17 +153,25 @@ export default defineEventHandler(async (event) => {
       from: `"İskele Pro" <${from}>`,
       to,
       replyTo: `${name} <${email}>`,
-      subject: `Demo talebi · ${company}`,
+      subject: `${isCalc ? 'İskele hesaplama teklifi' : 'Demo talebi'} · ${company}`,
       text: lines.join('\n'),
       html: `
-        <h2>Yeni demo talebi</h2>
+        <h2>${isCalc ? 'İskele hesaplama teklifi' : 'Yeni demo talebi'}</h2>
         <p><strong>Firma:</strong> ${escapeHtml(company)}</p>
         <p><strong>Yetkili:</strong> ${escapeHtml(name)}</p>
         <p><strong>E-posta:</strong> ${escapeHtml(email)}</p>
         <p><strong>Telefon:</strong> ${escapeHtml(phone || '—')}</p>
-        <p><strong>Paket:</strong> ${escapeHtml(planLabel)}</p>
+        ${isCalc
+          ? ''
+          : `<p><strong>Paket:</strong> ${escapeHtml(planLabel)}</p>
         <p><strong>Ölçek:</strong> ${escapeHtml(sizeLabel)}</p>
-        <p><strong>Dönem:</strong> ${escapeHtml(cycleLabel)}</p>
+        <p><strong>Dönem:</strong> ${escapeHtml(cycleLabel)}</p>`}
+        ${scaffold
+          ? `<h3>Cephe ölçüleri</h3>
+        <p>${escapeHtml(`${scaffold.width} m × ${scaffold.height} m${scaffold.area ? ` (${scaffold.area} m²)` : ''}`)}</p>
+        <p>Göz ${escapeHtml(String(scaffold.bayWidth))} m · Kat ${escapeHtml(String(scaffold.liftHeight))} m · ${escapeHtml(scaffold.jobType)}</p>
+        <p>Dikme ${scaffold.standards ?? '—'} · Platform ${scaffold.platforms ?? '—'} · Ankraj ${scaffold.anchors ?? '—'}</p>`
+          : ''}
         <p>${escapeHtml(message || 'Not yazılmadı.').replace(/\n/g, '<br>')}</p>
       `,
     })

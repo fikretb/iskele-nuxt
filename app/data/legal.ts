@@ -42,7 +42,7 @@ export const legalDocsTr: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
       {
         heading: '2. İşlenen kişisel veriler',
         body: [
-          'İskele Pro web sitesindeki demo ve iletişim formunu doldurduğunuzda şu veriler işlenebilir: ad soyad, e-posta, telefon, firma unvanı, firma ölçeği, tercih edilen paket, dönem bilgisi ve yazdığınız not.',
+          'İskele Pro web sitesindeki demo, iletişim veya iskele hesaplama formunu doldurduğunuzda şu veriler işlenebilir: ad soyad, e-posta, telefon, firma unvanı, firma ölçeği, tercih edilen paket, dönem bilgisi, cephe ölçüleri, ön hesap özeti ve yazdığınız not.',
           'Telefon veya WhatsApp ile yazmanız halinde görüşme içeriğiniz ve iletişim numaranız da işlenebilir.',
         ],
       },
@@ -206,7 +206,7 @@ export const legalDocsEn: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
       {
         heading: '2. Data we process',
         body: [
-          'When you submit the demo or contact form we may process your name, email, phone, company name, company size, selected plan, billing cycle and your note.',
+          'When you submit the demo, contact or scaffold calculator form we may process your name, email, phone, company name, company size, selected plan, billing cycle, facade measurements, estimate summary and your note.',
           'If you call or write on WhatsApp we may also process the number and the content of that conversation.',
         ],
       },

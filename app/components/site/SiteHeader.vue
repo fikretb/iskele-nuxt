@@ -19,6 +19,7 @@ const megaLabelKey: Record<MegaKey, string> = {
 }
 
 const plainLabelKey: Record<string, string> = {
+  '/iskele-hesapla': 'nav.calculator',
   '/fiyatlandirma': 'nav.pricing',
   '/yardim': 'nav.help',
   '/iletisim': 'nav.contact',
@@ -141,6 +142,7 @@ watch(() => useRoute().fullPath, () => {
             </Accordion>
             <Separator />
             <NuxtLink :to="localePath('/uygulamalar')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.allApps') }}</NuxtLink>
+            <NuxtLink :to="localePath('/iskele-hesapla')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.calculator') }}</NuxtLink>
             <NuxtLink :to="localePath('/fiyatlandirma')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.pricing') }}</NuxtLink>
             <NuxtLink :to="localePath('/yardim')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.help') }}</NuxtLink>
             <NuxtLink :to="localePath('/iletisim')" class="block rounded-md px-2 py-1.5 text-sm hover:bg-muted">{{ $t('nav.contact') }}</NuxtLink>
