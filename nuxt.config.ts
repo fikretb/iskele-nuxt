@@ -35,9 +35,10 @@ export default defineNuxtConfig({
     smtpUser: '',
     smtpPass: '',
     smtpFrom: '',
-    smtpTo: '',
+    smtpTo: 'info@iskelepro.com',
     public: {
       appUrl: 'https://app.iskelepro.com',
+      email: 'info@iskelepro.com',
       phone: '+905323919755',
       phoneDisplay: '+90 532 391 97 55',
       whatsappUrl: 'https://wa.me/905323919755',

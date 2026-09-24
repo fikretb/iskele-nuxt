@@ -2,7 +2,7 @@ export const legalCompany = {
   name: 'Hitech Mühendislik Ltd. Şti.',
   product: 'İskele Pro',
   address: 'Kayışdağı Mahallesi, Hürriyet Sokak No: 1 D: 3, Ataşehir / İstanbul',
-  email: 'sahiskele@gmail.com',
+  email: 'info@iskelepro.com',
   phoneDisplay: '+90 532 391 97 55',
   updatedTr: '24 Eylül 2026',
   updatedEn: '24 September 2026',

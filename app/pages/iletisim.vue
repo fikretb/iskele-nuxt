@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Check, MessageCircle, Phone } from '@lucide/vue'
+import { Check, Mail, MessageCircle, Phone } from '@lucide/vue'
 
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
@@ -50,6 +50,19 @@ const points = [
                   <span>
                     <span class="block text-xs font-medium tracking-wide text-white/55 uppercase">Telefon</span>
                     <span class="mt-0.5 block text-base font-semibold">{{ config.public.phoneDisplay }}</span>
+                  </span>
+                </a>
+
+                <a
+                  :href="`mailto:${config.public.email}`"
+                  class="flex items-center gap-4 rounded-xl bg-white/8 p-4 ring-1 ring-white/12 transition-colors hover:bg-white/12"
+                >
+                  <span class="flex size-11 shrink-0 items-center justify-center rounded-lg bg-gold text-navy-deep">
+                    <Mail class="size-5" />
+                  </span>
+                  <span>
+                    <span class="block text-xs font-medium tracking-wide text-white/55 uppercase">E-posta</span>
+                    <span class="mt-0.5 block text-base font-semibold">{{ config.public.email }}</span>
                   </span>
                 </a>
 

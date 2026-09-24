@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<{
 const embedded = computed(() => props.compact || props.inset)
 const fieldClass = computed(() => props.inset ? 'h-11' : 'h-9')
 
+const config = useRuntimeConfig()
 const { href: whatsappHref } = useWhatsAppLink()
 const localePath = useI18nPath()
 const route = useRoute()
@@ -251,7 +252,7 @@ async function submit() {
           </p>
           <p class="mt-3 max-w-[20rem] text-[15px] leading-7 text-navy/70">
             Talebinizi aldık. En kısa sürede
-            <span class="whitespace-nowrap font-medium text-navy">sahiskele@gmail.com</span>
+            <span class="whitespace-nowrap font-medium text-navy">{{ config.public.email }}</span>
             adresinden size dönüş yapacağız.
           </p>
         </div>

@@ -58,6 +58,9 @@ const year = new Date().getFullYear()
             <NuxtLink :to="localePath('/iletisim')" class="hover:text-white">{{ $t('common.bookDemo') }}</NuxtLink>
           </li>
           <li>
+            <a :href="`mailto:${config.public.email}`" class="hover:text-white">{{ config.public.email }}</a>
+          </li>
+          <li>
             <a :href="`tel:${config.public.phone}`" class="hover:text-white">{{ config.public.phoneDisplay }}</a>
           </li>
           <li>

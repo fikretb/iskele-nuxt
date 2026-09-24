@@ -88,6 +88,12 @@ useJsonLd('ld-faq', {
           <MessageCircle class="size-4 text-[#3DDC84]" />
           WhatsApp ile yazın · {{ config.public.phoneDisplay }}
         </a>
+        <a
+          :href="`mailto:${config.public.email}`"
+          class="mt-2 inline-flex items-center gap-2 text-sm font-medium text-navy underline-offset-2 hover:underline"
+        >
+          {{ config.public.email }}
+        </a>
       </div>
 
       <div class="mx-auto mt-10 grid max-w-6xl gap-4 px-6 md:grid-cols-3">
