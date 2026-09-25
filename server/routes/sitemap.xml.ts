@@ -26,6 +26,8 @@ function abs(path: string) {
 function entry(loc: string, tr: string, en: string) {
   return `  <url>
     <loc>${abs(loc)}</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="tr" href="${abs(tr)}"/>
     <xhtml:link rel="alternate" hreflang="en" href="${abs(en)}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${abs(tr)}"/>

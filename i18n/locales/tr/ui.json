@@ -62,6 +62,11 @@
     "consentAfter": "kapsamında işlenmesini kabul ediyorum."
   },
   "error": {
-    "appNotFound": "Uygulama bulunamadı"
+    "appNotFound": "Uygulama bulunamadı",
+    "notFoundTitle": "Sayfa bulunamadı",
+    "notFoundBody": "Aradığınız sayfa yok veya taşınmış olabilir. Uygulamalar, fiyatlandırma veya iletişimden devam edin.",
+    "serverTitle": "Bir sorun oluştu",
+    "serverBody": "Sayfa yüklenemedi. Ana sayfaya dönüp tekrar deneyin.",
+    "home": "Ana sayfaya dön"
   }
 }

@@ -23,7 +23,7 @@ const heroImage = computed(() => props.image ?? SITE_IMAGES.heroInner)
   <section class="relative overflow-hidden bg-navy-deep text-white">
     <img
       :src="heroImage.src"
-      alt=""
+      :alt="heroImage.alt"
       :width="heroImage.width"
       :height="heroImage.height"
       decoding="async"

@@ -13,13 +13,17 @@ import {
   pricingPlans,
   type BillingCycle,
 } from '~/data/site'
+import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
+import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
 const localePath = useI18nPath()
 
-usePageSeo({
-  title: 'Fiyatlandırma · İskele Pro',
-  description: 'İskele kiralama ve satış için Başlangıç, Operasyon ve Kurumsal. Yıllıkta 2 ay hediye; kullanıcı başı aylık fiyat.',
-})
+const { locale } = useI18n()
+useLocalizedPageSeo('pricing')
+useBreadcrumbJsonLd(() => [
+  { name: locale.value === 'en' ? 'Home' : 'Ana sayfa', to: '/' },
+  { name: locale.value === 'en' ? 'Pricing' : 'Fiyatlandırma', to: '/fiyatlandirma' },
+])
 
 useJsonLd('ld-faq', {
   '@context': 'https://schema.org',

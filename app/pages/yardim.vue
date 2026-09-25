@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Headset, MessageCircle, Monitor, Wrench } from '@lucide/vue'
 import { companySizes, helpTopics } from '~/data/site'
+import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
+import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
@@ -27,10 +29,12 @@ const actions = [
   },
 ] as const
 
-usePageSeo({
-  title: 'Yardım · İskele Pro',
-  description: 'Sık sorulan sorulara hızlı yanıtlar. Kuruma özel kurulum ve detaylı tanıtım için ücretsiz demo görüşmesi.',
-})
+const { locale } = useI18n()
+useLocalizedPageSeo('help')
+useBreadcrumbJsonLd(() => [
+  { name: locale.value === 'en' ? 'Home' : 'Ana sayfa', to: '/' },
+  { name: locale.value === 'en' ? 'Help' : 'Yardım', to: '/yardim' },
+])
 
 useJsonLd('ld-faq', {
   '@context': 'https://schema.org',

@@ -2,6 +2,8 @@
 import { SITE_IMAGES, workflowGallery } from '~/data/assets'
 import { appCategories, appsByCategory, productApps } from '~/data/apps'
 import { categorySlugs, localizeSlug } from '~/constants/slugs'
+import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
+import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
 const { locale } = useI18n()
 const localePath = useI18nPath()
@@ -10,10 +12,11 @@ function categoryHash(id: string) {
   return localizeSlug(categorySlugs, id, locale.value)
 }
 
-usePageSeo({
-  title: 'Tüm uygulamalar · İskele Pro',
-  description: 'İskele kiralama ve satış için teklif, saha, depo, finans ve insan kaynakları uygulamaları.',
-})
+useLocalizedPageSeo('apps')
+useBreadcrumbJsonLd(() => [
+  { name: locale.value === 'en' ? 'Home' : 'Ana sayfa', to: '/' },
+  { name: locale.value === 'en' ? 'Apps' : 'Uygulamalar', to: '/uygulamalar' },
+])
 </script>
 
 <template>

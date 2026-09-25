@@ -2,10 +2,11 @@
 import { appCategories, appsByCategory, findApp } from '~/data/apps'
 import { connectedApps, getAppStory } from '~/data/appStories'
 import { imageForApp } from '~/data/assets'
-import { appSlugs, i18nSlugParams } from '~/constants/slugs'
+import { appPath, appSlugs, i18nSlugParams } from '~/constants/slugs'
+import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
 
 const route = useRoute()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useI18nPath()
 const slug = computed(() => String(route.params.slug || ''))
 const app = computed(() => findApp(slug.value))
@@ -35,6 +36,11 @@ usePageSeo({
   title: () => app.value ? `${app.value.name} · İskele Pro` : 'Uygulama',
   description: () => story.value?.lead ?? app.value?.description,
 })
+useBreadcrumbJsonLd(() => [
+  { name: locale.value === 'en' ? 'Home' : 'Ana sayfa', to: '/' },
+  { name: locale.value === 'en' ? 'Apps' : 'Uygulamalar', to: '/uygulamalar' },
+  { name: app.value?.name || 'Uygulama', to: app.value ? appPath(app.value.slug) : '/uygulamalar' },
+])
 </script>
 
 <template>

@@ -62,6 +62,11 @@
     "consentAfter": "."
   },
   "error": {
-    "appNotFound": "App not found"
+    "appNotFound": "App not found",
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "This page is missing or has moved. Continue from apps, pricing or contact.",
+    "serverTitle": "Something went wrong",
+    "serverBody": "The page could not be loaded. Go home and try again.",
+    "home": "Back to home"
   }
 }

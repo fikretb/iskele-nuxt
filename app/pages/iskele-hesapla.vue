@@ -11,13 +11,25 @@ import {
   scaffoldLiftOptions,
   type ScaffoldJobType,
 } from '~/data/scaffoldCalc'
+import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
+import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
 const localePath = useI18nPath()
 
-usePageSeo({
-  title: 'İskele Hesapla · İskele Pro',
-  description: 'Cephe genişliği ve yüksekliğinden yaklaşık malzeme listesi çıkarın. Aynı ölçülerle teklif alın.',
-})
+const { locale } = useI18n()
+useLocalizedPageSeo('calculator')
+useBreadcrumbJsonLd(() => [
+  { name: locale.value === 'en' ? 'Home' : 'Ana sayfa', to: '/' },
+  { name: locale.value === 'en' ? 'Scaffold calculator' : 'İskele Hesapla', to: '/iskele-hesapla' },
+])
+useJsonLd('ld-calc', () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: locale.value === 'en' ? 'Scaffold calculator' : 'İskele Hesapla',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'TRY' },
+}))
 
 const inputs = reactive({ ...defaultScaffoldInputs })
 const estimate = computed(() => estimateScaffold(inputs))

@@ -1,14 +1,24 @@
 <script setup lang="ts">
 import { Check, Mail, MessageCircle, Phone } from '@lucide/vue'
+import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
+import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
 const config = useRuntimeConfig()
 const localePath = useI18nPath()
 const { href: whatsappHref } = useWhatsAppLink()
 
-usePageSeo({
-  title: 'İletişim · İskele Pro',
-  description: 'İskele Pro demo, fiyat ve kurulum için iletişime geçin. Kiralama ve satış süreçleri için kredi kartı gerekmez.',
-})
+const { locale } = useI18n()
+useLocalizedPageSeo('contact')
+useBreadcrumbJsonLd(() => [
+  { name: locale.value === 'en' ? 'Home' : 'Ana sayfa', to: '/' },
+  { name: locale.value === 'en' ? 'Contact' : 'İletişim', to: '/iletisim' },
+])
+useJsonLd('ld-contact', () => ({
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: locale.value === 'en' ? 'Contact · İskele Pro' : 'İletişim · İskele Pro',
+  url: locale.value === 'en' ? 'https://iskelepro.com/en/contact' : 'https://iskelepro.com/iletisim',
+}))
 
 const points = [
   'Teklif, PDF ve 3D görünüm',
