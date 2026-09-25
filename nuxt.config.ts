@@ -14,6 +14,36 @@ export default defineNuxtConfig({
         { rel: 'preload', href: '/fonts/geist-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
         { rel: 'preload', href: '/fonts/geist-latin-ext.woff2', as: 'font', type: 'font/woff2', crossorigin: 'anonymous' },
       ],
+      script: [
+        {
+          key: 'gtag-js',
+          src: 'https://www.googletagmanager.com/gtag/js?id=G-LPHPY0R8YS',
+          async: true,
+          tagPosition: 'head',
+          tagPriority: 'high',
+        },
+        {
+          key: 'gtag-init',
+          innerHTML: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});
+try {
+  if (localStorage.getItem('iskelepro-consent') === 'granted') {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+  }
+} catch (e) {}
+gtag('js', new Date());
+gtag('config', 'G-LPHPY0R8YS');`,
+          tagPosition: 'head',
+          tagPriority: 'high',
+        },
+      ],
       meta: [
         { name: 'description', content: 'İskele firmaları için kiralama ve satış: teklif, saha, depo, muhasebe ve insan kaynakları platformu.' },
         { name: 'theme-color', content: '#0B2051' },
@@ -43,6 +73,7 @@ export default defineNuxtConfig({
       phoneDisplay: '+90 532 391 97 55',
       whatsappUrl: 'https://wa.me/905323919755',
       whatsappMessage: 'Merhaba, İskele Pro demo hakkında bilgi almak istiyorum.',
+      gtagId: 'G-LPHPY0R8YS',
     },
   },
   css: ['~/assets/css/tailwind.css'],

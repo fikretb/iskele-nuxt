@@ -56,6 +56,12 @@
     "privacy": "Gizlilik",
     "terms": "Kullanım koşulları"
   },
+  "cookie": {
+    "aria": "Çerez izni",
+    "text": "Ziyaret istatistiği için çerez kullanıyoruz.",
+    "accept": "Kabul et",
+    "reject": "Reddet"
+  },
   "form": {
     "consentBefore": "Kişisel verilerimin",
     "consentLink": "KVKK Aydınlatma Metni",

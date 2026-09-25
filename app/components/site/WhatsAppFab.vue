@@ -1,9 +1,11 @@
 <script setup lang="ts">
 const { href } = useWhatsAppLink()
+const { visible: cookieBannerVisible } = useCookieConsent()
 </script>
 
 <template>
   <a
+    v-if="!cookieBannerVisible"
     :href="href"
     target="_blank"
     rel="noopener noreferrer"

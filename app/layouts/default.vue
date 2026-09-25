@@ -6,5 +6,6 @@
     </main>
     <SiteFooter />
     <SiteWhatsAppFab />
+    <SiteCookieBanner />
   </div>
 </template>

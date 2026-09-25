@@ -56,6 +56,12 @@
     "privacy": "Privacy",
     "terms": "Terms"
   },
+  "cookie": {
+    "aria": "Cookie consent",
+    "text": "We use cookies to measure site visits.",
+    "accept": "Accept",
+    "reject": "Decline"
+  },
   "form": {
     "consentBefore": "I agree to the processing of my personal data under the",
     "consentLink": "KVKK Privacy Notice",

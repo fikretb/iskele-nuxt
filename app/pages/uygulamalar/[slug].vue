@@ -88,7 +88,7 @@ useBreadcrumbJsonLd(() => [
 
       <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">Tüm özellikler olması gerektiği gibi.</h2>
+          <h2 class="text-2xl font-semibold tracking-tight md:text-3xl">Bu ekranda iskele ofisinin gördüğü işler.</h2>
           <div class="mt-8 grid gap-4 sm:grid-cols-2">
             <Card v-for="extra in story.extras" :key="extra.title" class="bg-white">
               <CardHeader>
@@ -115,8 +115,8 @@ useBreadcrumbJsonLd(() => [
       </div>
 
       <div>
-        <h2 class="text-2xl font-semibold tracking-tight">Tek bir ihtiyaç, tek bir uygulama.</h2>
-        <p class="mt-1 text-sm text-muted-foreground">Büyüdükçe ilerleyin. {{ category?.blurb }}</p>
+        <h2 class="text-2xl font-semibold tracking-tight">Aynı işle konuşan diğer ekranlar.</h2>
+        <p class="mt-1 text-sm text-muted-foreground">Keşif, şantiye ve tahsilat kopuk kalmaz. {{ category?.blurb }}</p>
         <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <SiteAppTile v-for="item in related" :key="item.slug" :app="item" />
         </div>

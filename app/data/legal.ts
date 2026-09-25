@@ -49,6 +49,7 @@ export const legalDocsTr: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
         body: [
           'İskele Pro web sitesindeki demo, iletişim veya iskele hesaplama formunu doldurduğunuzda şu veriler işlenebilir: ad soyad, e-posta, telefon, firma unvanı, firma ölçeği, tercih edilen paket, dönem bilgisi, cephe ölçüleri, ön hesap özeti ve yazdığınız not.',
           'Telefon veya WhatsApp ile yazmanız halinde görüşme içeriğiniz ve iletişim numaranız da işlenebilir.',
+          'Site ziyaretinde Google Analytics aracılığıyla sayfa görüntüleme, tarayıcı/cihaz bilgisi ve IP tabanlı yaklaşık konum işlenebilir.',
         ],
       },
       {
@@ -67,7 +68,7 @@ export const legalDocsTr: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
       {
         heading: '5. Aktarım',
         body: [
-          'Verileriniz, e-posta iletimi ve barındırma gibi hizmetleri sağlayan iş ortaklarına, yalnızca bu amaçlarla ve gerekli ölçüde aktarılabilir. Yasal zorunluluk halinde yetkili kamu kurumlarına bildirilebilir.',
+          'Verileriniz, e-posta iletimi, barındırma ve Google Analytics ölçümü gibi hizmetleri sağlayan iş ortaklarına, yalnızca bu amaçlarla ve gerekli ölçüde aktarılabilir. Ölçüm verileri Google Ireland Limited / Google LLC’ye aktarılabilir. Yasal zorunluluk halinde yetkili kamu kurumlarına bildirilebilir.',
           'Verileriniz pazarlama listelerine satılmaz.',
         ],
       },
@@ -103,7 +104,8 @@ export const legalDocsTr: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
         heading: '2. Topladığımız bilgiler',
         body: [
           'Form üzerinden verdiğiniz kimlik ve iletişim bilgileri, firma ve paket tercihiniz ile notunuz kaydedilir.',
-          'Siteyi ziyaret ettiğinizde bağlantının çalışması için teknik kayıtlar (örneğin tarayıcı türü, tarih ve IP) sunucu loglarında kısa süre tutulabilir. Reklam veya analitik çerezi kullanmıyoruz.',
+          'Siteyi ziyaret ettiğinizde bağlantının çalışması için teknik kayıtlar (örneğin tarayıcı türü, tarih ve IP) sunucu loglarında kısa süre tutulabilir.',
+          'Ziyaret istatistiği için Google Analytics (ölçüm kimliği G-LPHPY0R8YS) kullanılır. Bu etiket sayfa görüntüleme, cihaz ve yaklaşık konum gibi kullanım verilerini işler; _ga ve benzeri çerezler bırakabilir. Reklam kişiselleştirme çerezi kullanmıyoruz.',
         ],
       },
       {
@@ -121,7 +123,7 @@ export const legalDocsTr: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
       {
         heading: '5. Üçüncü taraflar',
         body: [
-          'Site; barındırma, e-posta gönderimi ve WhatsApp yönlendirmesi için üçüncü taraf altyapılar kullanabilir. Bu sağlayıcılar yalnızca ilgili hizmet için gerekli verilere erişir.',
+          'Site; barındırma, e-posta gönderimi, WhatsApp yönlendirmesi ve Google Analytics ölçümü için üçüncü taraf altyapılar kullanabilir. Bu sağlayıcılar yalnızca ilgili hizmet için gerekli verilere erişir.',
         ],
       },
       {
@@ -213,6 +215,7 @@ export const legalDocsEn: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
         body: [
           'When you submit the demo, contact or scaffold calculator form we may process your name, email, phone, company name, company size, selected plan, billing cycle, facade measurements, estimate summary and your note.',
           'If you call or write on WhatsApp we may also process the number and the content of that conversation.',
+          'Site visits may be measured with Google Analytics (page views, browser or device data and approximate location from IP).',
         ],
       },
       {
@@ -230,7 +233,7 @@ export const legalDocsEn: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
       {
         heading: '5. Sharing',
         body: [
-          'Data may be shared with hosting and email providers only as needed to deliver the service, or with authorities when the law requires it. We do not sell your data.',
+          'Data may be shared with hosting, email and Google Analytics providers only as needed to deliver the service, or with authorities when the law requires it. We do not sell your data.',
         ],
       },
       {
@@ -263,7 +266,8 @@ export const legalDocsEn: Record<'kvkk' | 'gizlilik' | 'kosullar', LegalDoc> = {
       {
         heading: '2. Information we collect',
         body: [
-          'We collect the details you type in the form. Server logs may briefly store technical data needed to run the site. We do not use advertising or analytics cookies.',
+          'We collect the details you type in the form. Server logs may briefly store technical data needed to run the site.',
+          'We use Google Analytics (measurement ID G-LPHPY0R8YS) for visit statistics. It may set cookies such as _ga. We do not use advertising personalisation cookies.',
         ],
       },
       {

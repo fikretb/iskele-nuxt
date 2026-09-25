@@ -43,5 +43,6 @@ function goHome() {
       </div>
     </main>
     <SiteFooter />
+    <SiteCookieBanner />
   </div>
 </template>

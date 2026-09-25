@@ -23,12 +23,12 @@ useBreadcrumbJsonLd(() => [
   <div>
     <SitePageHero
       eyebrow="Uygulamalar"
-      title="Her süreç için özel çözüm, tek birleşik altyapı."
-      description="Karmaşaya ve dağınık sistemlere son verin. İhtiyacınıza uygun uygulamaları seçin, tüm departmanlarınızı tek bir merkezden uyum içinde yönetin."
+      title="Keşiften söküme, kiralama ve satışın her adımı."
+      description="Cephe teklifi, sahaya çıkan malzeme, iade, kira faturası ve montaj puantajı aynı kayıttan yürür. Genel inşaat ERP’si değil; iskele kiralama ve satış ofisinin işine göre yazılmıştır."
       :image="SITE_IMAGES.heroCephe"
       overlay="full"
     >
-      <p class="mt-4 text-sm text-white/70">{{ productApps.length }} hazır uygulama · Şirketinize özel veri alanı.</p>
+      <p class="mt-4 text-sm text-white/70">{{ productApps.length }} hazır uygulama · Her kiralama ve satış firması kendi kaydını görür.</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <Button class="bg-gold text-navy-deep hover:bg-gold-hover" as-child>
           <NuxtLink :to="localePath('/iletisim')">{{ $t('common.startFree') }}</NuxtLink>

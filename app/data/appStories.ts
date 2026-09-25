@@ -16,407 +16,487 @@ export type AppStory = {
 
 const stories: Record<string, AppStory> = {
   talepler: {
-    headline: 'Talep gelsin, iş kaybolmasın.',
-    lead: 'Müşteri araması deftere yazılmaz. Talep kartı cariye bağlanır, teklife dönüşür.',
+    headline: 'Keşif gelsin, iş kaybolmasın.',
+    lead: 'Müteahhit veya şantiye şefi aradığında cephe, kiralama mı satış mı, kurulum tarihi talep kartında durur. Deftere yazılan iş teklife dönmez.',
     sections: [
       {
-        title: 'Gelen işi pipeline’da tutun',
-        body: 'Kim aradı, hangi şantiye, ne kadar cephe: talep kartında durur. Ofiste “o iş neredeydi” aranmaz.',
+        title: 'Gelen iş ofiste görünür',
+        body: 'Kim aradı, hangi şantiye, ne kadar cephe, seyyar mı cephe iskelesi: talep kartında durur. Ofiste “o iş neredeydi” aranmaz; durum yeni, görüşülüyor veya teklife döndü olarak izlenir.',
       },
       {
-        title: 'Teklife bir tık',
-        body: 'Hazır talep, teklif sihirbazına aktarılır. Müşteri ve ölçüler yeniden yazılmaz.',
+        title: 'Teklife ölçüyle geçin',
+        body: 'Hazır talep, teklif sihirbazına aktarılır. Müşteri, şantiye ve keşif ölçüleri yeniden yazılmaz. Kiralama veya satış tercihi satırlara taşınır.',
       },
     ],
     extras: [
-      { title: 'Durum', body: 'Yeni, görüşülüyor, teklife döndü.' },
-      { title: 'Cari bağ', body: 'Yetkili kişi müşteri kartından gelir.' },
+      { title: 'Durum', body: 'Yeni keşif, görüşülüyor, teklife döndü.' },
+      { title: 'İş notu', body: 'Cephe, kat, kurulum tarihi kartta.' },
+      { title: 'Müşteri bağ', body: 'Şantiye şefi cari kaydından gelir.' },
     ],
     connected: ['musteriler', 'teklifler', 'pano'],
   },
   musteriler: {
-    headline: 'Kiralama ve satış firması, tek cari.',
-    lead: 'Teklif, şantiye ve tahsilat aynı müşteri kaydının altında durur.',
+    headline: 'Müteahhit ve kiralama müşterisi, tek cari.',
+    lead: 'Teklif, açık şantiye ve tahsilat aynı müşteri kaydının altında durur. Şantiye şefi ile muhasebe karışmaz.',
     sections: [
       {
-        title: 'Birden fazla yetkili',
-        body: 'Şantiye şefi ve muhasebe aynı caride ayrı kişilerdir. Teklif kime gidecek karışmaz.',
+        title: 'Yetkililer ayrı kişilerdir',
+        body: 'Şantiyeyi yöneten ile faturayı onaylayan aynı caride ayrı kişilerdir. Teklif kime gidecek, tahsilat kime sorulacak netleşir.',
       },
       {
-        title: 'Geçmiş görünür',
-        body: 'Bu firmanın önceki teklifleri ve açık şantiyeleri cari kartından açılır.',
+        title: 'Eski işler caride durur',
+        body: 'Bu firmanın önceki kiralama teklifleri, sahadaki şantiyeleri ve açık bakiyesi karttan açılır. Yeni keşif boş müşteri gibi başlamaz.',
       },
     ],
     extras: [
       { title: 'İletişim', body: 'Telefon, e-posta, yetkili.' },
       { title: 'İş özeti', body: 'Teklif ve şantiye listesi.' },
+      { title: 'Tahsilat', body: 'Açık fatura cariden görünür.' },
     ],
     connected: ['talepler', 'teklifler', 'faturalar'],
   },
   teklifler: {
-    headline: 'Ölçüden tutara.',
-    lead: 'Cephe ve iskele ölçüsü malzeme satırını üretir. Birim fiyat katalogdan gelir; teklif 0 TL çıkmaz.',
+    headline: 'Cephe ölçüsünden kira ve satış tutarına.',
+    lead: 'Genişlik, yükseklik ve kat yüksekliği dikme, kuşak, platform ve ankraj satırını üretir. Birim fiyat katalogdan gelir; teklif 0 TL çıkmaz.',
     sections: [
       {
-        title: 'Teklif sihirbazı',
-        body: 'Yükseklik, genişlik, konsol: motor satır üretir. Satışçı formülü her seferinde yeniden kurmaz.',
+        title: 'Keşif, formüle değil motora gider',
+        body: 'Satışçı her seferinde Excel formülü kurmaz. Cephe ve iskele ölçüsü malzeme listesini üretir. Kiralama günü veya satış bedeli ticari özette durur.',
       },
       {
-        title: 'Ticari özet aynı kayıtta',
-        body: 'Taslak, gönderildi, onaylandı. Onaylanan teklif şantiyeye döner; kopyala-yapıştır yok.',
+        title: 'Onaylanan teklif şantiyeye döner',
+        body: 'Taslak, gönderildi, onaylandı ofiste görünür. Müşteri onaylayınca iş kopyala-yapıştırla şantiyeye taşınmaz; aynı kayıttan kuruluma iner.',
       },
     ],
     extras: [
-      { title: 'Katalog fiyatı', body: 'Malzeme birimi teklifi taşır.' },
-      { title: 'Durum takibi', body: 'Ofis kimin beklediğini görür.' },
+      { title: 'Katalog fiyatı', body: 'Dikme ve platform birim fiyatı satırı taşır.' },
+      { title: 'Durum takibi', body: 'Kimin teklifi beklediği ofiste durur.' },
+      { title: 'Kiralama / satış', body: 'İş türü tutara yansır.' },
     ],
     connected: ['teklif-3d', 'teklif-pdf', 'malzemeler', 'santiyeler'],
   },
   'teklif-3d': {
-    headline: 'Ne kurulacak, modelde.',
-    lead: 'Teklifteki cephe verisinden 3D görünüm çıkar. Müşteri çizim bekleyerek karar vermez.',
+    headline: 'Kurulacak iskele, modelde.',
+    lead: 'Teklifteki cephe verisinden 3D görünüm çıkar. Müşteri çizim bekleyerek karar vermez; konsol ve kat sayısı model üzerinden konuşulur.',
     sections: [
       {
         title: 'Aynı ölçü, aynı model',
-        body: '3D ayrı bir dosya değildir. Teklif değişince görünüm de o kayıttan üretilir.',
+        body: '3D ayrı bir çizim dosyası değildir. Cephe genişliği veya kat değişince görünüm de teklif kaydından üretilir. Satış ile saha farklı resim bakmaz.',
       },
       {
-        title: 'Satış görüşmesi',
-        body: 'Şantiye toplantısında “şu konsol nereye” tartışması model üzerinden yürür.',
+        title: 'Şantiye toplantısında netleşir',
+        body: '“Şu konsol nereye, yürüyüş yolu kaç sıra” tartışması model üzerinden yürür. Onaylanan görünüm, kurulacak iş ile aynı ölçüdedir.',
       },
     ],
     extras: [
       { title: 'Cephe modeli', body: 'İskele geometrisi tekliften.' },
+      { title: 'Sunum', body: 'Müşteriye kurulumu gösterin.' },
       { title: 'Saha bağ', body: 'Kurulacak iş ile teklif aynıdır.' },
     ],
     connected: ['teklifler', 'teklif-pdf', 'santiyeler'],
   },
   'teklif-pdf': {
-    headline: 'Antetli kâğıt, sistemdeki satır.',
-    lead: 'PDF stüdyosu logo ve blokları düzenler. Müşteriye giden belge ile teklif kaydı ayrılmaz.',
+    headline: 'Antetli teklif, sistemdeki satır.',
+    lead: 'Müşteriye giden kiralama veya satış PDF’i Word’den kopyalanmaz. Logo, antet ve malzeme tablosu stüdyoda durur; satırlar teklif motorundan akar.',
     sections: [
       {
-        title: 'Şablon sizin',
-        body: 'Firma anteti, ticari özet, malzeme tablosu stüdyoda durur. Her teklifte yeniden Word açılmaz.',
+        title: 'Şablon sizin antetiniz',
+        body: 'Firma logosu, ticari özet ve malzeme tablosu her işte yeniden dizilmez. Kiralama süresi ve tutar belgede teklif kaydıyla aynıdır.',
       },
       {
-        title: 'Yazdır, gönder',
-        body: 'Üretilen PDF teklif satırlarından gelir. Elle silinen kalem stokla çelişmez.',
+        title: 'Yazdırın, gönderin',
+        body: 'Üretilen PDF’te elle silinen kalem stokla çelişmez. Müşteriye giden kâğıt ile ofisteki satır tek kayıttır.',
       },
     ],
     extras: [
       { title: 'Antet', body: 'Logo ve firma bilgisi.' },
       { title: 'Otomatik satır', body: 'Motor çıktısı PDF’e akar.' },
+      { title: 'Yazdırma', body: 'Keşif sonrası hemen belgelenir.' },
     ],
     connected: ['teklifler', 'teklif-3d', 'musteriler'],
   },
   santiyeler: {
-    headline: 'İşin kartı: konum, süre, bakiye.',
-    lead: 'Onaylanan teklif şantiyeye döner. Sevkiyat, saha ve tahsilat aynı karttan izlenir.',
+    headline: 'İşin kartı: konum, kira süresi, saha stoku.',
+    lead: 'Onaylanan teklif şantiye kartına döner. Sevkiyat, söküm, teslim ve tahsilat aynı işin altındadır.',
     sections: [
       {
-        title: 'Tek iş, tek kayıt',
-        body: 'Adres, kiralama dönemi, bağlı fişler ve açık bakiye şantiye kartındadır.',
+        title: 'Tek cephe, tek kayıt',
+        body: 'Adres, kiralama başlangıç ve bitiş, sahaya çıkan malzeme ve açık bakiye şantiye kartındadır. “Hangi işe çıktı” şoförün hafızasında kalmaz.',
       },
       {
-        title: 'Sahadan ofise',
-        body: 'Depo fişi ve saha imzası bu karta yazılır. “Hangi işe çıktı” şoförün hafızasında kalmaz.',
+        title: 'Sahadan ofise aynı iş',
+        body: 'Sevkiyat fişi, iade ve saha imzası bu karta yazılır. Kurulum bitmeden kira süresi ve saha stoku birlikte izlenir.',
       },
     ],
     extras: [
-      { title: 'Kiralama dönemi', body: 'Başlangıç ve bitiş.' },
+      { title: 'Kiralama dönemi', body: 'Başlangıç, bitiş, uzatma.' },
+      { title: 'Saha stoku', body: 'O işte kalan kalemler.' },
       { title: 'Bakiye', body: 'Fatura ve tahsilat özeti.' },
     ],
     connected: ['kiralama', 'depo-fisleri', 'saha', 'santiye-bakiyesi'],
   },
   kiralama: {
-    headline: 'Kirala. Takip et.',
-    lead: 'İskele kiralaması stoktan düşüp şantiyede duran bir süreçtir. Hangi malzeme sahada, kayıt söyler.',
+    headline: 'Kiraya çıktı. Sahada duruyor. İade geldi.',
+    lead: 'İskele kiralaması stoktan düşüp şantiyede bekleyen bir süreçtir. Hangi dikme ve platform o işte, kayıt söyler; tahmini depo değil.',
     sections: [
       {
-        title: 'Süre ve şantiye',
-        body: 'Kiralama dönemi şantiye kartına bağlanır. Malzeme “bir yerde” değil, o iştedir.',
+        title: 'Süre ve şantiye bağlı',
+        body: 'Kiralama dönemi şantiye kartına bağlanır. Malzeme “bir yerde” değil, o cephe işindedir. Uzatma günü bakiyeyi ve saha stokunu etkiler.',
       },
       {
-        title: 'İade görünür',
-        body: 'Dönen malzeme iade fişiyle kiralama kaydını kapatır. Depo bakiyesi tahmin değildir.',
+        title: 'Söküm ve iade kapatır',
+        body: 'Dönen malzeme iade fişiyle kiralama kaydını kapatır. Eksik iade ve kayıp kalem depo bakiyesinde görünür; ay sonu sürprizi azalır.',
       },
     ],
     extras: [
       { title: 'Saha stoku', body: 'Şantiyede kalan kalemler.' },
-      { title: 'Fatura bağ', body: 'Kiralama geliri faturaya akar.' },
+      { title: 'İade', body: 'Söküm sonrası depoya giriş.' },
+      { title: 'Fatura bağ', body: 'Kira bedeli faturaya akar.' },
     ],
     connected: ['santiyeler', 'depo', 'depo-fisleri', 'faturalar'],
   },
   planlama: {
-    headline: 'Kurulum ve söküm takvimde.',
-    lead: 'Ekip ve araç çakışması ayrı Excel’de kalmaz. Şantiye işleri planlama görünümünde durur.',
+    headline: 'Kurulum, söküm ve kamyon aynı planda.',
+    lead: 'Aynı güne iki cephe kurulumu veya aynı aracın iki şantiyeye yazılması ofiste görünür. Ekip çakışması ayrı Excel’de kalmaz.',
     sections: [
       {
         title: 'Zaman çizelgesi',
-        body: 'Hangi şantiye hangi gün kurulacak, ofis ve saha aynı planı görür.',
+        body: 'Hangi şantiye hangi gün kurulacak, söküm ne zaman: ofis ve montaj ekibi aynı planı görür. Geciken iş bir sonrakini iter.',
       },
       {
-        title: 'Kaynak',
-        body: 'Ekip ve araç planlamaya bağlanır. Aynı kamyon iki işe yazılmaz.',
+        title: 'Ekip ve araç kaynağı',
+        body: 'Montaj ekibi, söküm ve kamyon planlamaya bağlanır. Aynı kamyon iki sevkiyata, aynı ekip iki kuruluma yazılmaz.',
       },
     ],
     extras: [
       { title: 'Gantt', body: 'İşlerin üst üste binmesi görünür.' },
       { title: 'Takvim', body: 'Günlük iş listesi aynı kayıttan.' },
+      { title: 'Şantiye', body: 'Her satır bir işe bağlıdır.' },
     ],
     connected: ['takvim', 'santiyeler', 'araclar', 'saha'],
   },
   takvim: {
     headline: 'Ofis ve saha aynı günü görsün.',
-    lead: 'Kurulum, söküm, teslimat ve iç işler tek takvimde toplanır.',
+    lead: 'Kurulum, söküm, sevkiyat ve iç işler tek takvimde. “Bu kamyon nereye, hangi ekip sahada” satırda durur.',
     sections: [
       {
         title: 'Bugünün işi',
-        body: 'Yönetim özetinden güne inilir. “Bu kamyon nereye” takvim satırındadır.',
+        body: 'Yönetim özetinden güne inilir. Yoğun kurulum günleri haftalık görünümde önden belli olur; saha sürprize kalmaz.',
+      },
+      {
+        title: 'Şantiye olayları',
+        body: 'Teslimat, kurulum ve söküm takvim kaydıdır. Planlama ile aynı işten üretilir; iki ayrı ajanda tutulmaz.',
       },
     ],
     extras: [
       { title: 'Haftalık görünüm', body: 'Yoğun günler önden belli olur.' },
+      { title: 'Pano', body: 'Günün işine kısayol.' },
     ],
     connected: ['planlama', 'pano', 'santiyeler'],
   },
   depo: {
-    headline: 'Hangi depoda ne var.',
-    lead: 'İskele malzemesi depo bazında tutulur. Fiş kesilmeden stok hareketi olmaz.',
+    headline: 'Hangi depoda ne var, sahaya ne çıktı.',
+    lead: 'Dikme, kuşak, platform ve ankraj depo bazında tutulur. Fiş kesilmeden stok hareketi olmaz; “tahminen yeter” ile iş çıkılmaz.',
     sections: [
       {
-        title: 'Çoklu depo',
-        body: 'Merkez ve saha deposu ayrı bakiyedir. Teklif fiyatı katalogdan, miktar depodan bakılır.',
+        title: 'Merkez ve saha ayrı bakiye',
+        body: 'Merkez depo ile şantiyede duran malzeme ayrıdır. Teklif fiyatı katalogdan, çıkabilecek miktar depodan bakılır.',
       },
       {
-        title: 'Hareket geçmişi',
-        body: 'Çıkan ve dönen her kalem fişe bağlıdır. Ay sonu sayımı sürprize kalmaz.',
+        title: 'Hareket fişe bağlı',
+        body: 'Çıkan ve sökümden dönen her kalem sevkiyat veya iade fişine yazılır. Ay sonu sayımı sürprize kalmaz; kayıp ve eksik iade görünür.',
       },
     ],
     extras: [
       { title: 'Bakiye', body: 'Depo ve malzeme kesiti.' },
       { title: 'Katalog bağ', body: 'Birim fiyat teklife gider.' },
+      { title: 'Çoklu depo', body: 'Merkez ve ara stok ayrı.' },
     ],
     connected: ['depo-fisleri', 'malzemeler', 'kiralama', 'satinalma'],
   },
   'depo-fisleri': {
-    headline: 'Çıkan ve dönen, fişle belli.',
-    lead: 'Sevkiyat ve iade satır satır düzenlenir. PDF basılır, sahada QR okutulur, imza alınır.',
+    headline: 'Sahaya çıkan ve sökümden dönen, fişle belli.',
+    lead: 'Sevkiyat ve iade satır satır düzenlenir. PDF basılır, sahada QR okutulur, teslim imzası alınır. Ofisteki stok bu fişten güncellenir.',
     sections: [
       {
         title: 'Sevkiyat fişi',
-        body: 'Şantiyeye çıkan dikme ve platform bu fiştedir. Ofisteki stok fiş onayından güncellenir.',
+        body: 'Şantiyeye giden dikme, platform ve konsol bu fiştedir. Kamyon çıktığında ofisteki stok fiş onayından düşer; “şoför yükledi” kaydı yetmez.',
       },
       {
-        title: 'İade ve imza',
-        body: 'Dönen malzeme iade fişiyle girer. Saha imzası ve QR, “şoför söyledi” kaydının yerini tutar.',
+        title: 'İade ve teslim imzası',
+        body: 'Söküm sonrası dönen malzeme iade fişiyle depoya girer. QR ve imza, “şoför söyledi” kaydının yerini tutar. Eksik kalem iade satırında kalır.',
       },
     ],
     extras: [
       { title: 'Satır editörü', body: 'Kalem kalem düzeltme.' },
       { title: 'Fiş PDF', body: 'Yazdırılabilir teslimat.' },
+      { title: 'QR', body: 'Sahada fiş kimliği.' },
     ],
     connected: ['depo', 'saha', 'santiyeler', 'kiralama'],
   },
   saha: {
-    headline: 'Teslim, QR, imza — cepte.',
-    lead: 'Saha ekibi ofisteki fişi telefonda görür. Üye olmayan çalışan token’lı linkle işlem yapar.',
+    headline: 'Teslim tutanağı, QR, imza — cepte.',
+    lead: 'Montaj ekibi ofisteki sevkiyat fişini telefonda görür. Üye olmayan şoför veya taşeron, gönderilen linkle teslimi tamamlar.',
     sections: [
       {
-        title: 'Fiş listesi telefonda',
-        body: 'Bugün teslim edilecek fişler sahaya düşer. Ofise “fotoğraf at” yazışması azalır.',
+        title: 'Bugünün fişi telefonda',
+        body: 'Teslim edilecek sevkiyatlar sahaya düşer. Ofise “fotoğraf at, imza al” yazışması azalır; teslim kayıttadır.',
       },
       {
-        title: 'QR ve imza',
-        body: 'Fiş okutulur, teslim imzası alınır. Token’lı izin ve görev linki aynı saha kanalındandır.',
+        title: 'QR ve teslim imzası',
+        body: 'Fiş okutulur, şantiye teslimi imzalanır. İzin ve dış görev linki de aynı saha kanalındandır; uygulamaya üye olmayan çalışan da işlem yapar.',
       },
     ],
     extras: [
       { title: 'QR okuyucu', body: 'Fiş kimliği sahada.' },
       { title: 'İmza pedi', body: 'Teslim kanıtı kayıttadır.' },
+      { title: 'Fiş listesi', body: 'Günün sevkiyatı cepte.' },
     ],
     connected: ['depo-fisleri', 'izinler', 'santiyeler', 'puantaj'],
   },
   araclar: {
-    headline: 'Filo, şantiye planına bağlı.',
-    lead: 'Kamyon hangi işte, planlamadan ayrı durmaz.',
+    headline: 'Kamyon, şantiye sevkiyatına bağlı.',
+    lead: 'Hangi aracın hangi işe malzeme götürdüğü planlamadan ayrı durmaz. Aynı kamyon iki kuruluma yazılmaz.',
     sections: [
       {
-        title: 'Araç kartı',
-        body: 'Servis ve sevkiyat araçları şantiye / fiş ile eşlenir.',
+        title: 'Araç kartı ve iş günü',
+        body: 'Servis ve sevkiyat araçları şantiye ve fiş ile eşlenir. Filo listesinde müsait araç görünür; planlama aynı kaynaktan bakar.',
+      },
+      {
+        title: 'Sevkiyatla birlikte',
+        body: 'Fiş kesilirken araç seçilir. “Bu kamyon nerede” takvim ve planlama satırındadır.',
       },
     ],
     extras: [
       { title: 'Filo listesi', body: 'Hangi araç müsait.' },
+      { title: 'Sevkiyat bağ', body: 'Fiş ve şantiye eşlemesi.' },
     ],
     connected: ['planlama', 'depo-fisleri', 'santiyeler'],
   },
   tedarikciler: {
-    headline: 'Alış yaptığınız satıcı, cari.',
-    lead: 'İskele ve demir tedarikçisi, yetkili kişiler ve alış faturaları aynı yerde.',
+    headline: 'Dikme ve platform aldığınız satıcı, cari.',
+    lead: 'İskele üreticisi, galvenizci veya demir tedarikçisi, yetkili kişiler ve alış faturaları aynı yerde durur.',
     sections: [
       {
         title: 'Tedarikçi kartı',
-        body: 'Satın alma siparişi bu kayıttan yürür. Telefon defteri ayrı durmaz.',
+        body: 'Satın alma siparişi bu kayıttan yürür. Telefon defteri ayrı durmaz; kimden ne alındığı caride görünür.',
+      },
+      {
+        title: 'Alış geçmişi',
+        body: 'Önceki siparişler ve gelen faturalar tedarikçi kartındadır. Tekrar siparişte kalem ve fiyat kopuk kalmaz.',
       },
     ],
     extras: [
+      { title: 'Yetkili', body: 'Satış ve sevkiyat muhatabı.' },
       { title: 'Alış geçmişi', body: 'Önceki siparişler caride.' },
     ],
     connected: ['satinalma', 'malzemeler', 'faturalar'],
   },
   satinalma: {
-    headline: 'Eksilen stok, siparişe.',
-    lead: 'Depoda biten malzeme için satın alma açılır. Tedarikçi, kalem ve alış faturası bağlanır.',
+    headline: 'Depoda biten malzeme, siparişe.',
+    lead: 'Kiraya çıkan stok tükenince satın alma açılır. Tedarikçi, dikme-platform satırı ve alış faturası bağlanır.',
     sections: [
       {
-        title: 'Sipariş satırları',
-        body: 'Katalogdaki malzeme satınalmaya yazılır. Fiyat teklif kataloğu ile kopuk kalmaz.',
+        title: 'Sipariş satırları katalogdan',
+        body: 'Malzeme kartındaki kalem satınalmaya yazılır. Teklifteki birim ile alıştaki birim aynı dildedir; Excel çevirisi yoktur.',
+      },
+      {
+        title: 'Alış faturası kapatır',
+        body: 'Gelen malzeme depoya girince sipariş alış faturasına bağlanır. Tedarikçi bakiyesi ve stok birlikte yürür.',
       },
     ],
     extras: [
       { title: 'Tedarikçi seçimi', body: 'Cari kaydından.' },
       { title: 'Alış faturası', body: 'Sipariş kapandığında bağlanır.' },
+      { title: 'Stok', body: 'Giriş depo bakiyesini artırır.' },
     ],
     connected: ['tedarikciler', 'malzemeler', 'depo'],
   },
   malzemeler: {
     headline: 'Birim fiyat, teklifin omurgası.',
-    lead: 'Dikme, konsol, platform, ankraj: fiyat katalogda yoksa teklif tutarı 0 çıkar.',
+    lead: 'Dikme, konsol, platform, ankraj: kiralama ve satış fiyatı katalogda yoksa teklif tutarı 0 çıkar. Depo aynı kartı kullanır.',
     sections: [
       {
-        title: 'Kart ve birim',
-        body: 'Her kalemin birimi ve fiyatı teklif motoruna gider. Stok aynı kartı kullanır.',
+        title: 'Kart, birim, fiyat',
+        body: 'Her kalemin birimi teklif motoruna ve depoya gider. Kiralama birim fiyatı ile satış fiyatı aynı kartta tutulur; karışmaz.',
+      },
+      {
+        title: 'Ölçü çarpanı katalogdan',
+        body: 'Cephe hesabı bu fiyatlardan satır üretir. Stok birimi ile teklif birimi aynı dildir; “adet / metre” tartışması ofiste bitmez.',
       },
     ],
     extras: [
       { title: 'Teklif hesabı', body: 'Ölçü × birim fiyat.' },
       { title: 'Stok birimi', body: 'Depo ile aynı dil.' },
+      { title: 'Kiralama / satış', body: 'İki fiyat, tek kalem.' },
     ],
     connected: ['teklifler', 'depo', 'satinalma'],
   },
   faturalar: {
-    headline: 'Kiralama ve satış geliri şantiyeye yazılı.',
-    lead: 'Satış faturası müşteri ve şantiye ile bağlanır. PDF üretilir, tahsilat bakiyesi kartta görünür.',
+    headline: 'Kira bedeli ve satış, şantiyeye yazılı.',
+    lead: 'Onaylı kiralama veya malzeme satışı faturaya döner. PDF müşteriye gider; tahsilat bakiyesi şantiye kartında görünür.',
     sections: [
       {
         title: 'İşten faturaya',
-        body: 'Onaylı kiralama veya satış, şantiye faturasına döner. “Bu iş kesildi mi” şantiye bakiyesinde durur.',
+        body: '“Bu cephe kesildi mi” şantiye bakiyesinde durur. Fatura müşteri carisi ve işle bağlanır; genel kasa fişi gibi kopuk kalmaz.',
+      },
+      {
+        title: 'Belge sistemdeki satırdır',
+        body: 'Fatura PDF’i kayıttan üretilir. Tahsilat ve çek bu faturaya eşlenir; ay sonu hangi işin faturalandığı aranmaz.',
       },
     ],
     extras: [
       { title: 'Fatura PDF', body: 'Müşteriye giden belge.' },
       { title: 'Tahsilat durumu', body: 'Ödeme ve çekle eşlenir.' },
+      { title: 'Şantiye', body: 'Gelir o işe yazılır.' },
     ],
     connected: ['odemeler', 'cekler', 'santiyeler', 'santiye-bakiyesi'],
   },
   odemeler: {
-    headline: 'Tahsilat, fatura ve çekle eşlensin.',
-    lead: 'Gelen ödeme fatura satırına işlenir. Şantiye bakiyesi güncellenir.',
+    headline: 'Hakediş ve tahsilat, fatura ve çekle eşlensin.',
+    lead: 'Müteahhitten gelen ödeme fatura satırına işlenir. Şantiye açık bakiyesi güncellenir; defterdeki “aldık” notu yetmez.',
     sections: [
       {
-        title: 'Kasa, çek, kart',
-        body: 'Ödeme türü kayıttadır. Defterdeki “aldık” notu bakiyeyi değiştirmez.',
+        title: 'Kasa, çek, havale',
+        body: 'Ödeme türü kayıttadır. Kiralama tahsilatı ilgili faturaya bağlanır. Yanlış işe yazılan para şantiye bakiyesini bozmaz.',
+      },
+      {
+        title: 'Açık tutar kapanır',
+        body: 'Kısmi tahsilat fatura bakiyesini düşürür. Çek vadesi nakit akışına, kasa girişi gün sonuna yansır.',
       },
     ],
     extras: [
       { title: 'Fatura eşleme', body: 'Hangi fatura kapandı.' },
+      { title: 'Şantiye', body: 'İş bakiyesi güncellenir.' },
     ],
     connected: ['faturalar', 'kasa', 'cekler', 'santiye-bakiyesi'],
   },
   cekler: {
-    headline: 'Alınan ve verilen, vadesiyle.',
-    lead: 'İskele tahsilatı çoğu zaman çektir. Portföy, vade ve müşteri aynı tabloda durur.',
+    headline: 'Alınan ve verilen çek, vadesiyle.',
+    lead: 'İskele tahsilatı çoğu zaman vade çekidir. Portföy, müşteri ve vade aynı tabloda durur; sürpriz vade azalır.',
     sections: [
       {
         title: 'Vade takibi',
-        body: 'Hangi çek ne zaman tahsil, nakit akışına düşer. Sürpriz vade azalır.',
+        body: 'Hangi çek ne zaman tahsil, nakit akışına düşer. Verilen çek tedarikçi ödemesini, alınan çek kira tahsilatını taşır.',
+      },
+      {
+        title: 'Portföy tek yerde',
+        body: 'Alınan ve verilen çek listesi cariden ve vadeden süzülür. Ayrı çek defteri tutulmaz.',
       },
     ],
     extras: [
       { title: 'Portföy', body: 'Alınan / verilen liste.' },
+      { title: 'Nakit akışı', body: 'Yaklaşan vade görünür.' },
     ],
     connected: ['odemeler', 'nakit-akisi', 'musteriler'],
   },
   kasa: {
-    headline: 'Nakit, şantiye işinden kopmasın.',
-    lead: 'Kasa giriş-çıkışı fatura ve giderle bağlanır. Gün sonu ayrı deftere yazılmaz.',
+    headline: 'Nakit, şantiye tahsilatından kopmasın.',
+    lead: 'Kasa giriş-çıkışı kira tahsilatı, yakıt ve saha masrafıyla bağlanır. Gün sonu ayrı deftere yazılmaz.',
     sections: [
       {
         title: 'Günlük bakiye',
-        body: 'Kasa hareketi kiralama ve satış tahsilatı ile giderle aynı dilde durur.',
+        body: 'Kasa hareketi kiralama ve satış tahsilatı ile giderle aynı dilde durur. “Kasada ne var” sorusu kayıttan cevaplanır.',
+      },
+      {
+        title: 'Saha masrafı çıkışıdır',
+        body: 'Yakıt ve yevmiye dışı masraf kasa çıkışı ve gerekirse şantiye gideridir. Kopuk fiş yığını oluşmaz.',
       },
     ],
     extras: [
-      { title: 'Gider çıkışı', body: 'Yakıt ve yevmiye dışı masraf.' },
+      { title: 'Gider çıkışı', body: 'Yakıt ve saha masrafı.' },
+      { title: 'Tahsilat girişi', body: 'Nakit kira ve satış.' },
     ],
     connected: ['odemeler', 'giderler', 'nakit-akisi'],
   },
   'nakit-akisi': {
-    headline: 'Gelecek vadeler tek bakışta.',
-    lead: 'Çek vadesi, fatura tahsilatı ve alış ödemesi birleşir. Kiralama ve satış firmasının nakit sıkışıklığı sürprize kalmaz.',
+    headline: 'Çek vadesi ve kira tahsilatı tek bakışta.',
+    lead: 'Alınacak kira, çek vadesi ve tedarikçi ödemesi birleşir. Yoğun kurulum haftasında nakit sıkışıklığı sürprize kalmaz.',
     sections: [
       {
         title: 'Giriş ve çıkış',
-        body: 'Dönem özeti çek ve faturadan üretilir. Ayrı nakit Excel’i tutulmaz.',
+        body: 'Dönem özeti çek ve faturadan üretilir. Ayrı nakit Excel’i tutulmaz; kiralama ofisi vadeleri tek ekranda görür.',
+      },
+      {
+        title: 'Vade planı',
+        body: 'Haftalık ve aylık kesitte hangi gün tahsil, hangi gün ödeme belli olur. Alış ve saha gideri çıkışa yazılır.',
       },
     ],
     extras: [
       { title: 'Vade planı', body: 'Haftalık / aylık kesit.' },
+      { title: 'Çek ve fatura', body: 'Aynı akışta durur.' },
     ],
     connected: ['cekler', 'faturalar', 'kasa'],
   },
   giderler: {
-    headline: 'Şantiye gideri, genel gider ayrı.',
-    lead: 'Yakıt, masraf, kira: gider kaydı işe veya genel gidere yazılır. Kâr tahmine kalmaz.',
+    headline: 'Şantiye yakıtı ayrı, ofis kirası ayrı.',
+    lead: 'Sevkiyat yakıtı, saha masrafı ve genel gider ayrı yazılır. Cephe işinin kârı tahmine kalmaz.',
     sections: [
       {
-        title: 'Dağıtım',
-        body: 'Şantiyeye yazılan gider bakiyede görünür. Ofis kirası ayrı kalır.',
+        title: 'İşe dağıtın',
+        body: 'Şantiyeye yazılan gider o işin bakiyesinde görünür. Ofis kirası genel giderde kalır; ay sonu karışmaz.',
+      },
+      {
+        title: 'Kasa ile bağ',
+        body: 'Gider fişi kasa çıkışına bağlanır. “Fiş birikti, sonra bakarız” kaydı iş kârlılığını bozar; burada satır satır durur.',
       },
     ],
     extras: [
-      { title: 'Kategori', body: 'Yakıt, yevmiye dışı, kira.' },
+      { title: 'Kategori', body: 'Yakıt, saha, kira.' },
+      { title: 'Şantiye', body: 'İşe yazılan masraf bakiyede.' },
     ],
     connected: ['kasa', 'santiye-bakiyesi', 'santiyeler'],
   },
   'santiye-bakiyesi': {
-    headline: 'Bu iş kazandırdı mı.',
-    lead: 'Kiralama ve satış geliri, fatura, tahsilat ve gider şantiye kartında toplanır.',
+    headline: 'Bu cephe kazandırdı mı.',
+    lead: 'Kiralama ve satış geliri, fatura, tahsilat ve şantiyeye yazılan gider tek kartta toplanır. Söküm bitmeden açık bakiye görünür.',
     sections: [
       {
         title: 'Açık bakiye',
-        body: 'Saha bitmeden paranın nerede olduğu görünür. Ay sonu “hangi iş kârlı” aranmaz.',
+        body: 'Kesilen kira, alınan tahsilat ve işe yazılan yakıt-işçilik masrafı bir aradadır. Ay sonu “hangi iş kârlı” aranmaz.',
+      },
+      {
+        title: 'Saha bitmeden para görünür',
+        body: 'Kurulum sürerken tahsilat gecikmesi kartta durur. Uzatılan kiralama günü gelire, eksik iade gidere yansır.',
       },
     ],
     extras: [
       { title: 'Gelir / tahsilat', body: 'Kesilen ve alınan.' },
       { title: 'Gider yansıması', body: 'İşe yazılan masraf.' },
+      { title: 'Açık tutar', body: 'Kalan alacak.' },
     ],
     connected: ['santiyeler', 'faturalar', 'giderler', 'odemeler'],
   },
   calisanlar: {
-    headline: 'Saha ekibi, tek kart.',
-    lead: 'Montaj, şoför, depo: çalışan puantaj, izin ve maaşa bağlanır.',
+    headline: 'Montaj, söküm ve şoför — tek kart.',
+    lead: 'Saha ekibi puantaj, izin ve maaşa bağlanır. Üye olmayan montajcıya giden teslim veya izin linki bu kayıttan çıkar.',
     sections: [
       {
-        title: 'Kadro ve iletişim',
-        body: 'Token’lı saha linki bu kayıttan gider. Üye olmayan çalışan da teslim yapar.',
+        title: 'Kadro ve görev',
+        body: 'Montaj, söküm, depo ve şoför ayrı görevdir. İletişim ve yevmiye bu karttan yürür; kâğıt liste tutulmaz.',
+      },
+      {
+        title: 'Saha linki çalışan kaydından',
+        body: 'Teslim ve izin için gönderilen link uygulamaya üye olmayan ekibi de işin içine alır. Ofis kullanıcısı çoğalmaz.',
       },
     ],
     extras: [
       { title: 'Görev', body: 'Saha, depo, ofis.' },
+      { title: 'Link', body: 'Teslim ve izin sahaya gider.' },
     ],
     connected: ['puantaj', 'izinler', 'maas', 'saha'],
   },
   puantaj: {
     headline: 'Kim, hangi şantiye, kaç gün.',
-    lead: 'Saha yevmiyesi ofise sonradan yazılmaz. Puantaj şantiye ve tarihe işlenir, maaşa akar.',
+    lead: 'Yevmiye ofise kâğıttan sonradan yazılmaz. Puantaj şantiye ve güne işlenir, dönem kilitlenince maaşa akar.',
     sections: [
       {
         title: 'Günlük kayıt',
-        body: 'Dönem kilitlenince maaş hesabı bu tablodan yürür. Kâğıt puantaj kaybolmaz.',
+        body: 'Montaj veya söküm günü ilgili şantiyeye yazılır. Hangi cephenin işçilik maliyeti olduğu görünür; kâğıt puantaj kaybolmaz.',
+      },
+      {
+        title: 'Dönem kilit, maaşa aktarım',
+        body: 'Kesinleşen günler maaş dönemine dökülür. Sonradan silinen yevmiye tartışması azalır.',
       },
     ],
     extras: [
@@ -427,86 +507,116 @@ const stories: Record<string, AppStory> = {
   },
   mesailer: {
     headline: 'Gece kurulum, kayda.',
-    lead: 'Hafta sonu söküm ve fazla mesai puantaj ve maaşa yansır.',
+    lead: 'Acil cephe kurulumu veya hafta sonu söküm mesai olarak işlenir. Onaysız “söylendi” kalemi maaşa girmez.',
     sections: [
       {
         title: 'Onaylı mesai',
-        body: 'Mesai kalemi “söylendi” değil, onaylı kayıttır.',
+        body: 'Gece ve tatil çalışması puantaj ve dönem dökümüne yansır. Şantiye işçilik maliyeti bu kalemi de taşır.',
+      },
+      {
+        title: 'Maaş kalemi',
+        body: 'Onaylanan mesai maaş döneminde ayrı satırdır. Ay sonu sürprizi azalır.',
       },
     ],
     extras: [
-      { title: 'Maaş kalemi', body: 'Dönem dökümünde görünür.' },
+      { title: 'Onay', body: 'Ofis onaylamadan maaşa girmez.' },
+      { title: 'Puantaj bağ', body: 'Gün ve şantiye ile durur.' },
     ],
     connected: ['puantaj', 'maas'],
   },
   izinler: {
     headline: 'Sahadan talep, ofisten onay.',
-    lead: 'Çalışana token’lı izin linki gider. Onaylanmayan gün puantaja yazılmaz.',
+    lead: 'Montajcıya gönderilen linkle izin istenir. Onaylanmayan gün puantaja yazılmaz; yevmiye boş güne işlemez.',
     sections: [
       {
         title: 'Saha linki',
-        body: 'Uygulamaya üye olmayan montajcı da izin ister. Ofis onaylar.',
+        body: 'Uygulamaya üye olmayan montajcı da izin ister. Ofis onaylar veya reddeder; planlama o günü boş görür.',
+      },
+      {
+        title: 'Puantaj etkisi',
+        body: 'Onaysız izin yevmiyeye girmez. Onaylı izin şantiye gününden düşer.',
       },
     ],
     extras: [
       { title: 'Puantaj etkisi', body: 'Boş gün yevmiyeye girmez.' },
+      { title: 'Onay akışı', body: 'Ofis karar verir.' },
     ],
     connected: ['calisanlar', 'saha', 'puantaj'],
   },
   maas: {
     headline: 'Dönem kapat, yevmiyeyi öde.',
-    lead: 'Puantaj ve mesai maaş dönemine dökülür. Çalışan kendi dönemini görür.',
+    lead: 'Kilitlenen puantaj ve onaylı mesai maaş dönemine dökülür. Çalışan kendi dönemini görür; ay sonu “kaç gün sahadaydı” tartışması azalır.',
     sections: [
       {
         title: 'Maaşım ekranı',
-        body: 'Dönem kapanınca tutar çalışan kartından izlenir. Ay sonu sürprizi azalır.',
+        body: 'Dönem kapanınca tutar çalışan kartından izlenir. Montaj ve söküm günleri dökümde durur.',
+      },
+      {
+        title: 'Aktarım',
+        body: 'Puantaj ve mesai kalemleri dönem satırına akar. Elle yeniden hesaplanan bordro azalır.',
       },
     ],
     extras: [
       { title: 'Aktarım', body: 'Puantaj → maaş kalemi.' },
+      { title: 'Dönem kilit', body: 'Kesinleşen tutar.' },
     ],
     connected: ['puantaj', 'mesailer', 'calisanlar'],
   },
   pano: {
-    headline: 'Bugün kaç teklif, kaç açık iş.',
-    lead: 'Açık talepler, taslak teklifler ve şantiye sayısı özetlenir. Yeni firma kurulum adımlarını görür.',
+    headline: 'Bugün kaç teklif, kaç açık şantiye.',
+    lead: 'Bekleyen keşifler, taslak teklifler ve sahadaki işler özetlenir. Günün sevkiyatına kısayoldan inilir.',
     sections: [
       {
         title: 'Günlük özet',
-        body: 'Yönetim güne pano ile başlar. Kısayollar teklif, depo ve sahaya iner.',
+        body: 'Yönetim güne pano ile başlar. Açık kiralama işi, onay bekleyen teklif ve sevkiyat sayısı tek bakıştadır.',
+      },
+      {
+        title: 'Yeni firma yönlendirmesi',
+        body: 'İlk müşteri, fiyatlı malzeme kataloğu ve ilk cephe teklifi kurulum adımı olarak durur. Boş hesapta kaybolunmaz.',
       },
     ],
     extras: [
       { title: 'Kurulum', body: 'Müşteri, fiyatlı malzeme, ilk teklif.' },
+      { title: 'Kısayol', body: 'Teklif, depo, saha.' },
     ],
     connected: ['talepler', 'teklifler', 'santiyeler', 'raporlar'],
   },
   raporlar: {
-    headline: 'Stok, fatura, iş özeti.',
-    lead: 'Yetkisi olan depo, malzeme ve fatura kesitine bakar. Ay sonu Excel kapanışı azalır.',
+    headline: 'Saha stoku, kira faturası, iş özeti.',
+    lead: 'Yetkisi olan depoda kalan malzemeye, kesilen kira faturalarına ve açık şantiyelere bakar. Ay sonu kapanışı dağınık Excel’den toplanmaz.',
     sections: [
       {
-        title: 'Yetkiye göre',
-        body: 'Depocu maaş görmez, muhasebe saha fişini yetkisi kadar görür.',
+        title: 'Yetkiye göre kesit',
+        body: 'Depocu maaşı görmez, muhasebe saha fişini yetkisi kadar görür. Her kiralama firması yalnız kendi işine bakar.',
+      },
+      {
+        title: 'Operasyon kesiti',
+        body: 'Açık şantiye, sahadaki stok ve fatura özeti tek rapordadır. “Hangi işte malzeme kaldı” sorusu kayıttan cevaplanır.',
       },
     ],
     extras: [
-      { title: 'Operasyon kesiti', body: 'Açık şantiye ve stok.' },
+      { title: 'Stok', body: 'Depo ve saha bakiyesi.' },
+      { title: 'Fatura', body: 'Kesilen kira ve satış.' },
     ],
     connected: ['pano', 'depo', 'faturalar'],
   },
   kullanicilar: {
-    headline: 'Depocu teklifi görmesin.',
-    lead: 'Her iskele firması kendi veri alanındadır. Ekran ekran yetki verilir.',
+    headline: 'Depocu teklifi, muhasebe saha fişini yetkisi kadar görsün.',
+    lead: 'Her kiralama ve satış firması kendi kaydını görür. Teklif yazma, depo okuma ve maaş görme ayrı verilir.',
     sections: [
       {
-        title: 'Rol paneli',
-        body: 'Teklif yazma, depo okuma, maaş görme ayrıdır. Başka firmanın verisi görünmez.',
+        title: 'Ekran ekran yetki',
+        body: 'Teklifçi şantiye bakiyesini, depocu maaşı, muhasebe kurulum fişini ancak verilen kadar görür. Başka firmanın şantiyesi açılmaz.',
+      },
+      {
+        title: 'Davet ve iz',
+        body: 'Ofis kullanıcısı e-posta ile eklenir. Kim teklifi değiştirdi, kim fişi kesti aktivitede durur.',
       },
     ],
     extras: [
       { title: 'Davet', body: 'Kullanıcı e-posta ile eklenir.' },
       { title: 'Aktivite', body: 'Kim neyi değiştirdi.' },
+      { title: 'Firma kaydı', body: 'Başka firmanın verisi görünmez.' },
     ],
     connected: ['pano', 'calisanlar'],
   },
