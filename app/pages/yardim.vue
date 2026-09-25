@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Headset, MessageCircle, Monitor, Wrench } from '@lucide/vue'
+import { legalCompany } from '~/data/legal'
 import { companySizes, helpTopics } from '~/data/site'
 import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
 import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
@@ -98,6 +99,9 @@ useJsonLd('ld-faq', {
         >
           {{ config.public.email }}
         </a>
+        <p class="mt-3 max-w-md text-center text-sm leading-relaxed text-navy/70">
+          {{ legalCompany.address }}
+        </p>
       </div>
 
       <div class="mx-auto mt-10 grid max-w-6xl gap-4 px-6 md:grid-cols-3">

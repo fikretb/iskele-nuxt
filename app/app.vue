@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { legalCompany } from '~/data/legal'
+
 const i18nHead = useLocaleHead({ seo: true })
 
 useHead(() => ({
@@ -15,17 +17,17 @@ useJsonLd('ld-org', {
     {
       '@type': 'Organization',
       name: 'İskele Pro',
-      legalName: 'Hitech Mühendislik Ltd. Şti.',
+      legalName: legalCompany.name,
       url: 'https://iskelepro.com',
       logo: 'https://iskelepro.com/icon-512.png',
       telephone: '+905323919755',
-      email: 'info@iskelepro.com',
+      email: legalCompany.email,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Kayışdağı Mahallesi, Hürriyet Sokak No: 1 D: 3',
-        addressLocality: 'Ataşehir',
-        addressRegion: 'İstanbul',
-        addressCountry: 'TR',
+        streetAddress: legalCompany.streetAddress,
+        addressLocality: legalCompany.addressLocality,
+        addressRegion: legalCompany.addressRegion,
+        addressCountry: legalCompany.addressCountry,
       },
       contactPoint: {
         '@type': 'ContactPoint',

@@ -1,7 +1,12 @@
 export const legalCompany = {
   name: 'Hitech Mühendislik Ltd. Şti.',
   product: 'İskele Pro',
-  address: 'Kayışdağı Mahallesi, Hürriyet Sokak No: 1 D: 3, Ataşehir / İstanbul',
+  address: 'Kayışdağı Mahallesi, Hürriyet Sokak No1 D3 ATAŞEHİR, İSTANBUL, TÜRKİYE',
+  streetAddress: 'Kayışdağı Mahallesi, Hürriyet Sokak No1 D3',
+  addressLocality: 'Ataşehir',
+  addressRegion: 'İstanbul',
+  addressCountry: 'TR',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Kayışdağı+Mahallesi+Hürriyet+Sokak+No1+D3+Ataşehir+İstanbul+Türkiye',
   email: 'info@iskelepro.com',
   phoneDisplay: '+90 532 391 97 55',
   updatedTr: '24 Eylül 2026',

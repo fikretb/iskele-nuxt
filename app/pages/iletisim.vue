@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Check, Mail, MessageCircle, Phone } from '@lucide/vue'
+import { Check, Mail, MapPin, MessageCircle, Phone } from '@lucide/vue'
+import { legalCompany } from '~/data/legal'
 import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
 import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
@@ -18,6 +19,20 @@ useJsonLd('ld-contact', () => ({
   '@type': 'ContactPage',
   name: locale.value === 'en' ? 'Contact · İskele Pro' : 'İletişim · İskele Pro',
   url: locale.value === 'en' ? 'https://iskelepro.com/en/contact' : 'https://iskelepro.com/iletisim',
+  mainEntity: {
+    '@type': 'Organization',
+    name: legalCompany.product,
+    legalName: legalCompany.name,
+    email: legalCompany.email,
+    telephone: '+905323919755',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: legalCompany.streetAddress,
+      addressLocality: legalCompany.addressLocality,
+      addressRegion: legalCompany.addressRegion,
+      addressCountry: legalCompany.addressCountry,
+    },
+  },
 }))
 
 const points = [
@@ -73,6 +88,21 @@ const points = [
                   <span>
                     <span class="block text-xs font-medium tracking-wide text-white/55 uppercase">E-posta</span>
                     <span class="mt-0.5 block text-base font-semibold">{{ config.public.email }}</span>
+                  </span>
+                </a>
+
+                <a
+                  :href="legalCompany.mapsUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 rounded-xl bg-white/8 p-4 ring-1 ring-white/12 transition-colors hover:bg-white/12"
+                >
+                  <span class="flex size-11 shrink-0 items-center justify-center rounded-lg bg-gold text-navy-deep">
+                    <MapPin class="size-5" />
+                  </span>
+                  <span>
+                    <span class="block text-xs font-medium tracking-wide text-white/55 uppercase">Adres</span>
+                    <span class="mt-0.5 block text-sm font-semibold leading-snug">{{ legalCompany.address }}</span>
                   </span>
                 </a>
 

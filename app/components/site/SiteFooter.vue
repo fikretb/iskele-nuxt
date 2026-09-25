@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { appsPath } from '~/constants/slugs'
+import { legalCompany } from '~/data/legal'
 import { megaColumns } from '~/data/site'
 
 const config = useRuntimeConfig()
@@ -15,6 +16,10 @@ const year = new Date().getFullYear()
         <BrandLogo on-dark />
         <p class="max-w-xl text-sm leading-relaxed text-white/70">
           {{ $t('footer.blurb') }}
+        </p>
+        <p class="max-w-xl text-sm leading-relaxed text-white/70">
+          {{ legalCompany.name }}<br>
+          {{ legalCompany.address }}
         </p>
       </div>
       <div>
