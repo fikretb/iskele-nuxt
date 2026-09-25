@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Headset, Mail, MapPin, MessageCircle, Monitor, Wrench } from '@lucide/vue'
-import { legalCompany } from '~/data/legal'
+import { Headset, Mail, MessageCircle, Monitor, Wrench } from '@lucide/vue'
 import { companySizes, helpTopics } from '~/data/site'
 import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
 import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
@@ -109,20 +108,6 @@ useJsonLd('ld-faq', {
             <span class="min-w-0">
               <span class="block text-[11px] font-medium tracking-wide text-navy/50 uppercase">E-posta</span>
               <span class="mt-0.5 block break-all text-sm font-semibold leading-snug text-navy">{{ config.public.email }}</span>
-            </span>
-          </a>
-          <a
-            :href="legalCompany.mapsUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-navy/10 transition-colors hover:ring-navy/25 sm:col-span-2"
-          >
-            <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold text-navy-deep">
-              <MapPin class="size-4" />
-            </span>
-            <span class="min-w-0">
-              <span class="block text-[11px] font-medium tracking-wide text-navy/50 uppercase">Adres</span>
-              <span class="mt-0.5 block text-sm font-semibold leading-snug text-navy">{{ legalCompany.address }}</span>
             </span>
           </a>
         </div>

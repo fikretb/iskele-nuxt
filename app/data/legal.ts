@@ -1,7 +1,7 @@
 export const legalCompany = {
   name: 'Hitech Mühendislik Ltd. Şti.',
   product: 'İskele Pro',
-  address: 'Kayışdağı Mahallesi, Hürriyet Sokak No1 D3 ATAŞEHİR, İSTANBUL, TÜRKİYE',
+  address: 'Kayışdağı Mahallesi, Hürriyet Sokak No1 D3 Ataşehir, İstanbul, Türkiye',
   streetAddress: 'Kayışdağı Mahallesi, Hürriyet Sokak No1 D3',
   addressLocality: 'Ataşehir',
   addressRegion: 'İstanbul',
