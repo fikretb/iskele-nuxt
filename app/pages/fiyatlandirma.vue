@@ -149,15 +149,19 @@ function planPrice(plan: (typeof pricingPlans)[number]) {
         </div>
 
         <div class="mt-10 grid items-stretch gap-5 lg:grid-cols-3 lg:items-start">
-          <article
+          <div
             v-for="plan in pricingPlans"
             :key="plan.id"
-            class="flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white transition-shadow"
+            class="h-full"
+            :class="isFeatured(plan) ? 'lg:-translate-y-3' : ''"
+          >
+          <article
+            class="flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white"
             :class="isFeatured(plan)
-              ? 'border-gold shadow-[0_18px_40px_-24px_rgb(11_32_81/0.45)] lg:-translate-y-3'
+              ? 'plan-heartbeat border-gold'
               : selectedId === plan.id
-                ? 'border-navy/40 shadow-sm'
-                : 'border-navy/12'"
+                ? 'border-navy/40 shadow-sm transition-shadow'
+                : 'border-navy/12 transition-shadow'"
             @click="selectPlan(plan.id)"
           >
             <div
@@ -223,6 +227,7 @@ function planPrice(plan: (typeof pricingPlans)[number]) {
               </p>
             </div>
           </article>
+          </div>
         </div>
 
         <ul class="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">

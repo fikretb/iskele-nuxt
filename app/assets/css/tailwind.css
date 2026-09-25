@@ -228,6 +228,43 @@
   }
   .motion-reveal.is-in .hairline { width: 4.5rem; }
 
+  .plan-heartbeat {
+    transform-origin: center center;
+    animation: plan-heartbeat 1.65s ease-in-out infinite;
+    will-change: transform, box-shadow;
+  }
+  .plan-heartbeat:hover {
+    animation-play-state: paused;
+  }
+  @keyframes plan-heartbeat {
+    0%,
+    72%,
+    100% {
+      transform: scale(1);
+      box-shadow:
+        0 18px 40px -24px rgb(11 32 81 / 0.45),
+        0 0 0 0 rgb(232 148 20 / 0);
+    }
+    14% {
+      transform: scale(1.028);
+      box-shadow:
+        0 22px 46px -20px rgb(11 32 81 / 0.5),
+        0 0 0 6px rgb(232 148 20 / 0.2);
+    }
+    28% {
+      transform: scale(1);
+      box-shadow:
+        0 18px 40px -24px rgb(11 32 81 / 0.45),
+        0 0 0 0 rgb(232 148 20 / 0);
+    }
+    42% {
+      transform: scale(1.04);
+      box-shadow:
+        0 26px 50px -18px rgb(11 32 81 / 0.52),
+        0 0 0 8px rgb(232 148 20 / 0.24);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .motion-reveal,
     .tile-move,
@@ -236,7 +273,8 @@
     .flow-image-enter-active,
     .flow-image-leave-active,
     .scene,
-    .hairline {
+    .hairline,
+    .plan-heartbeat {
       transition: none !important;
       animation: none !important;
       opacity: 1 !important;
