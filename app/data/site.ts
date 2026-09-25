@@ -2,7 +2,6 @@ import { appCategories, productApps } from '~/data/apps'
 
 export const navLinks = [
   { label: 'Uygulamalar', to: '/uygulamalar', mega: 'apps' },
-  { label: 'İskele Hesapla', to: '/iskele-hesapla' },
   { label: 'Fiyatlandırma', to: '/fiyatlandirma' },
   { label: 'Yardım', to: '/yardim' },
   { label: 'İletişim', to: '/iletisim' },
@@ -26,7 +25,6 @@ export const resourceMega = [
     name: 'Öğrenim',
     items: [
       { label: 'Tüm uygulamalar', to: '/uygulamalar' },
-      { label: 'İskele Hesapla', to: '/iskele-hesapla' },
       { label: 'Fiyatlandırma', to: '/fiyatlandirma' },
       { label: 'Yardım', to: '/yardim' },
     ],
