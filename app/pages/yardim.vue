@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Headset, MessageCircle, Monitor, Wrench } from '@lucide/vue'
+import { Headset, Mail, MapPin, MessageCircle, Monitor, Wrench } from '@lucide/vue'
 import { legalCompany } from '~/data/legal'
 import { companySizes, helpTopics } from '~/data/site'
 import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
@@ -84,24 +84,48 @@ useJsonLd('ld-faq', {
             <NuxtLink :to="localePath(`/iletisim?olcek=${size.id}#talep`)">{{ size.label }}</NuxtLink>
           </Button>
         </div>
-        <a
-          :href="whatsappHref"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-navy underline-offset-2 hover:underline"
-        >
-          <MessageCircle class="size-4 text-[#3DDC84]" />
-          WhatsApp ile yazın · {{ config.public.phoneDisplay }}
-        </a>
-        <a
-          :href="`mailto:${config.public.email}`"
-          class="mt-2 inline-flex items-center gap-2 text-sm font-medium text-navy underline-offset-2 hover:underline"
-        >
-          {{ config.public.email }}
-        </a>
-        <p class="mt-3 max-w-md text-center text-sm leading-relaxed text-navy/70">
-          {{ legalCompany.address }}
-        </p>
+        <div class="mx-auto mt-8 grid w-full max-w-2xl gap-3 text-left sm:grid-cols-2">
+          <a
+            :href="whatsappHref"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-navy/10 transition-colors hover:ring-navy/25"
+          >
+            <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#3DDC84] text-white">
+              <MessageCircle class="size-4" />
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-medium tracking-wide text-navy/50 uppercase">WhatsApp</span>
+              <span class="mt-0.5 block text-sm font-semibold leading-snug text-navy">{{ config.public.phoneDisplay }}</span>
+            </span>
+          </a>
+          <a
+            :href="`mailto:${config.public.email}`"
+            class="flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-navy/10 transition-colors hover:ring-navy/25"
+          >
+            <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-navy text-gold">
+              <Mail class="size-4" />
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-medium tracking-wide text-navy/50 uppercase">E-posta</span>
+              <span class="mt-0.5 block break-all text-sm font-semibold leading-snug text-navy">{{ config.public.email }}</span>
+            </span>
+          </a>
+          <a
+            :href="legalCompany.mapsUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-navy/10 transition-colors hover:ring-navy/25 sm:col-span-2"
+          >
+            <span class="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold text-navy-deep">
+              <MapPin class="size-4" />
+            </span>
+            <span class="min-w-0">
+              <span class="block text-[11px] font-medium tracking-wide text-navy/50 uppercase">Adres</span>
+              <span class="mt-0.5 block text-sm font-semibold leading-snug text-navy">{{ legalCompany.address }}</span>
+            </span>
+          </a>
+        </div>
       </div>
 
       <div class="mx-auto mt-10 grid max-w-6xl gap-4 px-6 md:grid-cols-3">
