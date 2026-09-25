@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Headset, Mail, MessageCircle, Monitor, Wrench } from '@lucide/vue'
-import { companySizes, helpTopics } from '~/data/site'
+import { helpTopics } from '~/data/site'
 import { useBreadcrumbJsonLd } from '~/composables/useBreadcrumbJsonLd'
 import { useLocalizedPageSeo } from '~/composables/useLocalizedPageSeo'
 
@@ -70,17 +70,6 @@ useJsonLd('ld-faq', {
         <div class="mt-6">
           <Button size="lg" class="bg-navy text-white hover:bg-navy-soft" as-child>
             <NuxtLink :to="localePath('/iletisim#talep')">Bir danışmanla görüşün</NuxtLink>
-          </Button>
-        </div>
-        <div class="mt-4 flex flex-wrap justify-center gap-2">
-          <Button
-            v-for="size in companySizes"
-            :key="size.id"
-            variant="outline"
-            class="rounded-full border-navy/15 bg-white"
-            as-child
-          >
-            <NuxtLink :to="localePath(`/iletisim?olcek=${size.id}#talep`)">{{ size.label }}</NuxtLink>
           </Button>
         </div>
         <div class="mx-auto mt-8 grid w-full max-w-2xl gap-3 text-left sm:grid-cols-2">
